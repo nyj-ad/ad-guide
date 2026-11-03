@@ -185,6 +185,14 @@ main{flex:1;padding:36px 0 60px}
 .skip:focus{left:12px}
 @media (max-width:720px){.calc,.quick,.links{grid-template-columns:1fr}}
 
+.biz{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px;padding:16px 18px;border-radius:14px;border:1px solid #dfe3fb;background:linear-gradient(135deg,var(--blue-soft),var(--purple-soft))}
+.biz p{font-size:13.5px;color:var(--muted);margin-top:2px}
+.biz-btn{display:flex;gap:8px;flex-wrap:wrap}
+.biz-btn .btn{font-size:13.5px;padding:9px 14px}
+.quick{grid-template-columns:repeat(4,1fr)}
+@media (max-width:900px){.quick{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.quick{grid-template-columns:1fr}}
+
 /* 7. 푸터 — 카피라이트 고정 */
 footer{border-top:1px solid var(--line);background:#fff;padding:26px 0;text-align:center;font-size:13px;color:var(--muted)}
 footer .upd{font-size:12px;color:#9aa0b2;margin-top:6px}
@@ -250,8 +258,19 @@ const LINKS = {   // 공식 바로가기 (외부 링크)
   easylaw: "https://www.easylaw.go.kr/CSP/CnpClsMainBtr.laf?popMenu=ov&csmSeq=897&ccfNo=3&cciNo=1&cnpClsNo=1",
   banner: "https://www.nyj.go.kr/www/selectBbsNttView.do?bbsNo=35&key=2406&nttNo=499034",
   zone: "https://www.nyj.go.kr/www/selectBbsNttView.do?bbsNo=35&key=2406&nttNo=499044",
-  popsign: "http://www.popsign.co.kr/"
+  popsign: "http://www.popsign.co.kr/",
+  bizNow: "https://www.nyj.go.kr/www/selectBbsNttView.do?key=2406&bbsNo=35&nttNo=548563",   // 2026년 옥외광고업 현황(2026. 8. 31. 기준)
+  bizList: "https://www.nyj.go.kr/www/selectBbsNttList.do?key=2406&bbsNo=35&pageUnit=10&searchCnd=SJ&searchKrwd=%EC%98%A5%EC%99%B8%EA%B4%91%EA%B3%A0%EC%97%85",
+  bizData: "https://www.data.go.kr/data/15159282/fileData.do"
 };
+const BIZ = { asof:"2026. 8. 31.", dept:"기반조성과" };
+/* 등록 옥외광고사업자 확인 안내 상자 — 여러 메뉴에서 공통으로 사용 */
+function bizBox(msg){
+  return `<div class="biz"><div><b>🏢 등록된 옥외광고사업자 확인</b>
+    <p>${msg||"간판 제작·설치는 시·군에 등록된 옥외광고사업자에게 맡기십시오."}</p></div>
+    <div class="biz-btn"><a class="btn" href="${LINKS.bizNow}" target="_blank" rel="noopener" style="text-decoration:none">남양주시 등록 업체 현황 (${BIZ.asof} 기준)</a>
+    <a class="btn" href="${LINKS.bizData}" target="_blank" rel="noopener" style="text-decoration:none">공공데이터포털</a></div></div>`;
+}
 
 /* 「남양주시 옥외광고물 등의 관리와 옥외광고산업 진흥에 관한 조례」 [별표 3] 광고물등의 허가·신고 수수료
    mode: area(면적 기준) / count(개수·매수·건수 기준)
@@ -299,7 +318,7 @@ const MENUS = [
   { id:"process",   no:"라", ico:"🔄", title:"처리 절차 및 처리 기간", desc:"접수부터 허가증 교부까지 흐름", kw:"절차 처리기간 기간 연장 변경 교부" },
   { id:"fees",      no:"마", ico:"💳", title:"수수료 안내", desc:"조례 기준 수수료표와 자동 계산기", kw:"수수료 비용 금액 납부 계산기 계산 안전점검" },
   { id:"faq",       no:"바", ico:"💬", title:"자주 묻는 질문", desc:"민원인이 자주 묻는 내용을 모았습니다.", kw:"질문 faq 과태료 사유지 수량 현수막 이행강제금 책임보험 정부24 온라인 반환 네온" },
-  { id:"contact",   no:"사", ico:"☎️", title:"문의처", desc:"담당 부서와 전화번호", kw:"문의 전화 담당 부서 연락처 위치" }
+  { id:"contact",   no:"사", ico:"☎️", title:"문의처", desc:"담당 부서와 전화번호", kw:"문의 전화 담당 부서 연락처 위치 광고업체 간판업체 옥외광고사업자 등록업체" }
 ];
 
 const app = document.getElementById("app");
@@ -338,6 +357,7 @@ function renderHome(){
       <a class="qk glass" href="${LINKS.gov24}" target="_blank" rel="noopener"><b>💻 정부24 온라인 신청</b><span>방문 없이 인터넷으로 신청</span></a>
       <a class="qk glass" href="${LINKS.forms}" target="_blank" rel="noopener"><b>📄 신청서 서식 내려받기</b><span>남양주시 민원편람(별지 제1호서식)</span></a>
       <button class="qk glass" onclick="go('fees')"><b>🧮 수수료 계산기</b><span>크기만 넣으면 수수료 자동 계산</span></button>
+      <a class="qk glass" href="${LINKS.bizNow}" target="_blank" rel="noopener"><b>🏢 등록 광고업체 찾기</b><span>남양주시 옥외광고업 현황</span></a>
     </div>`;
   const q = document.getElementById("q");
   const draw = () => {
@@ -462,7 +482,8 @@ function drawDiagnose(el){
       </div>
       ${docs?`<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" onclick="docState.mode='${r.c==='p'?'permit':'report'}';go('documents')">→ 다음: ${r.big} 구비서류 확인</button><button class="btn" onclick="calc.k='${({wall:wiz.ans.other?'wallHo':'wallH',proj:'proj',pole:'pole',roof:'roof',stand:'stand',banner:wiz.ans.fac30?'bfac':'banner',show:'show',balloon:'balloon',paper:'poster'})[wiz.type]||'wallH'}';go('fees')">🧮 수수료 계산해 보기</button></div>`:
       `<button class="btn primary" onclick="go('contact')">→ 담당 부서에 문의하기</button>`}
-      <div class="note warn">자가진단은 참고용입니다. 지역·건물 여건, 심의 대상 여부에 따라 결과가 달라질 수 있으니 설치 전 반드시 담당 부서(${CONTACT.tel})와 상담하시기 바랍니다.</div>`;
+      <div class="note warn">자가진단은 참고용입니다. 지역·건물 여건, 심의 대상 여부에 따라 결과가 달라질 수 있으니 설치 전 반드시 담당 부서(${CONTACT.tel})와 상담하시기 바랍니다.</div>
+      ${bizBox("허가·신고 신청과 간판 설치는 등록된 옥외광고사업자에게 의뢰하면 서류 준비부터 도움을 받을 수 있습니다.")}`;
   }
   const ready = wiz.step===0 ? !!wiz.type : wiz.step===1 ? qs.every(q=>typeof wiz.ans[q.k]==="boolean") : true;
   el.innerHTML = `<h2>🧭 허가·신고 대상 자가진단</h2>
@@ -521,7 +542,8 @@ function drawStandards(el){
       · 간판은 허가(신고)를 마친 뒤에 설치해야 합니다.<br>
       · 간판의 표시기간은 원칙적으로 3년 이내이며, 계속 사용하려면 기간 연장을 신청해야 합니다.<br>
       · 4층 이상 또는 한 변 10m 이상 벽면 간판, 높이 5m 이상·면적 1㎡ 이상 돌출간판, 옥상간판, 높이 4m 이상 지주 간판 등은 안전점검 대상입니다.</div>
-    <div class="note warn">간판 크기·높이·돌출 폭·업소별 수량 등 세부 표시방법은 「경기도 옥외광고물 조례」 및 「남양주시 조례」에서 정합니다. 세부 수치는 ${chk}</div>`;
+    <div class="note warn">간판 크기·높이·돌출 폭·업소별 수량 등 세부 표시방법은 「경기도 옥외광고물 조례」 및 「남양주시 조례」에서 정합니다. 세부 수치는 ${chk}</div>
+    ${bizBox("표시방법에 맞는 간판 제작은 등록된 옥외광고사업자와 상의하십시오.")}`;
   el.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>{stdTab=+b.dataset.i;drawStandards(el);});
 }
 
@@ -570,6 +592,7 @@ function drawDocuments(el){
       <a class="btn" href="${LINKS.gov24}" target="_blank" rel="noopener" style="text-decoration:none">💻 정부24 온라인 신청</a>
       <button class="btn" id="rst">체크 초기화</button></div>
     <p class="law">근거: 「옥외광고물법」 제3조, 같은 법 시행령 제7조 / 남양주시 민원편람. 체크한 내용은 이 기기의 브라우저에만 저장됩니다.</p>
+    ${bizBox("원색도안, 설계도서(규격·재료·구조 설명서)는 보통 간판을 제작하는 등록 옥외광고사업자가 작성합니다.")}
     <div class="note warn">· 관리자(영업주)가 바뀐 경우에는 변경된 날부터 15일 이내에 관리자 변경 신고를 해야 합니다.<br>· 광고물 종류에 따라 추가 서류가 필요할 수 있으니 접수 전 문의해 주십시오.</div>`;
   el.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{docState.mode=b.dataset.m;drawDocuments(el);});
   el.querySelectorAll("[data-c]").forEach(b=>b.onchange=()=>{ck[+b.dataset.c]=b.checked;store.set("oa-docs",docState.checked);drawDocuments(el);});
@@ -583,12 +606,12 @@ function drawProcess(el){
   el.innerHTML = `<h2>🔄 처리 절차 및 처리 기간</h2>
     <p class="lead">설치 전 상담부터 허가증(신고필증) 교부까지의 흐름입니다.</p>
     <ol class="flow">
-      <li data-n="1"><h4>사전 상담</h4><p>자가진단 결과와 설치 위치·크기를 가지고 담당 부서와 상담합니다.</p></li>
+      <li data-n="1"><h4>사전 상담 · 업체 선정</h4><p>자가진단 결과와 설치 위치·크기를 가지고 담당 부서와 상담하고, <a href="${LINKS.bizNow}" target="_blank" rel="noopener">등록된 옥외광고사업자</a>를 정합니다.</p></li>
       <li data-n="2"><h4>신청서 및 구비서류 제출</h4><p>${CONTACT.office} ${CONTACT.dept}에 방문하거나 <a href="${LINKS.gov24}" target="_blank" rel="noopener">정부24</a>로 온라인 신청합니다. (광고주 또는 옥외광고업자)</p></li>
       <li data-n="3"><h4>서류 검토 · 현장 확인</h4><p>표시방법 적합 여부를 검토하고, 필요 시 현장을 확인합니다. 심의 대상은 옥외광고심의위원회 심의를 거칩니다.</p></li>
       <li data-n="4"><h4>수수료 납부</h4><p>신청 시 발급되는 고지서로 수수료를 납부합니다. 안전점검 대상은 안전점검 수수료를 별도로 납부합니다. <a href="#fees">수수료 계산하기 →</a></p></li>
       <li data-n="5"><h4>허가증 · 신고필증 교부</h4><p>교부받은 뒤에 광고물을 설치합니다.</p></li>
-      <li data-n="6"><h4>설치 및 실명제 표시</h4><p>광고물에 표시자·제작자 등을 알리는 실명 표시를 부착합니다.</p></li>
+      <li data-n="6"><h4>설치 및 실명제 표시</h4><p>등록된 옥외광고사업자가 설치하고, 광고물에 표시자·제작자 등을 알리는 실명 표시를 부착합니다.</p></li>
     </ol>
     <div class="tbl-wrap"><table class="tbl">
       <tr><th>구분</th><th>처리 기간</th><th>비고</th></tr>
@@ -727,6 +750,7 @@ const FAQ = [
   ["가게를 인수했는데 기존 간판을 그대로 써도 되나요?","광고물 관리자(영업주)가 바뀐 경우 변경된 날부터 15일 이내에 관리자 변경 신고를 해야 합니다. 광고 내용을 바꾸면 변경 허가(신고)가 필요합니다."],
   ["현수막은 아무 곳에나 걸 수 있나요?","현수막은 원칙적으로 지정 게시대에 신고 후 게시해야 합니다. 가로수·전봇대 등에 무단으로 거는 현수막은 정비 대상이며 과태료가 부과될 수 있습니다."],
   ["입간판(세움 간판)을 가게 앞 인도에 둬도 되나요?","입간판은 신고 대상이며, 건물 부지 안에 두어야 합니다. 보도(인도) 등 도로에 내놓는 입간판은 정비 대상이 됩니다. 세부 기준은 문의해 주십시오."],
+  ["등록된 간판(옥외광고) 업체는 어디서 확인하나요?",`남양주시 누리집의 「사전행정정보」에 <a href="${LINKS.bizNow}" target="_blank" rel="noopener">옥외광고업 현황</a>이 공개되어 있습니다(최신: ${BIZ.asof} 기준, ${BIZ.dept}). 같은 자료를 <a href="${LINKS.bizData}" target="_blank" rel="noopener">공공데이터포털</a>에서도 내려받을 수 있습니다.`],
   ["간판 제작·설치 업체도 따로 갖춰야 할 것이 있나요?","옥외광고사업자는 옥외광고사업 등록을 해야 하며, 2021년 6월 9일부터 옥외광고물 손해배상 책임보험(또는 같은 내용이 포함된 보험) 가입이 의무화되었습니다. 위반 시 과태료가 부과될 수 있습니다."]
 ];
 function drawFaq(el){
@@ -757,6 +781,9 @@ function drawContact(el){
          ["옥외광고물법 시행령",LINKS.decree,"허가·신고 대상(제4조·제5조)"],
          ["경기도 옥외광고물 조례",LINKS.gg,"표시방법 세부 기준"],
          ["남양주시 옥외광고물 조례",LINKS.nyj,"수수료(별표 3·4), 과태료 기준"],
+         ["남양주시 옥외광고업 현황 (등록 업체)",LINKS.bizNow,`${BIZ.asof} 기준 · ${BIZ.dept}`],
+         ["옥외광고업 현황 전체 목록",LINKS.bizList,"연도별 공개 자료"],
+         ["공공데이터포털 · 남양주시 옥외광고업 현황",LINKS.bizData,"엑셀 내려받기"],
          ["남양주시 특정구역 지정 고시",LINKS.zone,"특정구역·정비시범구역"],
          ["남양주시 현수막 지정게시대 현황",LINKS.banner,"게시대 위치"],
          ["찾기쉬운 생활법령 · 옥외광고물",LINKS.easylaw,"법제처 생활법령"],
