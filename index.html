@@ -776,7 +776,7 @@ function drawBiz(el){
       <p class="lead">남양주시에 등록된 옥외광고사업자를 업소명·지역·영업내용으로 찾을 수 있습니다.</p>
       <div class="biz-meta">
         <span>📅 <b>${esc(d.asof||"")}</b> 기준</span><span>🏢 <b>${d.count}</b>개 업체</span>
-        <span>🔄 자동 확인: ${esc(d.updated||"")}</span>
+        <span>🔄 최종 갱신: ${esc(d.updated||"")} (매일 자동 확인)</span>
         <a href="${esc(d.source||LINKS.bizNow)}" target="_blank" rel="noopener">원문 게시글</a>
         ${d.file?`<a href="${esc(d.file)}" target="_blank" rel="noopener">엑셀 내려받기</a>`:""}
       </div>
