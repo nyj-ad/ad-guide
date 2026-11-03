@@ -64,7 +64,7 @@ main{flex:1;padding:36px 0 60px}
 .card{padding:22px;text-align:left;color:var(--text);transition:.2s}
 .card:hover{transform:translateY(-3px);border-color:#c7d3fb;box-shadow:0 10px 28px rgba(63,110,245,.12)}
 .card .no{font-size:12px;color:var(--blue);font-weight:700;letter-spacing:1px}
-.card .ico{font-size:28px;margin:10px 0 8px}
+
 .card h3{font-size:17px;margin-bottom:4px}
 .card p{font-size:13.5px;color:var(--muted)}
 .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:30px}
@@ -218,6 +218,17 @@ main{flex:1;padding:36px 0 60px}
 .top-call{white-space:nowrap}
 @media (max-width:380px){.brand small{display:none}}
 
+.card{display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start}
+.card .ico{margin:0 0 10px;height:60px}
+.sign{width:60px;height:60px;display:block;filter:drop-shadow(0 6px 10px rgba(63,110,245,.28));transition:transform .25s}
+.card:hover .sign{transform:rotate(-4deg);transform-origin:50% 12%}
+.ic{width:1.05em;height:1.05em;vertical-align:-.16em;flex-shrink:0}
+.h2i{width:26px;height:26px;color:var(--blue);margin-right:8px;vertical-align:-4px}
+.cta .h2i{width:22px;height:22px}
+.qk b .ic,.biz b .ic,.h3 .ic{color:var(--blue)}
+.btn.primary .ic{color:#fff}
+.biz-meta .ic,.baddr .ic{color:var(--blue)}
+
 /* 7. 푸터 — 카피라이트 고정 */
 footer{border-top:1px solid var(--line);background:#fff;padding:26px 0;text-align:center;font-size:13px;color:var(--muted)}
 footer .upd{font-size:12px;color:#9aa0b2;margin-top:6px}
@@ -293,9 +304,9 @@ const BIZ = { asof:"2026. 8. 31.", dept:"기반조성과" };
 const BIZ_FALLBACK = {"title":"2026년 옥외광고업 현황（2026. 8. 31. 기준）","asof":"2026. 8. 31.","ntt":548563,"source":"https://www.nyj.go.kr/www/selectBbsNttView.do?key=2406&bbsNo=35&nttNo=548563","file":"https://www.nyj.go.kr/www/downloadBbsFile.do?bbsNo=35&nttNo=548563&atchmnflNo=1554909","provider":"남양주시 기반조성과(사전행정정보 공개자료)","updated":"2026-11-03 12:38","count":243,"items":[{"name":"애드맥","addr":"경기도 남양주시 진접읍 팔야로 187, 1층","area":"진접읍","biz":"옥외광고 제작설치/LED전광판제작"},{"name":"㈜지브이","addr":"경기도 남양주시 화도읍 폭포로242번길 12-19, 주3동","area":"화도읍","biz":"옥외광고물 제작 설치"},{"name":"메이크잇","addr":"경기도 남양주시 화도읍 폭포로 105","area":"화도읍","biz":"광고물 기획, 디자인, 시공(제조제외)"},{"name":"비모(BMO)","addr":"경기도 남양주시 진접읍 진벌로119번길 48-77, 2동 1층","area":"진접읍","biz":"간판제작"},{"name":"대화플랜","addr":"경기도 남양주시 수동면 송천3길 59, 주2동 1층","area":"수동면","biz":"간판 및 광고물 제작 및 기획"},{"name":"더조은간판","addr":"경기도 남양주시 덕송2로 70-9, 미래타워 106호 (별내동)","area":"별내동","biz":"간판설치 시공(제작 제외)"},{"name":"명민디자인","addr":"경기도 남양주시 진접읍 양진로1020번길 10, 대현 1층 2호","area":"진접읍","biz":"옥외광고물 제작"},{"name":"기쁨광고","addr":"경기도 남양주시 화도읍 마석중앙로 84, 1층","area":"화도읍","biz":"간판, 현수막, 인쇄(제작)"},{"name":"(주)우신정보시스템","addr":"경기도 남양주시 순화궁로 249, 별내역 파라곤스퀘어 19층 M1917,M1918호 (별내동)","area":"별내동","biz":"LED전광판, 간판 제작 및 설치"},{"name":"(주)예성아름터","addr":"경기도 남양주시 금곡로 65-11 (금곡동, 예성빌딩)","area":"금곡동","biz":"간판,인쇄,홍보물"},{"name":"씨엘광고","addr":"경기도 남양주시 진접읍 내각1로 91","area":"진접읍","biz":"옥외광고물 제작"},{"name":"디자인소우","addr":"경기도 남양주시 진건읍 독정로성지2길 111, 토이스타 주2동 1층","area":"진건읍","biz":"옥외광고물 제작"},{"name":"늘푸른광고","addr":"경기도 남양주시 화도읍 경춘로 2202, 옥천주유소","area":"화도읍","biz":"간판및현수막광고"},{"name":"아르디키디자인 주식회사","addr":"경기도 남양주시 별내3로 322, 스카이프라자 404호 (별내동)","area":"별내동","biz":"옥외광고물 광고대행"},{"name":"제이디위너","addr":"경기도 남양주시 경춘로784번길 27-31 (일패동)","area":"일패동","biz":"간판및광고물제작/옥내외전시광고업/광고대행 등"},{"name":"(주)디자인뉴","addr":"경기도 남양주시 다산순환로 20, EA동 317호 (다산동)","area":"다산동","biz":"간판, 싸인물 제작 시공"},{"name":"(주)디자인감자","addr":"경기도 남양주시 순화궁로 249, 별내역 파라곤스퀘어 N동 1415호 (별내동)","area":"별내동","biz":"옥외광고디자인"},{"name":"(주)서진기업","addr":"경기도 남양주시 수동면 소래비로416번길 11, 2동","area":"수동면","biz":"안내판 제작"},{"name":"디자인공작소","addr":"경기도 남양주시 순화궁로 418, 현대그리너리캠퍼스 1동 2층 비2-0047호 (별내동)","area":"별내동","biz":"간판 및 내외부 사인물 제작"},{"name":"꿈다","addr":"경기도 남양주시 별내면 청학로54번길 53, 4층","area":"별내면","biz":"간판,현수막 제작 및 설치"},{"name":"문화네온","addr":"경기도 남양주시 경춘로 732, 1층 (일패동)","area":"일패동","biz":"네온 및 옥외광고물 제작 시공"},{"name":"한솔기업","addr":"경기도 남양주시 오남읍 양지로대대울1길 9-2","area":"오남읍","biz":"옥외광고업, 장식물가공, 판촉물"},{"name":"(주)세종에스씨","addr":"경기도 남양주시 화도읍 가곡로72번길 32-1","area":"화도읍","biz":"내외부 간판설치"},{"name":"엘이디월드","addr":"경기도 남양주시 다산순환로 20, 다산현대프리미어캠퍼스 이에이03-005호 (다산동)","area":"다산동","biz":"옥외광고"},{"name":"(주)153디자인건설","addr":"경기도 남양주시 진접읍 부마로155번길 54","area":"진접읍","biz":"옥외광고물 제작 및 시공"},{"name":"싸인아트(주)","addr":"경기도 남양주시 순화궁로 272, 동광 비즈타워 별내 B236호 (별내동)","area":"별내동","biz":"간판제작 및 설치"},{"name":"(주)누림세상","addr":"경기도 남양주시 진건읍 독정로성지2길 75-33","area":"진건읍","biz":"간판 및 실내외 사인물 제작 설치"},{"name":"디자인하다","addr":"경기도 남양주시 수동면 소래비로 396-34, 주1동","area":"수동면","biz":"안내판 제작 및 설치"},{"name":"사단법인 한국장애인환경지킴이실천협회","addr":"경기도 남양주시 오남읍 양지로281번길 84","area":"오남읍","biz":"옥외광고물 제작 및 옥외광고업"},{"name":"애드컴주식회사","addr":"경기도 남양주시 진건읍 진관산단로54번길 10","area":"진건읍","biz":"광고물 제작 및 설치"},{"name":"주식회사 정오이엔씨","addr":"경기도 남양주시 오남읍 경복대로 120-104, 가동","area":"오남읍","biz":"옥외광고물 제작 및 설치"},{"name":"(주)대흥애드컴","addr":"경기도 남양주시 진접읍 팔야로 158-4","area":"진접읍","biz":"광고대행, 실사출력, 현수막 철구조물 제작설치, 간판제작업"},{"name":"맥스디자인","addr":"경기도 남양주시 화도읍 마치로284번길 117-1, 1층","area":"화도읍","biz":"옥외광고물 대행업(제작 제외)"},{"name":"(주)간판척척","addr":"경기도 남양주시 진건읍 독정로성지2길 39","area":"진건읍","biz":"옥외광고물제작 및 설치"},{"name":"JR광고기획","addr":"경기도 남양주시 경춘로773번길 12-23 (일패동)","area":"일패동","biz":"광고물제작"},{"name":"디자인아띠그래픽","addr":"경기도 남양주시 순화궁로 249, 별내역 파라곤스퀘어 N동 10층 14-15호 (별내동)","area":"별내동","biz":"옥외광고 제작, 공공미술, 환경디자인, 그래픽 출력"},{"name":"주식회사 던디자인","addr":"경기도 남양주시 화도읍 경춘로2347번길 34","area":"화도읍","biz":"옥외광고물 제작"},{"name":"주식회사 에스엠사인","addr":"경기도 남양주시 다산중앙로19번길 25-23, 다산진건 블루웨일 지식산업센터 2차 F229호 (다산동)","area":"다산동","biz":"간판 및 광고물 제작"},{"name":"우정기획","addr":"경기도 남양주시 경춘로1308번길 30, 106호 (평내동)","area":"평내동","biz":"간판 및 현수막 설치 및 시공"},{"name":"주식회사 엠투엠","addr":"경기도 남양주시 진접읍 해밀예당2로 142, 지성빌딩 4층","area":"진접읍","biz":"광고물 디자인·제작·시공"},{"name":"토우디자인","addr":"경기도 남양주시 순화궁로 418, 현대그리너리캠퍼스 1동 7층 비7-0032호 (별내동)","area":"별내동","biz":"옥외광고물 디자인, 제작, 시공"},{"name":"디자인앳플레이스","addr":"경기도 남양주시 순화궁로 418, 현대그리너리캠퍼스 1동 지2층 비비2-0029호 (별내동)","area":"별내동","biz":"옥외광고디자인 및 광고물 제작, 광고물 설치"},{"name":"대광프레임","addr":"경기도 남양주시 오남읍 진건오남로671번길 61","area":"오남읍","biz":"간판제작"},{"name":"미스터사인","addr":"경기도 남양주시 오남읍 양지로삭다니2길 23, 가동","area":"오남읍","biz":"간판 및 현수막 제작, 디자인, 인쇄"},{"name":"주식회사 더판","addr":"경기도 남양주시 진접읍 팔야로 85-1, 가동,나동(일부),다동(일부)","area":"진접읍","biz":"간판및 광고물 제조업, 옥외광고사업, 광고디자인, 간판 및 광고물 설치업"},{"name":"주식회사 형원","addr":"경기도 남양주시 진접읍 금강로 1881-19, 주3(다)동","area":"진접읍","biz":"옥외광고물(간판, 현수막, 도로명판 등) 제작 설치"},{"name":"(주)김스애드","addr":"경기도 남양주시 순화궁로 272, 동광 비즈타워 별내 437~442호 (별내동)","area":"별내동","biz":"옥외광고물 제작 및 설치"},{"name":"(주)성신에스앤디","addr":"경기도 남양주시 고산로126번길 36-25 (수석동)","area":"수석동","biz":"광고물 제작 및 시공"},{"name":"주식회사 에스필코리아","addr":"경기도 남양주시 진접읍 경복대로212번길 54, 1층","area":"진접읍","biz":"옥외광고물 제작시공, sign(싸인)제작"},{"name":"(주)선인","addr":"경기도 남양주시 다산지금로163번길 6, 한강프리미어갤러리 에스576호 (다산동)","area":"다산동","biz":"광고물작성(디자인작성), 옥외 및 전시광고 대행(간판제작 제외)"},{"name":"에이스간판","addr":"경기도 남양주시 경춘로1256번길 9, 강남프라자 305호 (평내동)","area":"평내동","biz":"옥외광고업"},{"name":"월드광고기획","addr":"경기도 남양주시 진접읍 장현로 142, 1층","area":"진접읍","biz":"간판 및 현수막 제작"},{"name":"바로(BARO)","addr":"경기도 남양주시 와부읍 석실로336번길 26","area":"와부읍","biz":"광고대행, 광고물 설계 및 디자인, 광고 관련 서비스업"},{"name":"(주)고려안전","addr":"경기도 남양주시 수동면 소래비로440번길 52","area":"수동면","biz":"광고물제작설치"},{"name":"태양방제","addr":"경기도 남양주시 오남읍 양지로 47-33","area":"오남읍","biz":"옥외광고업"},{"name":"태양와이더블유","addr":"경기도 남양주시 오남읍 양지로 47-33, 105호","area":"오남읍","biz":"옥외광고업"},{"name":"왕숙협동조합","addr":"경기도 남양주시 진건읍 진건오남로 98, 한신그린아파트 지하1층 6호","area":"진건읍","biz":"불법광고물철거사업(제조X)"},{"name":"예당","addr":"경기도 남양주시 덕송2로10번길 3-96, 101호 (별내동)","area":"별내동","biz":"옥외광고 대행(제작X)"},{"name":"화영엔디자인광고","addr":"경기도 남양주시 와부읍 안골로25번안길 37","area":"와부읍","biz":"옥외광고업"},{"name":"주식회사 미고디자인","addr":"경기도 남양주시 진건읍 진건오남로384번길 12, 나동","area":"진건읍","biz":"광고물 제작"},{"name":"(주)하나애드","addr":"경기도 남양주시 진건읍 독정로솔숲길 39-8","area":"진건읍","biz":"옥외광고물 제작 설치"},{"name":"나무의 소망","addr":"경기도 남양주시 진건읍 진건오남로390번길 70","area":"진건읍","biz":"광고물 디자인(제작, 설치 X)"},{"name":"아트 원","addr":"경기도 남양주시 경춘로1015번길 6, 2층 (금곡동)","area":"금곡동","biz":"옥외광고물제작"},{"name":"(주)라떼파파","addr":"경기도 남양주시 오남읍 양지로 149-83, 다동","area":"오남읍","biz":"안내판 제작"},{"name":"디자인아이","addr":"경기도 남양주시 경춘로 508-4, 더리더스타워 425호 (다산동)","area":"다산동","biz":"간판, 디자인, 철구조물 제작, 설계"},{"name":"주식회사 아이온애드","addr":"경기도 남양주시 화도읍 마치로284번길 117-1, 1층","area":"화도읍","biz":"현수막 제조 및 행사 대행업"},{"name":"맥디자인","addr":"경기도 남양주시 와부읍 수레로1번길 28","area":"와부읍","biz":"간판 제작 및 설치"},{"name":"에버그린어닝","addr":"경기도 남양주시 진건읍 사릉로 388-5, 301호","area":"진건읍","biz":"어닝간판, 광고물, 간판 제조"},{"name":"금강애드컴","addr":"경기도 남양주시 홍유릉로 326 (금곡동)","area":"금곡동","biz":"간판, 광고물 제작"},{"name":"(주)청산씨지피에스","addr":"경기도 남양주시 화도읍 수레로1092번길 48","area":"화도읍","biz":"옥외광고물제작 및 설치"},{"name":"종합광고기획 달인","addr":"경기도 남양주시 진건읍 양진로 298-40","area":"진건읍","biz":"간판, 현수막, 실사, 인쇄"},{"name":"민기획","addr":"경기도 남양주시 오남읍 진건오남로808번길 28, 101호","area":"오남읍","biz":"광고물 제작"},{"name":"(주)샤인디자인","addr":"경기도 남양주시 순화궁로 282, 에이스하이엔드타워 221호 (별내동)","area":"별내동","biz":"간판제작"},{"name":"(주)그레이트윙스코리아","addr":"경기도 남양주시 별내3로 402, 블루오션별내 1동 지하층 B117호 (별내동)","area":"별내동","biz":"옥외광고 디자인 및 제조, 시공"},{"name":"디자인플랜(주)","addr":"경기도 남양주시 경춘로725번길 53, 성산 (일패동)","area":"일패동","biz":"옥외광고업"},{"name":"더블디애드","addr":"경기도 남양주시 덕송2로10번길 3-14, 1층 1~2호 (별내동)","area":"별내동","biz":"간판제작,설치등"},{"name":"다루다","addr":"경기도 남양주시 와부읍 월문천로173번길 11-1, 1동","area":"와부읍","biz":"옥외광고물 제작 설치"},{"name":"(주)울림디자인","addr":"경기도 남양주시 오남읍 진건오남로690번길 22, 2층","area":"오남읍","biz":"옥외광고 간판 디자인/설계"},{"name":"(주)더웰컴","addr":"경기도 남양주시 경춘로 320-91, 1층 (도농동)","area":"도농동","biz":"간판 및 광고물 제조업"},{"name":"동일애드플러스","addr":"경기도 남양주시 금곡로 65-11, 예성빌딩 2층 (금곡동)","area":"금곡동","biz":"옥외광고업,인테리어"},{"name":"디자인시선","addr":"경기도 남양주시 다산순환로 20, 다산현대프리미어캠퍼스 이에이동 8층 18호 (다산동)","area":"다산동","biz":"간판 및 광고물(현수막)"},{"name":"그린종합광고","addr":"경기도 남양주시 홍유릉로325번길 16, 1층 4호 (금곡동, 인정상가)","area":"금곡동","biz":"옥외광고(간판)"},{"name":"애드테크","addr":"경기도 남양주시 진접읍 남가로131번길 47, 1동","area":"진접읍","biz":"광고물제작, 광고물설치"},{"name":"(주) 마이미소","addr":"경기도 남양주시 다산순환로 20, 다산현대프리미어캠퍼스 AA동 6층 06-038, 039호 (다산동)","area":"다산동","biz":"광고물 제작"},{"name":"이룸디자인","addr":"경기도 남양주시 별내중앙로 30, 3층 5호 (별내동)","area":"별내동","biz":"현수막, 실사출력 제작 설치"},{"name":"형제종합기획","addr":"경기도 남양주시 경춘로 413, 동아모타 1층 2호 (다산동)","area":"다산동","biz":"옥외광고물등 제작"},{"name":"마이페이스광고","addr":"경기도 남양주시 진건읍 독정로성지2길 75-33","area":"진건읍","biz":"간판제작"},{"name":"지디애드","addr":"경기도 남양주시 다산순환로 20, 다산현대프리미어캠퍼스몰 B동 5층 17호 (다산동)","area":"다산동","biz":"광고업 실내사인, 출력, 전단지, 벽보 제작"},{"name":"블루미디어주식회사","addr":"경기도 남양주시 다산순환로 20, 다산현대프리미어캠퍼스 제에이에이동 7층 07-021호 (다산동)","area":"다산동","biz":"옥외광고업(미디어파사드, LED전광판)"},{"name":"네이밋(NameIT)","addr":"경기도 남양주시 경춘로 320-91, 1층 (도농동)","area":"도농동","biz":"옥외광고업(간판,웹디자인)"},{"name":"태화에스제이","addr":"경기도 남양주시 오남읍 양지로 47-33, 1층 6호","area":"오남읍","biz":"옥외광고업"},{"name":"주식회사 예스윌","addr":"경기도 남양주시 오남읍 양지로 149-101, 4동","area":"오남읍","biz":"현수막, 간판, 표지판 제작"},{"name":"더광고기획","addr":"경기도 남양주시 오남읍 진건오남로577번길 10, 2동","area":"오남읍","biz":"광고물제작 및 설치"},{"name":"(주)화인대상","addr":"경기도 남양주시 화도읍 재재기로74번길 97-48","area":"화도읍","biz":"광고물제작/설치"},{"name":"다원디자인","addr":"경기도 남양주시 사릉로34번길 21, 106동 407호 (금곡동, 서울아파트)","area":"금곡동","biz":"옥외광고물"},{"name":"주식회사 이엘오힘","addr":"경기도 남양주시 진접읍 진벌로223번길 26","area":"진접읍","biz":"간판 제작시공"},{"name":"디자인곤","addr":"경기도 남양주시 오남읍 진건오남로 596-18, 2층 202호 (오남리파라다이스빌아파트)","area":"오남읍","biz":"광고물시공,광고대행"},{"name":"(주)비아트","addr":"경기도 남양주시 화도읍 재재기로71번길 84, 2층","area":"화도읍","biz":"간판,광고물 제작"},{"name":"(주)알파벳컴퍼니","addr":"경기도 남양주시 경강로294번길 24 (삼패동)","area":"삼패동","biz":"옥외광고물 제작 설치"},{"name":"가온","addr":"경기도 남양주시 진접읍 금강로 1875","area":"진접읍","biz":"옥외광고 제작 시공"},{"name":"(주)델타기업테크","addr":"경기도 남양주시 다산지금로163번안길 47-17, 델타기획 (수석동)","area":"수석동","biz":"옥외광고사업"},{"name":"피제이아웃팅","addr":"경기도 남양주시 화도읍 경춘로지현3길 17","area":"화도읍","biz":"옥외광고물 제작 및 실사출력"},{"name":"대명광고","addr":"경기도 남양주시 진건읍 고재로149번길 31","area":"진건읍","biz":"옥외광고물 제작"},{"name":"애드웨이","addr":"경기도 남양주시 화도읍 폭포로 208","area":"화도읍","biz":"옥외광고물 제작"},{"name":"코리아광고","addr":"경기도 남양주시 진건읍 사릉로 420","area":"진건읍","biz":"광고물실사, 디자인, 전단지 벽보 인쇄"},{"name":"다정기획","addr":"경기도 남양주시 진접읍 봉현로 5, 204호 (주공상가)","area":"진접읍","biz":"벽보 전단지 제작"},{"name":"진성산업","addr":"경기도 남양주시 호평로 145, 107호 (호평동)","area":"호평동","biz":"옥외광고물제작설치"},{"name":"(주)훈디자인","addr":"경기도 남양주시 오남읍 양지로281번길 96-26","area":"오남읍","biz":"간판 및 광고물 제작 및 시공"},{"name":"에이비컴퍼니주식회사","addr":"경기도 남양주시 사릉로33번길 1-4 (금곡동)","area":"금곡동","biz":"벽보,전단지 제작"},{"name":"(주)베스트에스앤디","addr":"경기도 남양주시 오남읍 경복대로 120-65","area":"오남읍","biz":"광고물 제작, 시공"},{"name":"찬스광고기획","addr":"경기도 남양주시 화도읍 묵현로 206, 지하1층","area":"화도읍","biz":"간판 제작.설치, 인쇄물 제작"},{"name":"천일광고","addr":"경기도 남양주시 진접읍 부마로 73","area":"진접읍","biz":"벽보,전단지,스티커 제작"},{"name":"주식회사 대성광고","addr":"경기도 남양주시 진접읍 남가로131번길 7-1","area":"진접읍","biz":"전단지,벽보 제작 인쇄"},{"name":"에스엠디(SMD)","addr":"경기도 남양주시 다산지금로 202, 6층 0023호 (다산동)","area":"다산동","biz":"옥외광고업"},{"name":"디자림커뮤니케이션즈","addr":"경기도 남양주시 별내5로23번길 4-61 (별내동)","area":"별내동","biz":"인쇄물 제작"},{"name":"상일에스피","addr":"경기도 남양주시 화도읍 경춘로2247번길 37-20","area":"화도읍","biz":"옥외광고물 제작 및 설치"},{"name":"(주)시대디자인특장","addr":"경기도 남양주시 진접읍 남가로131번길 21-14, 다동","area":"진접읍","biz":"차량 부착용 광고물 제작"},{"name":"제이조형","addr":"경기도 남양주시 순화궁로 272, 동광 비즈타워 별내 (별내동)","area":"별내동","biz":"벽보,전단, 환경디자인"},{"name":"다우기획","addr":"경기도 남양주시 다산중앙로19번길 25-23, 다산진건 블루웨일  2차 10층 F1023호 (다산동)","area":"다산동","biz":"간판, 현수막 제작"},{"name":"코멘텀디자인","addr":"경기도 남양주시 다산순환로 20, 현대프리미어캠퍼스 E동 322,323호 (다산동)","area":"다산동","biz":"옥외광고업"},{"name":"보람애드","addr":"경기도 남양주시 와부읍 수레로 62, 101호","area":"와부읍","biz":"광고물 제작 및 시공"},{"name":"디자인단아","addr":"경기도 남양주시 화도읍 재재기로 179-12","area":"화도읍","biz":"옥외광고업"},{"name":"(주)서광기전","addr":"경기도 남양주시 진접읍 양진로 840-17","area":"진접읍","biz":"광고물 제작, 광고대행, 홍보"},{"name":"세진광고","addr":"경기도 남양주시 별내면 청학로 90","area":"별내면","biz":"옥외광고물제작설치"},{"name":"동성광고","addr":"경기도 남양주시 경강로 159 (이패동)","area":"이패동","biz":"제조/광고물"},{"name":"콩디자인","addr":"경기도 남양주시 금곡로 16 (금곡동)","area":"금곡동","biz":"광고디자인 제작"},{"name":"(주)에스티오코리아","addr":"경기도 남양주시 화도읍 가곡로72번길 32-1","area":"화도읍","biz":"옥외광고업"},{"name":"리준기업","addr":"경기도 남양주시 진접읍 금강로 1651, 가동","area":"진접읍","biz":"옥외광고물제작설치"},{"name":"(주)탐진기획","addr":"경기도 남양주시 진건읍 송능2길 12","area":"진건읍","biz":"옥외광고물 제작 설치"},{"name":"(주)제이엘컴퍼니","addr":"경기도 남양주시 진건읍 독정로성지2길 106-5","area":"진건읍","biz":"현수막 실사출력 / 간판"},{"name":"우정광고","addr":"경기도 남양주시 다산중앙로19번길 25-23, 다산진건 블루웨일 지식산업센터 2차 10층 1022호 (다산동)","area":"다산동","biz":"옥외광고업"},{"name":"(주)신성이에스","addr":"경기도 남양주시 다산지금로 202, 다산DAMC테라타워 B동 8층 21~22호 (다산동)","area":"다산동","biz":"옥외광고업 및 LED 제조 설치"},{"name":"나라사랑사회적협동조합","addr":"경기도 남양주시 진건읍 진건오남로105번길 6, 세아상가 112호","area":"진건읍","biz":"옥외광고사업"},{"name":"(주)지텍","addr":"경기도 남양주시 오남읍 진건오남로667번길 48, 101,102동","area":"오남읍","biz":"LED 전광판 제조 판매, 미디어파사드 제조판매 등"},{"name":"(주)에픽디자인그룹","addr":"경기도 남양주시 두물로11번길 12-12, 501호 (별내동)","area":"별내동","biz":"옥외광고물제작,설치,표시,대행"},{"name":"(주)디자인봄","addr":"경기도 남양주시 순화궁로 249, 별내역 파라곤스퀘어 M동 815호 (별내동)","area":"별내동","biz":"사인디자인, 전시디자인, 그래픽디자인 등"},{"name":"국도SID","addr":"경기도 남양주시 화도읍 경춘로답내2길 9","area":"화도읍","biz":"광고물 제작"},{"name":"간판의목적","addr":"경기도 남양주시 순화궁로 272, 동광 비즈타워 별내 B동 128호 (별내동)","area":"별내동","biz":"옥외광고물 제작"},{"name":"제황실업","addr":"경기도 남양주시 호평로46번길 8, 1층 (호평동)","area":"호평동","biz":"옥외광고물 제작 등"},{"name":"이연애드","addr":"경기도 남양주시 수동면 송천2길 3","area":"수동면","biz":"광고물제작"},{"name":"모든광고기획","addr":"경기도 남양주시 화도읍 마석중앙로 39","area":"화도읍","biz":"간판외 광고물 제작"},{"name":"세븐","addr":"경기도 남양주시 불암로 25-23, 401호 (별내동)","area":"별내동","biz":"간판제조"},{"name":"세한기획","addr":"경기도 남양주시 양진로 9, 유니뷰성우산업 (일패동)","area":"일패동","biz":"광고물 제작, 설치"},{"name":"세진애드","addr":"경기도 남양주시 와부읍 석실로408번길 214-32","area":"와부읍","biz":"광고물 제작, 서비스"},{"name":"디자인다솜(주)","addr":"경기도 남양주시 다산순환로 350, 케이비 골든타워  1005호 (다산동)","area":"다산동","biz":"광고물 제작 및 디자인"},{"name":"피알시대","addr":"경기도 남양주시 화도읍 수레로 1110","area":"화도읍","biz":"광고물 제작.설치"},{"name":"솔방구리","addr":"경기도 남양주시 화도읍 폭포로 208","area":"화도읍","biz":"옥외광고업"},{"name":"(주)이오케이에코코리아","addr":"경기도 남양주시 수동면 비룡로972번길 26-17","area":"수동면","biz":"간판 제작,실내장식,광고대행 등"},{"name":"(주)신명이에스티","addr":"경기도 남양주시 진접읍 양진로926번길 46-1","area":"진접읍","biz":"광고물 제작"},{"name":"사인테리","addr":"경기도 남양주시 경춘로1286번안길 19-11 (평내동)","area":"평내동","biz":"간판디자인,광고물,홈페이지 제작"},{"name":"레인보우디자인","addr":"경기도 남양주시 와부읍 수레로 579-7","area":"와부읍","biz":"옥외광고업"},{"name":"(주)휴먼엠앤에스","addr":"경기도 남양주시 순화궁로 282, 14층 (별내동)","area":"별내동","biz":"광고물 제작, 설치 공사"},{"name":"디자인6380","addr":"경기도 남양주시 석실로 710-1, 1층 (금곡동)","area":"금곡동","biz":"디자인,간판,실내사인,옥외광고"},{"name":"라온누리 주식회사","addr":"경기도 남양주시 늘을1로16번길 29, 늘봄타워 803호 (호평동)","area":"호평동","biz":"간판 제조 및 시공 등"},{"name":"(주)가온누리디자인","addr":"경기도 남양주시 순화궁로 249, 별내역 파라곤스퀘어 M동 503호 (별내동)","area":"별내동","biz":"옥외광고물 제작 및 설치"},{"name":"사)경기도옥외광고협회남양주시지부","addr":"경기도 남양주시 사릉로33번길 1-14, 4층 (금곡동)","area":"금곡동","biz":"간판 및 광고물 제작 등"},{"name":"주식회사 오투에이디","addr":"경기도 남양주시 수동면 남가로 1465-12","area":"수동면","biz":"간판 및 광고물 제작"},{"name":"디자인창","addr":"경기도 남양주시 경춘로1286번길 22, 101호 (평내동)","area":"평내동","biz":"인쇄,디자인,간판,인테리어"},{"name":"(주)모스디자인","addr":"경기도 남양주시 진건읍 사릉로 258-117","area":"진건읍","biz":"광고물 제작,설치"},{"name":"믿음광고","addr":"경기도 남양주시 진접읍 경복대로 199, 1층 104호 (가야프라자)","area":"진접읍","biz":"간판 제작 시공"},{"name":"탑디자인","addr":"경기도 남양주시 경춘로1015번길 3 (금곡동)","area":"금곡동","biz":"현수막 간판 제작, 인쇄"},{"name":"신세계광고","addr":"경기도 남양주시 진건읍 양진로 387-1","area":"진건읍","biz":"옥외광고물 제작 및 설치"},{"name":"남양주인테리어송원디자인","addr":"경기도 남양주시 경춘로1256번길 10, 평내프라자 605호 (평내동)","area":"평내동","biz":"간판제작"},{"name":"간판연구소","addr":"경기도 남양주시 순화궁로 272, 동광 비즈타워 별내 (별내동)","area":"별내동","biz":"옥외광고 및 디장인 제작, 제조"},{"name":"숲디자인","addr":"경기도 남양주시 순화궁로 272, 동광 비즈타워 별내 (별내동)","area":"별내동","biz":"옥외광고디자인 및 제작 설치"},{"name":"로간지","addr":"경기도 남양주시 진건읍 사릉로627번길 8","area":"진건읍","biz":"옥외광고물 제조 및 디자인"},{"name":"태광아크릴","addr":"경기도 남양주시 순화궁로 272, 동광 비즈타워 별내 B231호 (별내동)","area":"별내동","biz":"옥외광고물  제작"},{"name":"(주)수호시그널","addr":"경기도 남양주시 진접읍 금강로1845번길 107-20","area":"진접읍","biz":"도로표지판 . 도로명판 제작 및 설치보수"},{"name":"엘이디플러스 주식회사","addr":"경기도 남양주시 순화궁로 272, 동광 비즈타워 별내 820호 (별내동)","area":"별내동","biz":"LED 전광안내판"},{"name":"시그니처컴퍼니","addr":"경기도 남양주시 다산중앙로19번길 25-23, 다산블루웨일 지식산업센터 F433호 (다산동)","area":"다산동","biz":"옥외광고업"},{"name":"조은애드","addr":"경기도 남양주시 진접읍 진벌로 186","area":"진접읍","biz":"광고물 제작"},{"name":"디자인누크(주)","addr":"경기도 남양주시 오남읍 진건오남로 508, 신명프라자","area":"오남읍","biz":"옥외광고 디자인 및 제작설치"},{"name":"예진산업주식회사","addr":"경기도 남양주시 오남읍 양지로281번길 84","area":"오남읍","biz":"광고물"},{"name":"간판공장","addr":"경기도 남양주시 송산로 108-8 (별내동)","area":"별내동","biz":"간판 광고 제작"},{"name":"동화광고","addr":"경기도 남양주시 미금로20번길 43 (다산동)","area":"다산동","biz":"옥외광고업 제작,설치,표시,대행"},{"name":"동명상사","addr":"경기도 남양주시 화도읍 재재기로74번길 97-60","area":"화도읍","biz":"간판 및 광고물 제작"},{"name":"기동안전(주)","addr":"경기도 남양주시 수동면 지둔로 196-27","area":"수동면","biz":"광고물 제작 등"},{"name":"앤에스에이치 공간건축","addr":"경기도 남양주시 진접읍 해밀예당1로200번길 7, 102호","area":"진접읍","biz":"광고디자인 및 시공"},{"name":"한솔광고기획","addr":"경기도 남양주시 오남읍 진건오남로808번길 10, 105호","area":"오남읍","biz":"간판 및 광고물 제조"},{"name":"주식회사 더 파워","addr":"경기도 남양주시 진접읍 내각1로73번길 57","area":"진접읍","biz":"옥외광고물 제작 및 설치"},{"name":"에이치에스컴퍼니","addr":"경기도 남양주시 와부읍 수레로 656","area":"와부읍","biz":"옥외광고물제작설치"},{"name":"싸인어스","addr":"경기도 남양주시 진접읍 팔야산단로3번길 17","area":"진접읍","biz":"옥외광고사업"},{"name":"인디안광고","addr":"경기도 남양주시 화도읍 소래비로13번길 42","area":"화도읍","biz":"간판,광고물제작설치"},{"name":"주)스텝스컴퍼니","addr":"경기도 남양주시 진접읍 금강로1573번길 3, 203동 104호 (광릉숲 금강펜테리움)","area":"진접읍","biz":"간판제작 및 디자인"},{"name":"이모자인기획","addr":"경기도 남양주시 경춘로1286번안길 15-1, 준원빌 지층 (평내동)","area":"평내동","biz":"옥외광고물 제작 및 설치"},{"name":"올핏디자인","addr":"경기도 남양주시 화도읍 묵현로 21-6","area":"화도읍","biz":"옥외광고물 제작"},{"name":"주식회사 원크리에이티브","addr":"경기도 남양주시 와부읍 석실로 432-9","area":"와부읍","biz":"간판 제작"},{"name":"싸인클럽","addr":"경기도 남양주시 오남읍 진건오남로708번길 39-17","area":"오남읍","biz":"광고물제작설치"},{"name":"금아기획","addr":"경기도 남양주시 석실로 564, 금아LED간판공장 (이패동)","area":"이패동","biz":"옥외광고물 제조 및 옥외광고업"},{"name":"(주)현대광고기획","addr":"경기도 남양주시 와부읍 석실로488번길 17","area":"와부읍","biz":"옥외광고물제작 및 설치"},{"name":"유투디자인","addr":"경기도 남양주시 화도읍 경춘로2347번길 117","area":"화도읍","biz":""},{"name":"루이플랜","addr":"경기도 남양주시 경강로124번안길 7 (이패동)","area":"이패동","biz":"간판제작 및 설치시공"},{"name":"(주)앤제이커뮤니케이션","addr":"경기도 남양주시 오남읍 양지로319번길 70-9","area":"오남읍","biz":"광고물제작"},{"name":"진성디자인","addr":"경기도 남양주시 진접읍 양진로798번길 100","area":"진접읍","biz":"광고물제작"},{"name":"가한애드텍","addr":"경기도 남양주시 화도읍 폭포로242번길 36, 다동","area":"화도읍","biz":"옥외광고업"},{"name":"(주)하빈","addr":"경기도 남양주시 진건읍 독정로성지2길 117","area":"진건읍","biz":"옥외광고물설치 및 제작"},{"name":"YL광고","addr":"경기도 남양주시 화도읍 재재기로71번안길 227-7, 1층","area":"화도읍","biz":"광고대행및제작"},{"name":"대성광고기획","addr":"경기도 남양주시 오남읍 경복대로 98","area":"오남읍","biz":"옥외광고"},{"name":"시선디자인","addr":"경기도 남양주시 화도읍 마석중앙로37번길 47, 7층 710호","area":"화도읍","biz":"옥외광고"},{"name":"(주)미림테크","addr":"경기도 남양주시 진건읍 독정로솔숲길 23-18","area":"진건읍","biz":"광고물제작설치"},{"name":"(주)영우산업","addr":"경기도 남양주시 진건읍 진관산단로59번길 54","area":"진건읍","biz":"옥외광고물 제작 및 설치"},{"name":"(주)해광","addr":"경기도 남양주시 화도읍 녹촌로199번길 20","area":"화도읍","biz":"아파트단지 싸인, 종합안내도, 장애우시설물, 도로안전용품 제작 설치"},{"name":"시카고애드","addr":"경기도 남양주시 불암로 83, 1층 104호 (별내동)","area":"별내동","biz":"간판제작시공"},{"name":"(주)카이로스","addr":"경기도 남양주시 별내2로 74, 203호 (별내동, 경기벤처센터)","area":"별내동","biz":"옥외DID사업"},{"name":"디자인오름","addr":"경기도 남양주시 화도읍 경춘로 2477-20","area":"화도읍","biz":"광고물 제작 및 인테리어"},{"name":"(주)디엔에프","addr":"경기도 남양주시 진건읍 진관로387번길 50","area":"진건읍","biz":"옥외광고업"},{"name":"주식회사 튜브디엔피","addr":"경기도 남양주시 화도읍 재재기로71번길 106-79, 가동","area":"화도읍","biz":"옥외광고업"},{"name":"실로암 싸인","addr":"경기도 남양주시 도농로 5 (도농동)","area":"도농동","biz":"간판"},{"name":"(주)한웅테크","addr":"경기도 남양주시 진건읍 진건오남로390번길 77","area":"진건읍","biz":"광고물 제작, 시공"},{"name":"이레광고","addr":"경기도 남양주시 경춘로1286번안길 3-9 (평내동)","area":"평내동","biz":"간판제조, 시공"},{"name":"휴먼테크","addr":"경기도 남양주시 경춘로885번길 30-39 (금곡동)","area":"금곡동","biz":"간판 광고 기획"},{"name":"성신미공사","addr":"경기도 남양주시 오남읍 진건오남로708번길 39-17","area":"오남읍","biz":"간판"},{"name":"시원광고","addr":"경기도 남양주시 오남읍 진건오남로808번길 28, 1층 103호","area":"오남읍","biz":"옥외광고업"},{"name":"대명기획","addr":"경기도 남양주시 화도읍 녹촌로106번길 47","area":"화도읍","biz":"옥외광고,광고대행서비스"},{"name":"영도광고기획","addr":"경기도 남양주시 진접읍 금강로 1013","area":"진접읍","biz":"광고물 제작"},{"name":"한빛광고","addr":"경기도 남양주시 늘을1로 63-11 (호평동)","area":"호평동","biz":"옥외광고물제작 및 광고대행"},{"name":"동산광고기획","addr":"경기도 남양주시 화도읍 비룡로 402","area":"화도읍","biz":"광고기획 광고물제작"},{"name":"천마광고","addr":"경기도 남양주시 오남읍 양지로 161, 101호","area":"오남읍","biz":"옥외광고물 제작 및 설치"},{"name":"(주)인터그람아이디","addr":"경기도 남양주시 강변북로661번길 21, 2층 (수석동)","area":"수석동","biz":"옥외광고물 제작 및 광고대행"},{"name":"유미디자인","addr":"경기도 남양주시 사릉로 20 (금곡동)","area":"금곡동","biz":"광고물 제작"},{"name":"싸인샵 signshop","addr":"경기도 남양주시 송산로 190 (별내동)","area":"별내동","biz":"간판제작 시공, 디자인"},{"name":"(주)대림에스엔에프","addr":"경기도 남양주시 오남읍 양지로대대울1길 21-1","area":"오남읍","biz":"옥외광고업(광고물 제작 등)"},{"name":"서현기획","addr":"경기도 남양주시 오남읍 진건오남로808번길 28, 102호","area":"오남읍","biz":"간판제작"},{"name":"(주)에코미고","addr":"경기도 남양주시 진건읍 송능2길 28","area":"진건읍","biz":"옥외광고물제작 및 설치"},{"name":"광고하우스","addr":"경기도 남양주시 화도읍 먹갓로28번길 77-4","area":"화도읍","biz":"광고물 제작(간판, 현수막, 인쇄, 판촉물 등)"},{"name":"미도디자인","addr":"경기도 남양주시 화도읍 수레로 994","area":"화도읍","biz":"옥외광고물제작"},{"name":"사인필","addr":"경기도 남양주시 진건읍 사릉로 366","area":"진건읍","biz":"간판, 현수막"},{"name":"미래광고","addr":"경기도 남양주시 진접읍 장현로 43-3","area":"진접읍","biz":"간판제작"},{"name":"(주)태성애드","addr":"경기도 남양주시 화도읍 북한강로1621번길 120-14","area":"화도읍","biz":"옥외광고물제조"},{"name":"아트광고기획","addr":"경기도 남양주시 화도읍 비룡로 129","area":"화도읍","biz":"옥외광고물 제작 및 옥외광고업"},{"name":"(주)비컴커뮤니티","addr":"경기도 남양주시 와부읍 수레로1번길 28","area":"와부읍","biz":"광고물제작,모형,전시물,조형물,전시영상"},{"name":"예일토탈싸인주식회사","addr":"경기도 남양주시 화도읍 녹촌로 105-7","area":"화도읍","biz":"광고물재작및설치"},{"name":"다름기획","addr":"경기도 남양주시 진접읍 주곡로 193","area":"진접읍","biz":"옥외광고물 제작, 설치"},{"name":"신안광고","addr":"경기도 남양주시 화도읍 수레로 1174","area":"화도읍","biz":"옥외광고물 제조"},{"name":"평내종합광고","addr":"경기도 남양주시 경춘로1283번길 1 (평내동)","area":"평내동","biz":"광고대행"},{"name":"배경광고","addr":"경기도 남양주시 화도읍 비룡로55번길 1","area":"화도읍","biz":"간판,현수막제조"},{"name":"마강종합광고","addr":"경기도 남양주시 화도읍 경춘로1886번길 1-1","area":"화도읍","biz":"옥외광고물제작설치"},{"name":"아담광고","addr":"경기도 남양주시 진접읍 광릉내로 52","area":"진접읍","biz":"간판제작"},{"name":"모던광고","addr":"경기도 남양주시 오남읍 진건오남로 704","area":"오남읍","biz":"광고물 제작"},{"name":"정광고디자인","addr":"경기도 남양주시 와부읍 덕소로 33-7","area":"와부읍","biz":"옥외광고업 및 옥외광고물 제작"},{"name":"오남기획","addr":"경기도 남양주시 오남읍 진건오남로 595-9","area":"오남읍","biz":"옥외광고물/간판 및 현수막"},{"name":"공간기획","addr":"경기도 남양주시 화도읍 재재기로71번길 84","area":"화도읍","biz":"옥외광고물 제작 및 설치"},{"name":"브리콤","addr":"경기도 남양주시 경춘로 924-2 (금곡동)","area":"금곡동","biz":"간판, 현수막, 인쇄"}]};
 /* 등록 옥외광고사업자 확인 안내 상자 — 여러 메뉴에서 공통으로 사용 */
 function bizBox(msg){
-  return `<div class="biz"><div><b>🏢 등록된 옥외광고사업자 확인</b>
+  return `<div class="biz"><div><b>${ic("building-2")} 등록된 옥외광고사업자 확인</b>
     <p>${msg||"간판 제작·설치는 시·군에 등록된 옥외광고사업자에게 맡기십시오."}</p></div>
-    <div class="biz-btn"><button class="btn primary" onclick="go('biz')">🔎 등록 업체 찾기</button>
+    <div class="biz-btn"><button class="btn primary" onclick="go('biz')">${ic("search")} 등록 업체 찾기</button>
     <a class="btn" href="${LINKS.bizNow}" target="_blank" rel="noopener" style="text-decoration:none">남양주시 원문</a></div></div>`;
 }
 
@@ -337,16 +348,35 @@ const SAFETY_RULES = {
 };
 const won = n => n.toLocaleString("ko-KR") + "원";
 
+/* ---------- 아이콘: Lucide (ISC 라이선스, lucide.dev) ---------- */
+const ICONS = {"compass": "<circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z\" />", "ruler": "<path d=\"M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z\" /> <path d=\"m14.5 12.5 2-2\" /> <path d=\"m11.5 9.5 2-2\" /> <path d=\"m8.5 6.5 2-2\" /> <path d=\"m17.5 15.5 2-2\" />", "clipboard-list": "<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\" /> <path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\" /> <path d=\"M12 11h4\" /> <path d=\"M12 16h4\" /> <path d=\"M8 11h.01\" /> <path d=\"M8 16h.01\" />", "route": "<circle cx=\"6\" cy=\"19\" r=\"3\" /> <path d=\"M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15\" /> <circle cx=\"18\" cy=\"5\" r=\"3\" />", "calculator": "<rect width=\"16\" height=\"20\" x=\"4\" y=\"2\" rx=\"2\" /> <line x1=\"8\" x2=\"16\" y1=\"6\" y2=\"6\" /> <line x1=\"16\" x2=\"16\" y1=\"14\" y2=\"18\" /> <path d=\"M16 10h.01\" /> <path d=\"M12 10h.01\" /> <path d=\"M8 10h.01\" /> <path d=\"M12 14h.01\" /> <path d=\"M8 14h.01\" /> <path d=\"M12 18h.01\" /> <path d=\"M8 18h.01\" />", "building-2": "<path d=\"M10 12h4\" /> <path d=\"M10 8h4\" /> <path d=\"M14 21v-3a2 2 0 0 0-4 0v3\" /> <path d=\"M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2\" /> <path d=\"M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16\" />", "message-circle-question": "<path d=\"M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719\" /> <path d=\"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3\" /> <path d=\"M12 17h.01\" />", "phone": "<path d=\"M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384\" />", "search": "<path d=\"m21 21-4.34-4.34\" /> <circle cx=\"11\" cy=\"11\" r=\"8\" />", "monitor-smartphone": "<path d=\"M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h8\" /> <path d=\"M10 19v-3.96 3.15\" /> <path d=\"M7 19h5\" /> <rect width=\"6\" height=\"10\" x=\"16\" y=\"12\" rx=\"2\" />", "file-down": "<path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\" /> <path d=\"M14 2v5a1 1 0 0 0 1 1h5\" /> <path d=\"M12 18v-6\" /> <path d=\"m9 15 3 3 3-3\" />", "circle-check-big": "<path d=\"M21.801 10A10 10 0 1 1 17 3.335\" /> <path d=\"m9 11 3 3L22 4\" />", "calendar-days": "<path d=\"M8 2v3\" /> <path d=\"M16 2v3\" /> <rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\" /> <path d=\"M3 9h18\" /> <path d=\"M8 13h.01\" /> <path d=\"M12 13h.01\" /> <path d=\"M16 13h.01\" /> <path d=\"M8 17h.01\" /> <path d=\"M12 17h.01\" /> <path d=\"M16 17h.01\" />", "refresh-cw": "<path d=\"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8\" /> <path d=\"M21 3v5h-5\" /> <path d=\"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16\" /> <path d=\"M8 16H3v5\" />", "map-pin": "<path d=\"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0\" /> <circle cx=\"12\" cy=\"10\" r=\"3\" />", "link": "<path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\" /> <path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\" />"};
+/* 본문용 선 아이콘 */
+const ic = (n, c="") => `<svg class="ic ${c}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]||""}</svg>`;
+/* 메뉴용 돌출간판 아이콘: 벽 브래킷 + 걸이 + 간판 판(조명 느낌) */
+let signSeq = 0;
+function sign(n){
+  const id = "sg" + (signSeq++);
+  return `<svg class="sign" viewBox="0 0 64 64" aria-hidden="true">
+    <defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3f6ef5"/><stop offset="1" stop-color="#7b5cf0"/></linearGradient></defs>
+    <rect x="4" y="4" width="4" height="10" rx="1.2" fill="#9aa3b8"/>
+    <path d="M7 7.5H58" stroke="#9aa3b8" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M18 8v8M46 8v8" stroke="#9aa3b8" stroke-width="1.6" stroke-dasharray="2 1.6"/>
+    <rect x="8" y="16" width="48" height="44" rx="9" fill="url(#${id})"/>
+    <rect x="11" y="19" width="42" height="38" rx="6.5" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1"/>
+    <g transform="translate(17.6 23.6) scale(1.2)" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONS[n]||""}</g>
+  </svg>`;
+}
+
 /* ---------- 메뉴(첫 화면 카드 = 영역별 단계) ---------- */
 const MENUS = [
-  { id:"diagnose",  no:"가", ico:"🧭", title:"허가·신고 대상 자가진단", desc:"질문에 답하면 내 간판이 허가인지 신고인지 알려드립니다.", kw:"자가진단 판별 허가 신고 대상 내 간판" },
-  { id:"standards", no:"나", ico:"📐", title:"광고물 종류별 표시 기준", desc:"가로형·돌출·옥상·지주 간판 등 종류별 기준", kw:"가로형 세로형 돌출 옥상 지주 입간판 현수막 기준 크기 높이 면적" },
-  { id:"documents", no:"다", ico:"📋", title:"구비서류 체크리스트", desc:"신청 전에 준비할 서류를 하나씩 확인하세요.", kw:"서류 구비서류 신청서 사진 도안 승낙서 설계도서" },
-  { id:"process",   no:"라", ico:"🔄", title:"처리 절차 및 처리 기간", desc:"접수부터 허가증 교부까지 흐름", kw:"절차 처리기간 기간 연장 변경 교부" },
-  { id:"fees",      no:"마", ico:"💳", title:"수수료 안내", desc:"조례 기준 수수료표와 자동 계산기", kw:"수수료 비용 금액 납부 계산기 계산 안전점검" },
-  { id:"biz",       no:"바", ico:"🏢", title:"등록 광고업체 찾기", desc:"남양주시에 등록된 옥외광고사업자 검색", kw:"광고업체 간판업체 옥외광고사업자 등록업체 업체 찾기 검색 현수막 제작 설치" },
-  { id:"faq",       no:"사", ico:"💬", title:"자주 묻는 질문", desc:"민원인이 자주 묻는 내용을 모았습니다.", kw:"질문 faq 과태료 사유지 수량 현수막 이행강제금 책임보험 정부24 온라인 반환 네온" },
-  { id:"contact",   no:"아", ico:"☎️", title:"문의처", desc:"담당 부서와 전화번호", kw:"문의 전화 담당 부서 연락처 위치 광고업체 간판업체 옥외광고사업자 등록업체" }
+  { id:"diagnose",  no:"가", ico:"compass", title:"허가·신고 대상 자가진단", desc:"질문에 답하면 내 간판이 허가인지 신고인지 알려드립니다.", kw:"자가진단 판별 허가 신고 대상 내 간판" },
+  { id:"standards", no:"나", ico:"ruler", title:"광고물 종류별 표시 기준", desc:"가로형·돌출·옥상·지주 간판 등 종류별 기준", kw:"가로형 세로형 돌출 옥상 지주 입간판 현수막 기준 크기 높이 면적" },
+  { id:"documents", no:"다", ico:"clipboard-list", title:"구비서류 체크리스트", desc:"신청 전에 준비할 서류를 하나씩 확인하세요.", kw:"서류 구비서류 신청서 사진 도안 승낙서 설계도서" },
+  { id:"process",   no:"라", ico:"route", title:"처리 절차 및 처리 기간", desc:"접수부터 허가증 교부까지 흐름", kw:"절차 처리기간 기간 연장 변경 교부" },
+  { id:"fees",      no:"마", ico:"calculator", title:"수수료 안내", desc:"조례 기준 수수료표와 자동 계산기", kw:"수수료 비용 금액 납부 계산기 계산 안전점검" },
+  { id:"biz",       no:"바", ico:"building-2", title:"등록 광고업체 찾기", desc:"남양주시에 등록된 옥외광고사업자 검색", kw:"광고업체 간판업체 옥외광고사업자 등록업체 업체 찾기 검색 현수막 제작 설치" },
+  { id:"faq",       no:"사", ico:"message-circle-question", title:"자주 묻는 질문", desc:"민원인이 자주 묻는 내용을 모았습니다.", kw:"질문 faq 과태료 사유지 수량 현수막 이행강제금 책임보험 정부24 온라인 반환 네온" },
+  { id:"contact",   no:"아", ico:"phone", title:"문의처", desc:"담당 부서와 전화번호", kw:"문의 전화 담당 부서 연락처 위치 광고업체 간판업체 옥외광고사업자 등록업체" }
 ];
 
 const app = document.getElementById("app");
@@ -376,16 +406,16 @@ function renderHome(){
       </form>
     </section>
     <div class="cta glass">
-      <div><h2>🧭 내 간판, 허가일까요 신고일까요?</h2><p>광고물 종류와 크기만 고르면 1분 안에 확인할 수 있습니다.</p></div>
+      <div><h2>${ic("compass","h2i")}내 간판, 허가일까요 신고일까요?</h2><p>광고물 종류와 크기만 고르면 1분 안에 확인할 수 있습니다.</p></div>
       <button class="btn primary" onclick="go('diagnose')">자가진단 시작</button>
     </div>
     <div class="cards" id="cards"></div>
     <div id="faqHits"></div>
     <div class="quick">
-      <a class="qk glass" href="${LINKS.gov24}" target="_blank" rel="noopener"><b>💻 정부24 온라인 신청</b><span>방문 없이 인터넷으로 신청</span></a>
-      <a class="qk glass" href="${LINKS.forms}" target="_blank" rel="noopener"><b>📄 신청서 서식 내려받기</b><span>남양주시 민원편람(별지 제1호서식)</span></a>
-      <button class="qk glass" onclick="go('fees')"><b>🧮 수수료 계산기</b><span>크기만 넣으면 수수료 자동 계산</span></button>
-      <button class="qk glass" onclick="go('biz')"><b>🏢 등록 광고업체 찾기</b><span>남양주시 등록 업체 바로 검색</span></button>
+      <a class="qk glass" href="${LINKS.gov24}" target="_blank" rel="noopener"><b>${ic("monitor-smartphone")} 정부24 온라인 신청</b><span>방문 없이 인터넷으로 신청</span></a>
+      <a class="qk glass" href="${LINKS.forms}" target="_blank" rel="noopener"><b>${ic("file-down")} 신청서 서식 내려받기</b><span>남양주시 민원편람(별지 제1호서식)</span></a>
+      <button class="qk glass" onclick="go('fees')"><b>${ic("calculator")} 수수료 계산기</b><span>크기만 넣으면 수수료 자동 계산</span></button>
+      <button class="qk glass" onclick="go('biz')"><b>${ic("building-2")} 등록 광고업체 찾기</b><span>남양주시 등록 업체 바로 검색</span></button>
     </div>`;
   const q = document.getElementById("q");
   const draw = () => {
@@ -394,11 +424,11 @@ function renderHome(){
     const faqs = s ? FAQ.filter(([qq,a]) => (qq+a).toLowerCase().includes(s)) : [];
     document.getElementById("cards").innerHTML = list.length ? list.map(m => `
       <button class="card glass" onclick="go('${m.id}')">
-        <div class="ico" aria-hidden="true">${m.ico}</div>
+        <div class="ico">${sign(m.ico)}</div>
         <h3>${m.title}</h3><p>${m.desc}</p>
       </button>`).join("") : (faqs.length ? "" : `<div class="empty">찾는 내용이 없습니다. 문의처(${CONTACT.tel})로 연락해 주십시오.</div>`);
     document.getElementById("faqHits").innerHTML = faqs.length ? `
-      <div class="panel glass" style="margin-top:16px;padding:22px"><h3 style="font-size:16px;margin-bottom:10px">💬 관련 질문 ${faqs.length}건</h3>
+      <div class="panel glass" style="margin-top:16px;padding:22px"><h3 style="font-size:16px;margin-bottom:10px">${ic("message-circle-question")} 관련 질문 ${faqs.length}건</h3>
       <div class="faq">${faqs.map(([qq,a])=>`<details><summary>${qq}</summary><div class="a">${a}</div></details>`).join("")}</div></div>` : "";
   };
   q.addEventListener("input", draw); draw();
@@ -508,13 +538,13 @@ function drawDiagnose(el){
         <ul><li>판단 이유: ${r.why}</li><li>근거: 「옥외광고물법」 ${r.law}</li>
         <li>도시지역, 도로·철도 주변 등 법 제3조의 지역에 표시하는 경우를 기준으로 합니다.</li></ul>
       </div>
-      ${docs?`<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" onclick="docState.mode='${r.c==='p'?'permit':'report'}';go('documents')">→ 다음: ${r.big} 구비서류 확인</button><button class="btn" onclick="calc.k='${({wall:wiz.ans.other?'wallHo':'wallH',proj:'proj',pole:'pole',roof:'roof',stand:'stand',banner:wiz.ans.fac30?'bfac':'banner',show:'show',balloon:'balloon',paper:'poster'})[wiz.type]||'wallH'}';go('fees')">🧮 수수료 계산해 보기</button></div>`:
+      ${docs?`<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" onclick="docState.mode='${r.c==='p'?'permit':'report'}';go('documents')">→ 다음: ${r.big} 구비서류 확인</button><button class="btn" onclick="calc.k='${({wall:wiz.ans.other?'wallHo':'wallH',proj:'proj',pole:'pole',roof:'roof',stand:'stand',banner:wiz.ans.fac30?'bfac':'banner',show:'show',balloon:'balloon',paper:'poster'})[wiz.type]||'wallH'}';go('fees')">${ic("calculator")} 수수료 계산해 보기</button></div>`:
       `<button class="btn primary" onclick="go('contact')">→ 담당 부서에 문의하기</button>`}
       <div class="note warn">자가진단은 참고용입니다. 지역·건물 여건, 심의 대상 여부에 따라 결과가 달라질 수 있으니 설치 전 반드시 담당 부서(${CONTACT.tel})와 상담하시기 바랍니다.</div>
       ${bizBox("허가·신고 신청과 간판 설치는 등록된 옥외광고사업자에게 의뢰하면 서류 준비부터 도움을 받을 수 있습니다.")}`;
   }
   const ready = wiz.step===0 ? !!wiz.type : wiz.step===1 ? qs.every(q=>typeof wiz.ans[q.k]==="boolean") : true;
-  el.innerHTML = `<h2>🧭 허가·신고 대상 자가진단</h2>
+  el.innerHTML = `<h2>${ic("compass","h2i")}허가·신고 대상 자가진단</h2>
     <p class="lead">세 단계로 내 광고물이 허가 대상인지 신고 대상인지 확인합니다.</p>
     <div class="wiz-bar"><i style="width:${pct}%"></i></div>
     <div class="wiz-label">${wiz.step+1} / ${total} 단계</div>
@@ -556,7 +586,7 @@ let stdTab = 0;
 function drawStandards(el){
   const s = STD[stdTab];
   const li = a => a.length ? `<ul>${a.map(x=>`<li>${x}</li>`).join("")}</ul>` : `<p style="color:var(--muted);font-size:14px">해당 없음</p>`;
-  el.innerHTML = `<h2>📐 광고물 종류별 표시 기준</h2>
+  el.innerHTML = `<h2>${ic("ruler","h2i")}광고물 종류별 표시 기준</h2>
     <p class="lead">광고물 종류를 고르면 허가·신고 기준을 보여드립니다.</p>
     <div class="tabs">${STD.map((x,i)=>`<button class="${i===stdTab?'on':''}" data-i="${i}">${x.n}</button>`).join("")}</div>
     <div class="std">
@@ -608,16 +638,16 @@ function drawDocuments(el){
   const d = DOCS[docState.mode];
   const ck = docState.checked[docState.mode] || (docState.checked[docState.mode]=[]);
   const done = ck.filter(Boolean).length, all = d.items.length;
-  el.innerHTML = `<h2>📋 구비서류 체크리스트</h2>
+  el.innerHTML = `<h2>${ic("clipboard-list","h2i")}구비서류 체크리스트</h2>
     <p class="lead">신청 종류를 고른 뒤, 준비한 서류에 표시해 보세요.</p>
     <div class="tabs">${Object.entries(DOCS).map(([k,v])=>`<button class="${k===docState.mode?'on':''}" data-m="${k}">${v.n}</button>`).join("")}</div>
     <div class="meter"><div class="wiz-bar"><i style="width:${all?done/all*100:0}%"></i></div><b style="color:var(--text)">${done} / ${all}</b> 준비</div>
     <ul class="cl">${d.items.map((it,i)=>`<li><label><input type="checkbox" data-c="${i}" ${ck[i]?"checked":""}>
       <div>${it[0]}${it[1]?`<small>${it[1]}</small>`:""}</div></label></li>`).join("")}</ul>
-    ${done===all?`<div class="note">✅ 모든 서류를 준비하셨습니다. 다음 단계에서 처리 절차를 확인하십시오.</div>`:""}
+    ${done===all?`<div class="note">${ic("circle-check-big")} 모든 서류를 준비하셨습니다. 다음 단계에서 처리 절차를 확인하십시오.</div>`:""}
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
-      <a class="btn" href="${LINKS.forms}" target="_blank" rel="noopener" style="text-decoration:none">📄 신청서 서식 내려받기</a>
-      <a class="btn" href="${LINKS.gov24}" target="_blank" rel="noopener" style="text-decoration:none">💻 정부24 온라인 신청</a>
+      <a class="btn" href="${LINKS.forms}" target="_blank" rel="noopener" style="text-decoration:none">${ic("file-down")} 신청서 서식 내려받기</a>
+      <a class="btn" href="${LINKS.gov24}" target="_blank" rel="noopener" style="text-decoration:none">${ic("monitor-smartphone")} 정부24 온라인 신청</a>
       <button class="btn" id="rst">체크 초기화</button></div>
     <p class="law">근거: 「옥외광고물법」 제3조, 같은 법 시행령 제7조 / 남양주시 민원편람. 체크한 내용은 이 기기의 브라우저에만 저장됩니다.</p>
     ${bizBox("원색도안, 설계도서(규격·재료·구조 설명서)는 보통 간판을 제작하는 등록 옥외광고사업자가 작성합니다.")}
@@ -631,7 +661,7 @@ function drawDocuments(el){
    라. 처리 절차 및 처리 기간
    ========================================================= */
 function drawProcess(el){
-  el.innerHTML = `<h2>🔄 처리 절차 및 처리 기간</h2>
+  el.innerHTML = `<h2>${ic("route","h2i")}처리 절차 및 처리 기간</h2>
     <p class="lead">설치 전 상담부터 허가증(신고필증) 교부까지의 흐름입니다.</p>
     <ol class="flow">
       <li data-n="1"><h4>사전 상담 · 업체 선정</h4><p>자가진단 결과와 설치 위치·크기를 가지고 담당 부서와 상담하고, <a href="${LINKS.bizNow}" target="_blank" rel="noopener">등록된 옥외광고사업자</a>를 정합니다.</p></li>
@@ -733,9 +763,9 @@ function feeText(r){
   return `${r.upTo}㎡ 이하 <b>${won(r.base)}</b><br><small>초과 시 1㎡마다 ${won(r.add)}</small>`;
 }
 function drawFees(el){
-  el.innerHTML = `<h2>💳 수수료 안내</h2>
+  el.innerHTML = `<h2>${ic("calculator","h2i")}수수료 안내</h2>
     <p class="lead">허가·신고 수수료는 「남양주시 옥외광고물 등의 관리와 옥외광고산업 진흥에 관한 조례」 제25조 및 [별표 3]에 따릅니다.</p>
-    <h3 class="h3">🧮 수수료 계산기</h3>
+    <h3 class="h3">${ic("calculator")} 수수료 계산기</h3>
     <div id="calcBox"></div>
     <h3 class="h3">① 허가·신고 수수료 <small>(조례 별표 3)</small></h3>
     <div class="tbl-wrap"><table class="tbl">
@@ -780,14 +810,14 @@ async function loadBiz(){
 }
 const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function drawBiz(el){
-  el.innerHTML = `<h2>🏢 등록 광고업체 찾기</h2><p class="lead">불러오는 중입니다…</p>`;
+  el.innerHTML = `<h2>${ic("building-2","h2i")}등록 광고업체 찾기</h2><p class="lead">불러오는 중입니다…</p>`;
   loadBiz().then(d=>{
     const areas = Object.entries(d.items.reduce((m,i)=>(m[i.area]=(m[i.area]||0)+1,m),{})).sort((a,b)=>b[1]-a[1]);
-    el.innerHTML = `<h2>🏢 등록 광고업체 찾기</h2>
+    el.innerHTML = `<h2>${ic("building-2","h2i")}등록 광고업체 찾기</h2>
       <p class="lead">남양주시에 등록된 옥외광고사업자를 업소명·지역·영업내용으로 찾을 수 있습니다.</p>
       <div class="biz-meta">
-        <span>📅 <b>${esc(d.asof||"")}</b> 기준</span><span>🏢 <b>${d.count}</b>개 업체</span>
-        <span>🔄 최종 갱신: ${esc(d.updated||"")} (매일 자동 확인)</span>
+        <span>${ic("calendar-days")} <b>${esc(d.asof||"")}</b> 기준</span><span>${ic("building-2")} <b>${d.count}</b>개 업체</span>
+        <span>${ic("refresh-cw")} 최종 갱신: ${esc(d.updated||"")} (매일 자동 확인)</span>
         <a href="${esc(d.source||LINKS.bizNow)}" target="_blank" rel="noopener">원문 게시글</a>
         ${d.file?`<a href="${esc(d.file)}" target="_blank" rel="noopener">엑셀 내려받기</a>`:""}
       </div>
@@ -813,7 +843,7 @@ function drawBiz(el){
         <div class="bcard">
           <div class="bhead"><b>${esc(i.name)}</b><span class="tag s">${esc(i.area)}</span></div>
           <div class="bbiz">${esc(i.biz||"-")}</div>
-          <div class="baddr">📍 ${esc(i.addr)}</div>
+          <div class="baddr">${ic("map-pin")} ${esc(i.addr)}</div>
           <div class="bmap"><a href="https://map.kakao.com/?q=${encodeURIComponent(i.addr)}" target="_blank" rel="noopener">카카오맵</a>
             <a href="https://map.naver.com/p/search/${encodeURIComponent(i.addr)}" target="_blank" rel="noopener">네이버지도</a></div>
         </div>`).join("") : `<div class="empty">검색 결과가 없습니다. 검색어를 줄이거나 지역을 '전체'로 바꿔 보십시오.</div>`;
@@ -846,7 +876,7 @@ const FAQ = [
   ["간판 제작·설치 업체도 따로 갖춰야 할 것이 있나요?","옥외광고사업자는 옥외광고사업 등록을 해야 하며, 2021년 6월 9일부터 옥외광고물 손해배상 책임보험(또는 같은 내용이 포함된 보험) 가입이 의무화되었습니다. 위반 시 과태료가 부과될 수 있습니다."]
 ];
 function drawFaq(el){
-  el.innerHTML = `<h2>💬 자주 묻는 질문</h2>
+  el.innerHTML = `<h2>${ic("message-circle-question","h2i")}자주 묻는 질문</h2>
     <p class="lead">질문을 누르면 답변이 열립니다.</p>
     <div class="faq">${FAQ.map(([q,a],i)=>`<details ${i===0?"open":""}><summary>${q}</summary><div class="a">${a}</div></details>`).join("")}</div>`;
 }
@@ -855,7 +885,7 @@ function drawFaq(el){
    아. 문의처
    ========================================================= */
 function drawContact(el){
-  el.innerHTML = `<h2>☎️ 문의처</h2>
+  el.innerHTML = `<h2>${ic("phone","h2i")}문의처</h2>
     <p class="lead">옥외광고물 허가·신고 상담은 아래로 연락해 주십시오.</p>
     <div class="contact">
       <div class="box"><small>담당 기관</small><div class="v">${CONTACT.office}</div><small>${CONTACT.dept} · ${CONTACT.area}</small></div>
@@ -865,7 +895,7 @@ function drawContact(el){
       <div class="box"><small>방문 전 준비</small><div class="v" style="font-size:16px">자가진단 결과 · 설치 위치 사진 · 간판 도안</div></div>
     </div>
     <div class="note">방문 상담 시 미리 연락 주시면 더 정확하게 안내해 드릴 수 있습니다.</div>
-    <h3 class="h3">🔗 공식 자료 바로가기</h3>
+    <h3 class="h3">${ic("link")} 공식 자료 바로가기</h3>
     <div class="links">
       ${[["정부24 옥외광고물 표시 허가·신고 신청",LINKS.gov24,"온라인 신청"],
          ["남양주시 민원편람 · 신청서 서식",LINKS.forms,"별지 제1호서식, 작성예시, 안전점검 수수료"],

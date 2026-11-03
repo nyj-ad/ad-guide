@@ -39,3 +39,8 @@ GitHub에서 `index.html`을 수정해 저장(Commit)하면 1~2분 뒤 페이지
 
 ---
 © 2026 [남양주시 진건·퇴계원행정복지센터 도시건축과 건축팀]. All Rights Reserved.
+
+## 사용한 외부 자료
+
+- 아이콘: [Lucide](https://lucide.dev) (ISC 라이선스)
+- 남양주시 CI: 남양주시 누리집 「상징물(C.I)」 게시 이미지
