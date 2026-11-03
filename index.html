@@ -219,11 +219,13 @@ main{flex:1;padding:36px 0 60px}
 @media (max-width:380px){.brand small{display:none}}
 
 .card{display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start}
-.card .ico{margin:0 0 10px;height:60px}
-.sign{width:60px;height:60px;display:block;filter:drop-shadow(0 6px 10px rgba(63,110,245,.28));transition:transform .25s}
-.card:hover .sign{transform:rotate(-4deg);transform-origin:50% 12%}
+.card .ico{margin:-6px 0 6px -6px;height:84px}
+.sign{width:84px;height:84px;display:block;filter:drop-shadow(0 6px 10px rgba(63,110,245,.18));transition:transform .3s}
+.card:hover .sign{transform:translateY(-3px) scale(1.04)}
 .ic{width:1.05em;height:1.05em;vertical-align:-.16em;flex-shrink:0}
 .h2i{width:26px;height:26px;color:var(--blue);margin-right:8px;vertical-align:-4px}
+.panel h2{display:flex;align-items:center;gap:10px}
+.panel h2 .sign{width:52px;height:52px;filter:none}
 .cta .h2i{width:22px;height:22px}
 .qk b .ic,.biz b .ic,.h3 .ic{color:var(--blue)}
 .btn.primary .ic{color:#fff}
@@ -352,19 +354,99 @@ const won = n => n.toLocaleString("ko-KR") + "원";
 const ICONS = {"compass": "<circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z\" />", "ruler": "<path d=\"M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z\" /> <path d=\"m14.5 12.5 2-2\" /> <path d=\"m11.5 9.5 2-2\" /> <path d=\"m8.5 6.5 2-2\" /> <path d=\"m17.5 15.5 2-2\" />", "clipboard-list": "<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\" /> <path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\" /> <path d=\"M12 11h4\" /> <path d=\"M12 16h4\" /> <path d=\"M8 11h.01\" /> <path d=\"M8 16h.01\" />", "route": "<circle cx=\"6\" cy=\"19\" r=\"3\" /> <path d=\"M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15\" /> <circle cx=\"18\" cy=\"5\" r=\"3\" />", "calculator": "<rect width=\"16\" height=\"20\" x=\"4\" y=\"2\" rx=\"2\" /> <line x1=\"8\" x2=\"16\" y1=\"6\" y2=\"6\" /> <line x1=\"16\" x2=\"16\" y1=\"14\" y2=\"18\" /> <path d=\"M16 10h.01\" /> <path d=\"M12 10h.01\" /> <path d=\"M8 10h.01\" /> <path d=\"M12 14h.01\" /> <path d=\"M8 14h.01\" /> <path d=\"M12 18h.01\" /> <path d=\"M8 18h.01\" />", "building-2": "<path d=\"M10 12h4\" /> <path d=\"M10 8h4\" /> <path d=\"M14 21v-3a2 2 0 0 0-4 0v3\" /> <path d=\"M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2\" /> <path d=\"M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16\" />", "message-circle-question": "<path d=\"M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719\" /> <path d=\"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3\" /> <path d=\"M12 17h.01\" />", "phone": "<path d=\"M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384\" />", "search": "<path d=\"m21 21-4.34-4.34\" /> <circle cx=\"11\" cy=\"11\" r=\"8\" />", "monitor-smartphone": "<path d=\"M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h8\" /> <path d=\"M10 19v-3.96 3.15\" /> <path d=\"M7 19h5\" /> <rect width=\"6\" height=\"10\" x=\"16\" y=\"12\" rx=\"2\" />", "file-down": "<path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\" /> <path d=\"M14 2v5a1 1 0 0 0 1 1h5\" /> <path d=\"M12 18v-6\" /> <path d=\"m9 15 3 3 3-3\" />", "circle-check-big": "<path d=\"M21.801 10A10 10 0 1 1 17 3.335\" /> <path d=\"m9 11 3 3L22 4\" />", "calendar-days": "<path d=\"M8 2v3\" /> <path d=\"M16 2v3\" /> <rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\" /> <path d=\"M3 9h18\" /> <path d=\"M8 13h.01\" /> <path d=\"M12 13h.01\" /> <path d=\"M16 13h.01\" /> <path d=\"M8 17h.01\" /> <path d=\"M12 17h.01\" /> <path d=\"M16 17h.01\" />", "refresh-cw": "<path d=\"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8\" /> <path d=\"M21 3v5h-5\" /> <path d=\"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16\" /> <path d=\"M8 16H3v5\" />", "map-pin": "<path d=\"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0\" /> <circle cx=\"12\" cy=\"10\" r=\"3\" />", "link": "<path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\" /> <path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\" />"};
 /* 본문용 선 아이콘 */
 const ic = (n, c="") => `<svg class="ic ${c}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]||""}</svg>`;
-/* 메뉴용 돌출간판 아이콘: 벽 브래킷 + 걸이 + 간판 판(조명 느낌) */
+/* 메뉴용 간판 그림 (직접 그린 SVG) — 메뉴별로 실제 옥외광고물 종류를 표현 */
+const SIGN_ART = {
+  // 가. 자가진단 — 돌출간판
+  compass: u => `
+    <ellipse cx="48" cy="88" rx="26" ry="3.5" fill="#1e2a5a" opacity=".08"/>
+    <rect x="12" y="10" width="10" height="78" rx="2" fill="#dfe6f5"/><rect x="12" y="10" width="3" height="78" fill="#c9d2e3"/>
+    <rect x="22" y="20" width="44" height="4" rx="2" fill="#3b4766"/>
+    <path d="M22 38 L42 24" stroke="#3b4766" stroke-width="3" stroke-linecap="round"/>
+    <path d="M38 24v7M60 24v7" stroke="#8a94ad" stroke-width="2"/>
+    <rect x="33" y="33" width="36" height="48" rx="7" fill="url(#${u}d)"/>
+    <rect x="30" y="30" width="36" height="48" rx="7" fill="url(#${u}g)"/>
+    <rect x="33.5" y="33.5" width="29" height="41" rx="4.5" fill="none" stroke="#fff" stroke-opacity=".45"/>
+    <text x="48" y="64" text-anchor="middle" font-size="27" font-weight="900" fill="#fff" font-family="Noto Sans KR,sans-serif">?</text>`,
+  // 나. 표시 기준 — 가로형 간판 + 치수선
+  ruler: u => `
+    <ellipse cx="48" cy="89" rx="36" ry="3.5" fill="#1e2a5a" opacity=".08"/>
+    <path d="M14 16h68M14 12v8M82 12v8" stroke="#7b5cf0" stroke-width="2" stroke-linecap="round"/>
+    <path d="M18 16l5-3v6zM78 16l-5-3v6z" fill="#7b5cf0"/>
+    <rect x="12" y="30" width="72" height="6" rx="2" fill="#3b4766"/>
+    <rect x="14" y="36" width="68" height="52" fill="#eef2fa"/>
+    <rect x="18" y="42" width="62" height="15" rx="3" fill="url(#${u}d)"/>
+    <rect x="16" y="40" width="62" height="15" rx="3" fill="url(#${u}g)"/>
+    <text x="47" y="51.5" text-anchor="middle" font-size="9.5" font-weight="900" letter-spacing="1.5" fill="#fff" font-family="Noto Sans KR,sans-serif">가로형간판</text>
+    <rect x="20" y="62" width="16" height="12" rx="1.5" fill="#c9d6f2"/><rect x="60" y="62" width="16" height="12" rx="1.5" fill="#c9d6f2"/>
+    <rect x="40" y="64" width="16" height="24" rx="1.5" fill="#b4c3e6"/>`,
+  // 다. 구비서류 — 입간판(A형)
+  "clipboard-list": u => `
+    <ellipse cx="48" cy="88" rx="30" ry="3.5" fill="#1e2a5a" opacity=".08"/>
+    <path d="M40 14 L22 86 M56 14 L74 86" stroke="#3b4766" stroke-width="3" stroke-linecap="round"/>
+    <path d="M36 12 h24 l12 72 h-48 z" fill="url(#${u}g)"/>
+    <path d="M39 16 h18 l10.5 64 h-39 z" fill="none" stroke="#fff" stroke-opacity=".45"/>
+    <rect x="42" y="8" width="12" height="6" rx="3" fill="#3b4766"/>
+    <rect x="35" y="30" width="26" height="36" rx="2.5" fill="#fff"/>
+    <path d="M39 38l2 2 3-4M39 47l2 2 3-4M39 56l2 2 3-4" stroke="#3f6ef5" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M47 38h10M47 47h10M47 56h7" stroke="#b4c3e6" stroke-width="2.2" stroke-linecap="round"/>`,
+  // 라. 처리 절차 — 지주이용간판(단계 표시)
+  route: u => `
+    <ellipse cx="48" cy="89" rx="22" ry="3.5" fill="#1e2a5a" opacity=".08"/>
+    <rect x="44" y="60" width="8" height="26" fill="#3b4766"/><rect x="36" y="84" width="24" height="5" rx="2" fill="#3b4766"/>
+    <rect x="29" y="11" width="42" height="52" rx="6" fill="url(#${u}d)"/>
+    <rect x="26" y="8" width="42" height="52" rx="6" fill="url(#${u}g)"/>
+    <path d="M30 25.5h34M30 42.5h34" stroke="#fff" stroke-opacity=".35"/>
+    ${[17,34,51].map((y,i)=>`<circle cx="35" cy="${y}" r="5" fill="#fff"/><text x="35" y="${y+3.4}" text-anchor="middle" font-size="8" font-weight="900" fill="#3f6ef5" font-family="Noto Sans KR,sans-serif">${i+1}</text><rect x="44" y="${y-2}" width="${18-i*3}" height="4" rx="2" fill="#fff" opacity=".85"/>`).join("")}`,
+  // 마. 수수료 — 옥상간판(전구 장식)
+  calculator: u => `
+    <ellipse cx="48" cy="89" rx="34" ry="3.5" fill="#1e2a5a" opacity=".08"/>
+    <rect x="18" y="62" width="60" height="26" fill="#eef2fa"/><rect x="16" y="58" width="64" height="5" rx="2" fill="#3b4766"/>
+    <rect x="24" y="68" width="10" height="8" rx="1" fill="#c9d6f2"/><rect x="43" y="68" width="10" height="8" rx="1" fill="#c9d6f2"/><rect x="62" y="68" width="10" height="8" rx="1" fill="#c9d6f2"/>
+    <path d="M28 46v12M68 46v12M28 58l40-12M68 58L28 46" stroke="#3b4766" stroke-width="2.2"/>
+    <rect x="16" y="14" width="64" height="34" rx="6" fill="url(#${u}g)"/>
+    ${[22,30,38,46,54,62,70].map(x=>`<circle cx="${x+2}" cy="17.5" r="1.6" fill="#ffe08a"/>`).join("")}
+    <text x="48" y="41" text-anchor="middle" font-size="20" font-weight="900" fill="#fff" font-family="Noto Sans KR,sans-serif">₩</text>`,
+  // 바. 등록 광고업체 — 상가 간판 + 차양
+  "building-2": u => `
+    <ellipse cx="48" cy="89" rx="36" ry="3.5" fill="#1e2a5a" opacity=".08"/>
+    <rect x="14" y="20" width="68" height="68" fill="#eef2fa"/>
+    <rect x="18" y="14" width="62" height="16" rx="3" fill="url(#${u}d)"/>
+    <rect x="16" y="12" width="62" height="16" rx="3" fill="url(#${u}g)"/>
+    <circle cx="30" cy="20" r="4" fill="none" stroke="#fff" stroke-width="2"/><path d="M33 23l3 3" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    <rect x="40" y="18" width="30" height="4" rx="2" fill="#fff" opacity=".85"/>
+    ${[0,1,2,3,4,5].map(i=>`<path d="M${14+i*11.33} 34h11.33v8a5.66 5.66 0 0 1-11.33 0z" fill="${i%2?'#fff':`url(#${u}g)`}" stroke="#c9d2e3" stroke-width=".6"/>`).join("")}
+    <rect x="20" y="54" width="24" height="20" rx="1.5" fill="#c9d6f2"/><rect x="52" y="54" width="22" height="34" rx="1.5" fill="#b4c3e6"/>`,
+  // 사. 자주 묻는 질문 — 원형 돌출간판
+  "message-circle-question": u => `
+    <ellipse cx="50" cy="88" rx="24" ry="3.5" fill="#1e2a5a" opacity=".08"/>
+    <rect x="12" y="10" width="10" height="78" rx="2" fill="#dfe6f5"/><rect x="12" y="10" width="3" height="78" fill="#c9d2e3"/>
+    <path d="M22 20 H62 a6 6 0 0 1 0 0" stroke="#3b4766" stroke-width="4" stroke-linecap="round"/>
+    <path d="M22 34 C30 34 34 22 44 22" stroke="#3b4766" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M52 22v9M62 22v9" stroke="#8a94ad" stroke-width="2"/>
+    <circle cx="59" cy="57" r="24" fill="url(#${u}d)"/>
+    <circle cx="57" cy="55" r="24" fill="url(#${u}g)"/>
+    <circle cx="57" cy="55" r="19.5" fill="none" stroke="#fff" stroke-opacity=".45"/>
+    <text x="57" y="60" text-anchor="middle" font-size="13" font-weight="900" fill="#fff" font-family="Noto Sans KR,sans-serif">Q&amp;A</text>`,
+  // 아. 문의처 — 현수막
+  phone: u => `
+    <ellipse cx="48" cy="89" rx="36" ry="3.5" fill="#1e2a5a" opacity=".08"/>
+    <rect x="14" y="12" width="5" height="76" rx="2" fill="#3b4766"/><rect x="77" y="12" width="5" height="76" rx="2" fill="#3b4766"/>
+    <circle cx="16.5" cy="11" r="3.5" fill="#3b4766"/><circle cx="79.5" cy="11" r="3.5" fill="#3b4766"/>
+    <path d="M19 24h4M73 24h4M19 54h4M73 54h4" stroke="#8a94ad" stroke-width="1.6"/>
+    <path d="M23 22 h50 v32 q-25 5 -50 0 z" fill="url(#${u}g)"/>
+    <path d="M26 25 h44 v26 q-22 4.4 -44 0 z" fill="none" stroke="#fff" stroke-opacity=".45"/>
+    <g transform="translate(29 30) scale(.62)" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></g>
+    <text x="57" y="43" text-anchor="middle" font-size="11" font-weight="900" fill="#fff" font-family="Noto Sans KR,sans-serif">문의</text>`
+};
 let signSeq = 0;
 function sign(n){
-  const id = "sg" + (signSeq++);
-  return `<svg class="sign" viewBox="0 0 64 64" aria-hidden="true">
-    <defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3f6ef5"/><stop offset="1" stop-color="#7b5cf0"/></linearGradient></defs>
-    <rect x="4" y="4" width="4" height="10" rx="1.2" fill="#9aa3b8"/>
-    <path d="M7 7.5H58" stroke="#9aa3b8" stroke-width="2.4" stroke-linecap="round"/>
-    <path d="M18 8v8M46 8v8" stroke="#9aa3b8" stroke-width="1.6" stroke-dasharray="2 1.6"/>
-    <rect x="8" y="16" width="48" height="44" rx="9" fill="url(#${id})"/>
-    <rect x="11" y="19" width="42" height="38" rx="6.5" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1"/>
-    <g transform="translate(17.6 23.6) scale(1.2)" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONS[n]||""}</g>
-  </svg>`;
+  const u = "sg" + (signSeq++);
+  const art = SIGN_ART[n] ? SIGN_ART[n](u) : "";
+  return `<svg class="sign" viewBox="0 0 96 96" aria-hidden="true">
+    <defs>
+      <linearGradient id="${u}g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f7cff"/><stop offset="1" stop-color="#7b5cf0"/></linearGradient>
+      <linearGradient id="${u}d" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2c4fc4"/><stop offset="1" stop-color="#5136b8"/></linearGradient>
+    </defs>${art}</svg>`;
 }
 
 /* ---------- 메뉴(첫 화면 카드 = 영역별 단계) ---------- */
@@ -406,7 +488,7 @@ function renderHome(){
       </form>
     </section>
     <div class="cta glass">
-      <div><h2>${ic("compass","h2i")}내 간판, 허가일까요 신고일까요?</h2><p>광고물 종류와 크기만 고르면 1분 안에 확인할 수 있습니다.</p></div>
+      <div><h2>${sign("compass")}내 간판, 허가일까요 신고일까요?</h2><p>광고물 종류와 크기만 고르면 1분 안에 확인할 수 있습니다.</p></div>
       <button class="btn primary" onclick="go('diagnose')">자가진단 시작</button>
     </div>
     <div class="cards" id="cards"></div>
@@ -544,7 +626,7 @@ function drawDiagnose(el){
       ${bizBox("허가·신고 신청과 간판 설치는 등록된 옥외광고사업자에게 의뢰하면 서류 준비부터 도움을 받을 수 있습니다.")}`;
   }
   const ready = wiz.step===0 ? !!wiz.type : wiz.step===1 ? qs.every(q=>typeof wiz.ans[q.k]==="boolean") : true;
-  el.innerHTML = `<h2>${ic("compass","h2i")}허가·신고 대상 자가진단</h2>
+  el.innerHTML = `<h2>${sign("compass")}허가·신고 대상 자가진단</h2>
     <p class="lead">세 단계로 내 광고물이 허가 대상인지 신고 대상인지 확인합니다.</p>
     <div class="wiz-bar"><i style="width:${pct}%"></i></div>
     <div class="wiz-label">${wiz.step+1} / ${total} 단계</div>
@@ -586,7 +668,7 @@ let stdTab = 0;
 function drawStandards(el){
   const s = STD[stdTab];
   const li = a => a.length ? `<ul>${a.map(x=>`<li>${x}</li>`).join("")}</ul>` : `<p style="color:var(--muted);font-size:14px">해당 없음</p>`;
-  el.innerHTML = `<h2>${ic("ruler","h2i")}광고물 종류별 표시 기준</h2>
+  el.innerHTML = `<h2>${sign("ruler")}광고물 종류별 표시 기준</h2>
     <p class="lead">광고물 종류를 고르면 허가·신고 기준을 보여드립니다.</p>
     <div class="tabs">${STD.map((x,i)=>`<button class="${i===stdTab?'on':''}" data-i="${i}">${x.n}</button>`).join("")}</div>
     <div class="std">
@@ -638,7 +720,7 @@ function drawDocuments(el){
   const d = DOCS[docState.mode];
   const ck = docState.checked[docState.mode] || (docState.checked[docState.mode]=[]);
   const done = ck.filter(Boolean).length, all = d.items.length;
-  el.innerHTML = `<h2>${ic("clipboard-list","h2i")}구비서류 체크리스트</h2>
+  el.innerHTML = `<h2>${sign("clipboard-list")}구비서류 체크리스트</h2>
     <p class="lead">신청 종류를 고른 뒤, 준비한 서류에 표시해 보세요.</p>
     <div class="tabs">${Object.entries(DOCS).map(([k,v])=>`<button class="${k===docState.mode?'on':''}" data-m="${k}">${v.n}</button>`).join("")}</div>
     <div class="meter"><div class="wiz-bar"><i style="width:${all?done/all*100:0}%"></i></div><b style="color:var(--text)">${done} / ${all}</b> 준비</div>
@@ -661,7 +743,7 @@ function drawDocuments(el){
    라. 처리 절차 및 처리 기간
    ========================================================= */
 function drawProcess(el){
-  el.innerHTML = `<h2>${ic("route","h2i")}처리 절차 및 처리 기간</h2>
+  el.innerHTML = `<h2>${sign("route")}처리 절차 및 처리 기간</h2>
     <p class="lead">설치 전 상담부터 허가증(신고필증) 교부까지의 흐름입니다.</p>
     <ol class="flow">
       <li data-n="1"><h4>사전 상담 · 업체 선정</h4><p>자가진단 결과와 설치 위치·크기를 가지고 담당 부서와 상담하고, <a href="${LINKS.bizNow}" target="_blank" rel="noopener">등록된 옥외광고사업자</a>를 정합니다.</p></li>
@@ -763,7 +845,7 @@ function feeText(r){
   return `${r.upTo}㎡ 이하 <b>${won(r.base)}</b><br><small>초과 시 1㎡마다 ${won(r.add)}</small>`;
 }
 function drawFees(el){
-  el.innerHTML = `<h2>${ic("calculator","h2i")}수수료 안내</h2>
+  el.innerHTML = `<h2>${sign("calculator")}수수료 안내</h2>
     <p class="lead">허가·신고 수수료는 「남양주시 옥외광고물 등의 관리와 옥외광고산업 진흥에 관한 조례」 제25조 및 [별표 3]에 따릅니다.</p>
     <h3 class="h3">${ic("calculator")} 수수료 계산기</h3>
     <div id="calcBox"></div>
@@ -810,10 +892,10 @@ async function loadBiz(){
 }
 const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function drawBiz(el){
-  el.innerHTML = `<h2>${ic("building-2","h2i")}등록 광고업체 찾기</h2><p class="lead">불러오는 중입니다…</p>`;
+  el.innerHTML = `<h2>${sign("building-2")}등록 광고업체 찾기</h2><p class="lead">불러오는 중입니다…</p>`;
   loadBiz().then(d=>{
     const areas = Object.entries(d.items.reduce((m,i)=>(m[i.area]=(m[i.area]||0)+1,m),{})).sort((a,b)=>b[1]-a[1]);
-    el.innerHTML = `<h2>${ic("building-2","h2i")}등록 광고업체 찾기</h2>
+    el.innerHTML = `<h2>${sign("building-2")}등록 광고업체 찾기</h2>
       <p class="lead">남양주시에 등록된 옥외광고사업자를 업소명·지역·영업내용으로 찾을 수 있습니다.</p>
       <div class="biz-meta">
         <span>${ic("calendar-days")} <b>${esc(d.asof||"")}</b> 기준</span><span>${ic("building-2")} <b>${d.count}</b>개 업체</span>
@@ -876,7 +958,7 @@ const FAQ = [
   ["간판 제작·설치 업체도 따로 갖춰야 할 것이 있나요?","옥외광고사업자는 옥외광고사업 등록을 해야 하며, 2021년 6월 9일부터 옥외광고물 손해배상 책임보험(또는 같은 내용이 포함된 보험) 가입이 의무화되었습니다. 위반 시 과태료가 부과될 수 있습니다."]
 ];
 function drawFaq(el){
-  el.innerHTML = `<h2>${ic("message-circle-question","h2i")}자주 묻는 질문</h2>
+  el.innerHTML = `<h2>${sign("message-circle-question")}자주 묻는 질문</h2>
     <p class="lead">질문을 누르면 답변이 열립니다.</p>
     <div class="faq">${FAQ.map(([q,a],i)=>`<details ${i===0?"open":""}><summary>${q}</summary><div class="a">${a}</div></details>`).join("")}</div>`;
 }
@@ -885,7 +967,7 @@ function drawFaq(el){
    아. 문의처
    ========================================================= */
 function drawContact(el){
-  el.innerHTML = `<h2>${ic("phone","h2i")}문의처</h2>
+  el.innerHTML = `<h2>${sign("phone")}문의처</h2>
     <p class="lead">옥외광고물 허가·신고 상담은 아래로 연락해 주십시오.</p>
     <div class="contact">
       <div class="box"><small>담당 기관</small><div class="v">${CONTACT.office}</div><small>${CONTACT.dept} · ${CONTACT.area}</small></div>
