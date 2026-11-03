@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/nyj-ci-symbol.png">
 <title>옥외광고물 인허가 안내 | 진건·퇴계원행정복지센터</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -39,7 +40,8 @@ button{font-family:inherit;cursor:pointer}
 header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .top{display:flex;align-items:center;justify-content:space-between;height:64px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:700}
-.logo{width:34px;height:34px;border-radius:10px;background:var(--grad);display:grid;place-items:center;font-weight:900;font-size:15px;color:#fff}
+.ci{height:26px;width:auto;display:block;flex-shrink:0}
+.brand{gap:12px}
 .brand small{display:block;font-weight:400;color:var(--muted);font-size:12px;line-height:1.2}
 .top-call{font-size:14px;color:var(--muted);text-decoration:none;border:1px solid var(--line);padding:7px 14px;border-radius:999px;background:#fff}
 .top-call b{color:var(--blue)}
@@ -207,6 +209,15 @@ main{flex:1;padding:36px 0 60px}
 .bmap{display:flex;gap:12px;font-size:13px;margin-top:auto;padding-top:6px;border-top:1px dashed var(--line)}
 .bmap a{text-decoration:none}
 
+@media (max-width:520px){
+  .ci{height:20px}
+  .brand{gap:8px;font-size:14.5px;line-height:1.3}
+  .brand small{font-size:11px}
+  .top-call{padding:6px 10px;font-size:13px;white-space:nowrap}
+}
+.top-call{white-space:nowrap}
+@media (max-width:380px){.brand small{display:none}}
+
 /* 7. 푸터 — 카피라이트 고정 */
 footer{border-top:1px solid var(--line);background:#fff;padding:26px 0;text-align:center;font-size:13px;color:var(--muted)}
 footer .upd{font-size:12px;color:#9aa0b2;margin-top:6px}
@@ -224,7 +235,7 @@ footer .upd{font-size:12px;color:#9aa0b2;margin-top:6px}
 <header>
   <div class="wrap top">
     <a class="brand" href="#home">
-      <div class="logo">광</div>
+      <img class="ci" src="data:image/png;base64,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" alt="남양주시 CI" width="74" height="26">
       <div>옥외광고물 인허가 안내<small>남양주시 진건·퇴계원행정복지센터</small></div>
     </a>
     <a class="top-call" href="tel:0315905859"><span>문의 </span><b>031-590-5859</b></a>
