@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>옥외광고물 인허가 안내 | 진건·퇴계원행정복지센터</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   1. 색상·기본값 (화이트 디자인) — 여기 값만 바꾸면 전체 색이 바뀝니다
+   ========================================================= */
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --soft:#f2f4f9;
+  --line:#e4e7ef;
+  --text:#1b1e2b;
+  --muted:#6b7186;
+  --blue:#3f6ef5;
+  --purple:#7b5cf0;
+  --grad:linear-gradient(135deg,#3f6ef5 0%,#7b5cf0 100%);
+  --blue-soft:#eef3ff;
+  --purple-soft:#f3efff;
+  --ok:#14a36b;  --ok-soft:#e9f8f1;
+  --warn:#b26a00; --warn-soft:#fff6e6;
+  --radius:18px;
+  --shadow:0 1px 2px rgba(20,24,40,.04),0 6px 20px rgba(20,24,40,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--blue)}
+button{font-family:inherit;cursor:pointer}
+.wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 20px}
+.glass{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+
+/* 2. 머리글 */
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:700}
+.logo{width:34px;height:34px;border-radius:10px;background:var(--grad);display:grid;place-items:center;font-weight:900;font-size:15px;color:#fff}
+.brand small{display:block;font-weight:400;color:var(--muted);font-size:12px;line-height:1.2}
+.top-call{font-size:14px;color:var(--muted);text-decoration:none;border:1px solid var(--line);padding:7px 14px;border-radius:999px;background:#fff}
+.top-call b{color:var(--blue)}
+main{flex:1;padding:36px 0 60px}
+
+/* 3. 첫 화면 */
+.hero{text-align:center;padding:30px 0 34px}
+.chip{display:inline-block;font-size:13px;padding:5px 14px;border-radius:999px;color:var(--purple);background:var(--purple-soft);margin-bottom:16px;font-weight:500}
+.hero h1{font-size:clamp(28px,5vw,44px);font-weight:900;line-height:1.25;letter-spacing:-.5px}
+.hero h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);margin-top:12px}
+.search{max-width:560px;margin:26px auto 0;display:flex;align-items:center;gap:10px;padding:6px 6px 6px 18px;border-radius:16px}
+.search input{flex:1;background:none;border:0;outline:0;color:var(--text);font-size:16px;font-family:inherit}
+.search input::placeholder{color:#a3a8b8}
+.search button{border:0;border-radius:12px;padding:11px 20px;background:var(--grad);color:#fff;font-weight:700}
+.cta{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 26px;margin-bottom:22px;background:linear-gradient(135deg,var(--blue-soft),var(--purple-soft));border-color:#dfe3fb}
+.cta h2{font-size:19px}
+.cta p{color:var(--muted);font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{padding:22px;text-align:left;color:var(--text);transition:.2s}
+.card:hover{transform:translateY(-3px);border-color:#c7d3fb;box-shadow:0 10px 28px rgba(63,110,245,.12)}
+.card .no{font-size:12px;color:var(--blue);font-weight:700;letter-spacing:1px}
+.card .ico{font-size:28px;margin:10px 0 8px}
+.card h3{font-size:17px;margin-bottom:4px}
+.card p{font-size:13.5px;color:var(--muted)}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:30px}
+
+/* 4. 영역 화면 공통 */
+.steps{display:flex;gap:6px;overflow-x:auto;padding:10px;margin-bottom:22px}
+.steps button{flex:1 0 auto;min-width:96px;border:0;background:none;color:var(--muted);padding:10px 8px;border-radius:12px;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.steps button .dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);font-weight:700;font-size:12px;background:#fff}
+.steps button.done .dot{background:var(--blue-soft);border-color:#c7d3fb;color:var(--blue)}
+.steps button.on{background:var(--soft);color:var(--text);font-weight:700}
+.steps button.on .dot{background:var(--grad);border:0;color:#fff}
+.home-btn{background:#fff;border:1px solid var(--line);color:var(--muted);padding:7px 14px;border-radius:999px;font-size:13px;margin-bottom:14px}
+.panel{padding:30px}
+.panel h2{font-size:24px;margin-bottom:6px}
+.lead{color:var(--muted);margin-bottom:22px}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
+.btn{border:1px solid var(--line);background:#fff;color:var(--text);padding:11px 20px;border-radius:12px;font-weight:500}
+.btn.primary{background:var(--grad);border:0;color:#fff;font-weight:700}
+.btn:disabled{opacity:.4;cursor:default}
+.check{display:inline-block;font-size:12px;font-weight:700;color:var(--warn);background:var(--warn-soft);border:1px solid #f5d9a8;padding:1px 8px;border-radius:999px;vertical-align:middle}
+.law{font-size:12.5px;color:#8a90a3;margin-top:8px}
+.note{padding:14px 18px;border-radius:12px;background:var(--blue-soft);border:1px solid #d6e0fd;font-size:14px;color:#2c4aa8;margin-top:16px}
+.note.warn{background:var(--warn-soft);border-color:#f5d9a8;color:#8a5200}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+.tbl th,.tbl td{border:1px solid var(--line);padding:11px 12px;text-align:left;vertical-align:top}
+.tbl th{background:var(--soft);font-weight:700;white-space:nowrap}
+.tbl-wrap{overflow-x:auto}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.tag.p{background:var(--purple-soft);color:var(--purple)}
+.tag.s{background:var(--blue-soft);color:var(--blue)}
+.tag.x{background:var(--ok-soft);color:var(--ok)}
+
+/* 5. 자가진단 */
+.wiz-bar{height:6px;border-radius:99px;background:#e9ecf3;overflow:hidden;margin-bottom:8px}
+.wiz-bar i{display:block;height:100%;background:var(--grad);transition:.35s}
+.wiz-label{font-size:13px;color:var(--muted);margin-bottom:18px}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.opt{text-align:left;padding:16px;border-radius:14px;border:1px solid var(--line);background:#fff;color:var(--text);transition:.15s}
+.opt:hover{border-color:#b9c8f8;background:#fafbff}
+.opt.sel{border-color:var(--blue);background:var(--blue-soft);box-shadow:0 0 0 1px var(--blue) inset}
+.opt b{display:block;font-size:15px}
+.opt span{font-size:12.5px;color:var(--muted)}
+.q{margin-bottom:20px}
+.q > p{font-weight:700;margin-bottom:10px}
+.yn{display:flex;gap:10px;flex-wrap:wrap}
+.yn .opt{flex:1;min-width:120px;text-align:center}
+.result{padding:26px;border-radius:16px;text-align:center;margin-bottom:16px;border:1px solid var(--line)}
+.result .big{font-size:30px;font-weight:900;margin:6px 0}
+.result.p{background:var(--purple-soft);border-color:#d9cffb}.result.p .big{color:var(--purple)}
+.result.s{background:var(--blue-soft);border-color:#d6e0fd}.result.s .big{color:var(--blue)}
+.result.x{background:var(--ok-soft);border-color:#bfe9d6}.result.x .big{color:var(--ok)}
+.result.c{background:var(--warn-soft);border-color:#f5d9a8}.result.c .big{color:var(--warn)}
+.result ul{text-align:left;margin:14px auto 0;max-width:560px;color:var(--muted);font-size:14px;padding-left:18px}
+
+/* 6. 기준·서류·절차·FAQ */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tabs button{border:1px solid var(--line);background:#fff;color:var(--muted);padding:8px 14px;border-radius:999px;font-size:14px}
+.tabs button.on{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700}
+.std{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.std .box{padding:18px;border-radius:14px;border:1px solid var(--line);background:#fff}
+.std .box h4{font-size:14px;margin-bottom:8px}
+.std .box ul{padding-left:18px;font-size:14px;color:var(--muted)}
+.std .box.full{grid-column:1/-1;background:var(--soft)}
+.cl{list-style:none;display:grid;gap:10px}
+.cl label{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:#fff;cursor:pointer}
+.cl input{width:20px;height:20px;margin-top:2px;accent-color:var(--blue);flex-shrink:0}
+.cl label:has(input:checked){border-color:#bfe9d6;background:var(--ok-soft)}
+.cl small{display:block;color:var(--muted);font-size:12.5px}
+.meter{display:flex;align-items:center;gap:12px;margin:4px 0 16px;font-size:14px;color:var(--muted)}
+.meter .wiz-bar{flex:1;margin:0}
+.flow{list-style:none;position:relative;padding-left:44px}
+.flow::before{content:"";position:absolute;left:17px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--blue),var(--purple));opacity:.35}
+.flow li{position:relative;margin-bottom:14px;padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:#fff}
+.flow li::before{content:attr(data-n);position:absolute;left:-44px;top:14px;width:36px;height:36px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-weight:900;font-size:14px;color:#fff}
+.flow h4{font-size:15.5px}
+.flow p{font-size:14px;color:var(--muted)}
+.faq details{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:10px;overflow:hidden}
+.faq summary{list-style:none;padding:16px 18px;font-weight:700;cursor:pointer;display:flex;gap:10px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q";color:var(--purple);font-weight:900}
+.faq details[open] summary{background:var(--soft)}
+.faq .a{padding:12px 18px 18px 40px;color:var(--muted);font-size:14.5px}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.contact .box{padding:22px;border-radius:14px;border:1px solid var(--line);background:#fff}
+.contact .box small{color:var(--muted);font-size:13px}
+.contact .box .v{font-size:20px;font-weight:700;margin-top:4px}
+.copy{margin-top:10px;font-size:13px;padding:7px 14px}
+
+/* 8. 계산기·바로가기·접근성 */
+.h3{font-size:17px;margin:26px 0 10px}
+.h3 small{font-size:13px;color:var(--muted);font-weight:400}
+.calc{display:grid;grid-template-columns:1.25fr 1fr;gap:16px;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--soft)}
+.calc-in{display:grid;gap:12px;align-content:start}
+.fld{display:grid;gap:5px;font-size:13px;color:var(--muted)}
+.fld select,.fld input{font:inherit;font-size:15px;color:var(--text);padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;width:100%}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{flex:1;border:1px solid var(--line);background:#fff;color:var(--muted);padding:9px 10px;border-radius:10px;font-size:13.5px}
+.seg button.on{border-color:var(--blue);background:var(--blue-soft);color:var(--blue);font-weight:700}
+.tg{display:flex;gap:8px;align-items:flex-start;font-size:14px;cursor:pointer}
+.tg input{width:18px;height:18px;margin-top:2px;accent-color:var(--blue)}
+.tg small{color:var(--muted);font-size:12px}
+.calc-out{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.calc-out .lbl{font-size:13px;color:var(--muted)}
+.calc-out .sum{font-size:32px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.calc-out ul{list-style:none;font-size:13.5px;display:grid;gap:6px;border-top:1px dashed var(--line);padding-top:10px}
+.calc-out li{display:flex;justify-content:space-between;gap:10px;color:var(--muted)}
+.calc-out li b{color:var(--text);white-space:nowrap}
+.calc-out small{font-size:12px;color:#8a90a3;margin-top:auto}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.qk{display:flex;flex-direction:column;gap:2px;padding:16px 18px;text-decoration:none;color:var(--text);text-align:left;font-size:15px}
+.qk span{font-size:13px;color:var(--muted)}
+.qk:hover{border-color:#c7d3fb}
+.links{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lk{display:flex;flex-direction:column;padding:13px 16px;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:var(--text);background:#fff;font-size:14.5px}
+.lk span{font-size:12.5px;color:var(--muted)}
+.lk:hover{border-color:#c7d3fb;background:#fafbff}
+:focus-visible{outline:3px solid rgba(63,110,245,.45);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;padding:8px 14px;border-radius:8px;z-index:99}
+.skip:focus{left:12px}
+@media (max-width:720px){.calc,.quick,.links{grid-template-columns:1fr}}
+
+/* 7. 푸터 — 카피라이트 고정 */
+footer{border-top:1px solid var(--line);background:#fff;padding:26px 0;text-align:center;font-size:13px;color:var(--muted)}
+footer .upd{font-size:12px;color:#9aa0b2;margin-top:6px}
+@media (max-width:720px){
+  .std,.contact{grid-template-columns:1fr}
+  .panel{padding:22px 18px}
+  .cta{flex-direction:column;align-items:flex-start}
+  .top-call span{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#" onclick="event.preventDefault();document.getElementById('app').focus()">본문 바로가기</a>
+
+<header>
+  <div class="wrap top">
+    <a class="brand" href="#home">
+      <div class="logo">광</div>
+      <div>옥외광고물 인허가 안내<small>남양주시 진건·퇴계원행정복지센터</small></div>
+    </a>
+    <a class="top-call" href="tel:0315905859"><span>문의 </span><b>031-590-5859</b></a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap" id="app" tabindex="-1"></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    © 2026 [남양주시 진건·퇴계원행정복지센터 도시건축과 건축팀]. All Rights Reserved.
+    <div class="upd">안내 기준일: 2026. 11. · 이 페이지는 이해를 돕기 위한 안내이며, 최종 판단은 담당 부서의 검토 결과에 따릅니다.</div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   [수정 안내] 아래 '설정값'만 고치면 화면 내용이 바뀝니다.
+   - 전화번호, 부서명: CONTACT
+   - 처리기간: PERIOD / 공식 링크: LINKS
+   - 수수료: FEE_RULES(허가·신고, 조례 별표3), SAFETY_RULES(안전점검, 조례 별표4)
+   ========================================================= */
+const CONTACT = {
+  office: "남양주시 진건·퇴계원행정복지센터",
+  dept: "도시건축과 건축팀",
+  tel: "031-590-5859",
+  hours: "평일 09:00 ~ 18:00 (점심시간 12:00 ~ 13:00)",   // 운영시간 확인 후 수정
+  area: "진건읍 관할"
+};
+
+const PERIOD = {   // 남양주시 민원편람(법정처리기간)
+  permit: "7일",
+  report: "3일",
+  review: "20일 이내"  // 옥외광고심의위원회 심의 대상 (법 제3조제9항)
+};
+const LINKS = {   // 공식 바로가기 (외부 링크)
+  forms: "https://www.nyj.go.kr/www/selectBbsNttView.do?bbsNo=11&key=2286&nttNo=327070",
+  gov24: "https://www.gov.kr/mw/AA020InfoCappView.do?HighCtgCD=A09006&CappBizCD=13100000152&tp_seq=01",
+  law: "https://law.go.kr/lsInfoP.do?lsId=001020&urlMode=lsInfoP",
+  decree: "https://www.law.go.kr/LSW/lsInfoP.do?lsId=004242",
+  gg: "https://law.go.kr/LSW/ordinInfoP.do?ordinSeq=2178549",
+  nyj: "https://www.law.go.kr/ordinInfoP.do?ordinSeq=2099101",
+  easylaw: "https://www.easylaw.go.kr/CSP/CnpClsMainBtr.laf?popMenu=ov&csmSeq=897&ccfNo=3&cciNo=1&cnpClsNo=1",
+  banner: "https://www.nyj.go.kr/www/selectBbsNttView.do?bbsNo=35&key=2406&nttNo=499034",
+  zone: "https://www.nyj.go.kr/www/selectBbsNttView.do?bbsNo=35&key=2406&nttNo=499044",
+  popsign: "http://www.popsign.co.kr/"
+};
+
+/* 「남양주시 옥외광고물 등의 관리와 옥외광고산업 진흥에 관한 조례」 [별표 3] 광고물등의 허가·신고 수수료
+   mode: area(면적 기준) / count(개수·매수·건수 기준)
+   base(기본금액), upTo(기본면적 ㎡), add(초과 1㎡당 가산액), sides(양면 선택 가능) */
+const FEE_RULES = [
+  {k:"wallH",  g:"벽면 이용 간판", n:"가로형 간판(자사광고)", mode:"area", base:3000,  upTo:6,  add:1000, safety:"wall"},
+  {k:"wallHo", g:"벽면 이용 간판", n:"가로형 간판(타사광고)", mode:"area", base:30000, upTo:6,  add:2000, safety:"wall"},
+  {k:"wallV",  g:"벽면 이용 간판", n:"세로형 간판(자사광고)", mode:"area", base:2000,  upTo:6,  add:1000, safety:"wall"},
+  {k:"wallVo", g:"벽면 이용 간판", n:"세로형 간판(타사광고)", mode:"area", base:30000, upTo:6,  add:2000, safety:"wall"},
+  {k:"proj",   g:"돌출간판", n:"돌출간판", mode:"area", base:15000, upTo:6, add:1000, sides:true, safety:"proj"},
+  {k:"projS",  g:"돌출간판", n:"이·미용업소 표지등, 의료기관·약국 표지등", mode:"count", unit:"개", base:4000},
+  {k:"show",   g:"공연간판", n:"공연간판(벽면 이용 가로형 간판과 같음)", mode:"area", base:3000, upTo:6, add:1000},
+  {k:"roof",   g:"옥상간판", n:"옥상간판", mode:"area", base:35000, upTo:10, add:5000, safety:"roof"},
+  {k:"pole",   g:"지주 이용 간판", n:"지주 이용 간판", mode:"area", base:15000, upTo:10, add:2000, sides:true, safety:"pole"},
+  {k:"balloon",g:"애드벌룬", n:"공중에 띄우는 애드벌룬", mode:"count", unit:"개", base:15000},
+  {k:"public", g:"공공시설물 이용 광고물", n:"공공시설물 이용 광고물", mode:"area", base:3000, upTo:1, add:1000},
+  {k:"transit",g:"교통시설 이용 광고물", n:"교통시설 이용 광고물(외부 표시)", mode:"area", base:9000, upTo:5, add:10000, sides:true},
+  {k:"carA",   g:"교통수단 이용 광고물", n:"비행선", mode:"count", unit:"대", base:400000},
+  {k:"carB",   g:"교통수단 이용 광고물", n:"비행기·철도차량·도시철도차량·선박", mode:"count", unit:"대", base:10000},
+  {k:"carC",   g:"교통수단 이용 광고물", n:"사업용·화물·자가용 자동차, 음식판매자동차", mode:"count", unit:"대", base:2000},
+  {k:"tower",  g:"선전탑·아치광고물", n:"선전탑 및 아치광고물", mode:"count", unit:"개", base:4000},
+  {k:"window", g:"창문 이용 광고물", n:"창문 이용 광고물", mode:"count", unit:"개", base:4000},
+  {k:"stand",  g:"입간판", n:"입간판", mode:"count", unit:"개", base:3000},
+  {k:"banner", g:"현수막", n:"현수막(가로등 현수기 포함)", mode:"area", base:3000, upTo:10, add:1000, qty:"매"},
+  {k:"bfac",   g:"현수막", n:"현수막 게시시설", mode:"area", base:7000, upTo:10, add:1500, safety:"bfac"},
+  {k:"poster", g:"벽보·전단", n:"벽보", mode:"count", unit:"건", base:3000},
+  {k:"flyer",  g:"벽보·전단", n:"전단", mode:"count", unit:"건", base:3000}
+];
+/* 같은 조례 [별표 4] 광고물등 안전점검 수수료 (안전점검 대상 광고물만)
+   t1·f1: 1구간 상한·금액 / t2·f2: 2구간 상한·금액 / add: 2구간 초과 1㎡당 가산 */
+const SAFETY_RULES = {
+  wall: {n:"벽면 이용 간판", target:"4층 이상 또는 한 변 10m 이상", t1:6,   f1:14000, t2:20, f2:20000, add:800},
+  proj: {n:"돌출간판", target:"윗부분 높이 5m 이상이고 한 면 1㎡ 이상", t1:3.5, f1:14000, t2:10, f2:20000, add:1600},
+  pole: {n:"지주 이용 간판", target:"윗부분 높이 4m 이상", t1:10, f1:14000, t2:20, f2:20000, add:800},
+  roof: {n:"옥상간판", target:"모든 옥상간판", t1:50, f1:21000, t2:70, f2:38000, add:1300},
+  bfac: {n:"현수막 게시시설", target:"면적 30㎡ 이상", t1:null, f1:null, t2:40, f2:11000, add:600, min:30}
+};
+const won = n => n.toLocaleString("ko-KR") + "원";
+
+/* ---------- 메뉴(첫 화면 카드 = 영역별 단계) ---------- */
+const MENUS = [
+  { id:"diagnose",  no:"가", ico:"🧭", title:"허가·신고 대상 자가진단", desc:"질문에 답하면 내 간판이 허가인지 신고인지 알려드립니다.", kw:"자가진단 판별 허가 신고 대상 내 간판" },
+  { id:"standards", no:"나", ico:"📐", title:"광고물 종류별 표시 기준", desc:"가로형·돌출·옥상·지주 간판 등 종류별 기준", kw:"가로형 세로형 돌출 옥상 지주 입간판 현수막 기준 크기 높이 면적" },
+  { id:"documents", no:"다", ico:"📋", title:"구비서류 체크리스트", desc:"신청 전에 준비할 서류를 하나씩 확인하세요.", kw:"서류 구비서류 신청서 사진 도안 승낙서 설계도서" },
+  { id:"process",   no:"라", ico:"🔄", title:"처리 절차 및 처리 기간", desc:"접수부터 허가증 교부까지 흐름", kw:"절차 처리기간 기간 연장 변경 교부" },
+  { id:"fees",      no:"마", ico:"💳", title:"수수료 안내", desc:"조례 기준 수수료표와 자동 계산기", kw:"수수료 비용 금액 납부 계산기 계산 안전점검" },
+  { id:"faq",       no:"바", ico:"💬", title:"자주 묻는 질문", desc:"민원인이 자주 묻는 내용을 모았습니다.", kw:"질문 faq 과태료 사유지 수량 현수막 이행강제금 책임보험 정부24 온라인 반환 네온" },
+  { id:"contact",   no:"사", ico:"☎️", title:"문의처", desc:"담당 부서와 전화번호", kw:"문의 전화 담당 부서 연락처 위치" }
+];
+
+const app = document.getElementById("app");
+const chk = '<span class="check">확인이 필요합니다</span>';
+const val = v => v ? v : chk;
+
+/* ---------- 화면 전환(주소의 #이름으로 이동) ---------- */
+function route(){
+  const id = (location.hash || "#home").slice(1);
+  const idx = MENUS.findIndex(m => m.id === id);
+  if (idx < 0) renderHome(); else renderSection(idx);
+  window.scrollTo({top:0,behavior:"instant"});
+}
+window.addEventListener("hashchange", route);
+function go(id){ location.hash = id; }
+
+/* ---------- 첫 화면 ---------- */
+function renderHome(){
+  app.innerHTML = `
+    <section class="hero">
+      <div class="chip">진건읍 옥외광고물 민원 길잡이</div>
+      <h1>간판 달기 전에<br><span>허가·신고부터 확인하세요</span></h1>
+      <p>광고물은 반드시 허가(신고)를 마친 뒤에 설치해야 합니다.</p>
+      <form class="search glass" onsubmit="event.preventDefault()">
+        <input id="q" placeholder="예) 돌출간판, 서류, 수수료, 현수막" autocomplete="off">
+        <button type="submit">찾기</button>
+      </form>
+    </section>
+    <div class="cta glass">
+      <div><h2>🧭 내 간판, 허가일까요 신고일까요?</h2><p>광고물 종류와 크기만 고르면 1분 안에 확인할 수 있습니다.</p></div>
+      <button class="btn primary" onclick="go('diagnose')">자가진단 시작</button>
+    </div>
+    <div class="cards" id="cards"></div>
+    <div id="faqHits"></div>
+    <div class="quick">
+      <a class="qk glass" href="${LINKS.gov24}" target="_blank" rel="noopener"><b>💻 정부24 온라인 신청</b><span>방문 없이 인터넷으로 신청</span></a>
+      <a class="qk glass" href="${LINKS.forms}" target="_blank" rel="noopener"><b>📄 신청서 서식 내려받기</b><span>남양주시 민원편람(별지 제1호서식)</span></a>
+      <button class="qk glass" onclick="go('fees')"><b>🧮 수수료 계산기</b><span>크기만 넣으면 수수료 자동 계산</span></button>
+    </div>`;
+  const q = document.getElementById("q");
+  const draw = () => {
+    const s = q.value.trim().toLowerCase();
+    const list = MENUS.filter(m => !s || (m.title+m.desc+m.kw).toLowerCase().includes(s));
+    const faqs = s ? FAQ.filter(([qq,a]) => (qq+a).toLowerCase().includes(s)) : [];
+    document.getElementById("cards").innerHTML = list.length ? list.map(m => `
+      <button class="card glass" onclick="go('${m.id}')">
+        <div class="ico" aria-hidden="true">${m.ico}</div>
+        <h3>${m.title}</h3><p>${m.desc}</p>
+      </button>`).join("") : (faqs.length ? "" : `<div class="empty">찾는 내용이 없습니다. 문의처(${CONTACT.tel})로 연락해 주십시오.</div>`);
+    document.getElementById("faqHits").innerHTML = faqs.length ? `
+      <div class="panel glass" style="margin-top:16px;padding:22px"><h3 style="font-size:16px;margin-bottom:10px">💬 관련 질문 ${faqs.length}건</h3>
+      <div class="faq">${faqs.map(([qq,a])=>`<details><summary>${qq}</summary><div class="a">${a}</div></details>`).join("")}</div></div>` : "";
+  };
+  q.addEventListener("input", draw); draw();
+}
+
+/* ---------- 영역 화면 틀(단계 막대 + 이전/다음) ---------- */
+function renderSection(idx){
+  const m = MENUS[idx];
+  app.innerHTML = `
+    <button class="home-btn" onclick="go('home')">← 처음 화면</button>
+    <nav class="steps glass">${MENUS.map((x,i)=>`
+      <button class="${i===idx?'on':(i<idx?'done':'')}" onclick="go('${x.id}')">
+        <span class="dot">${x.no}</span>${x.title.replace(/ 및 .*| 안내|·신고 대상/g,"")}
+      </button>`).join("")}</nav>
+    <section class="panel glass" id="panel"></section>
+    <div class="pager">
+      <button class="btn" ${idx===0?"disabled":""} onclick="go('${MENUS[idx-1]?.id}')">← 이전 단계</button>
+      <button class="btn primary" ${idx===MENUS.length-1?"disabled":""} onclick="go('${MENUS[idx+1]?.id}')">다음 단계 →</button>
+    </div>`;
+  SECTIONS[m.id](document.getElementById("panel"), m);
+}
+
+/* =========================================================
+   가. 자가진단
+   근거: 옥외광고물법 시행령 제4조(허가 대상), 제5조(신고 대상)
+   ========================================================= */
+const TYPES = [
+  {k:"wall",   n:"벽면 이용 간판", d:"건물 벽면에 붙이는 가로형·세로형 간판"},
+  {k:"proj",   n:"돌출간판", d:"벽면에서 튀어나오게 다는 간판"},
+  {k:"pole",   n:"지주 이용 간판", d:"땅에 기둥을 세워 다는 간판"},
+  {k:"roof",   n:"옥상간판", d:"건물 옥상에 설치하는 간판"},
+  {k:"stand",  n:"입간판", d:"건물 앞에 세워 두는 간판"},
+  {k:"banner", n:"현수막", d:"천 등에 표시해 거는 광고물"},
+  {k:"show",   n:"공연간판", d:"공연·영화 등을 알리는 간판"},
+  {k:"balloon",n:"애드벌룬", d:"공중이나 옥상에 띄우는 광고물"},
+  {k:"paper",  n:"벽보·전단", d:"붙이거나 나눠 주는 종이 광고물"},
+  {k:"etc",    n:"그 밖의 광고물", d:"창문 이용, 디지털 광고물 등"}
+];
+const QUESTIONS = {
+  wall:[
+    {k:"len10", t:"간판의 가로 또는 세로 중 한 변의 길이가 10m 이상입니까?"},
+    {k:"floor4",t:"건물의 4층 이상 층에 표시합니까?"},
+    {k:"other", t:"간판 내용이 그 건물을 사용하는 업소와 관계없는 광고(타사광고)입니까?", if:a=>a.floor4},
+    {k:"area5", t:"간판 면적이 5㎡ 이상입니까?"},
+    {k:"door",  t:"건물 출입구 양옆에 세로로 표시하는 간판입니까?", if:a=>a.area5},
+    {k:"neon",  t:"네온류·전광류 또는 디지털 디스플레이를 사용합니까?"}
+  ],
+  proj:[
+    {k:"sign", t:"의료기관·약국 표지등(＋, 약) 또는 이용업소·미용업소 표지등입니까?"},
+    {k:"h5",   t:"간판 윗부분까지의 높이가 지면으로부터 5m 이상입니까?", if:a=>!a.sign},
+    {k:"a1",   t:"간판 한 면의 면적이 1㎡ 이상입니까?", if:a=>!a.sign}
+  ],
+  pole:[{k:"h4", t:"간판 윗부분까지의 높이가 지면으로부터 4m 이상입니까?"}],
+  show:[{k:"first", t:"처음으로 표시하는 공연간판입니까?"}],
+  banner:[{k:"fac30", t:"현수막을 걸기 위한 게시시설(틀)을 새로 설치하고, 그 면적이 30㎡를 초과합니까?"}]
+};
+
+function judge(t,a){
+  const P={c:"p",big:"허가 대상",msg:"허가를 받은 뒤 설치해야 합니다."};
+  const S={c:"s",big:"신고 대상",msg:"신고를 마친 뒤 설치해야 합니다."};
+  switch(t){
+    case "wall":
+      if(a.len10) return {...P, why:"한 변의 길이가 10m 이상인 벽면 이용 간판", law:"시행령 제4조"};
+      if(a.floor4 && a.other) return {...P, why:"4층 이상 층에 표시하는 타사광고 벽면 이용 간판", law:"시행령 제4조"};
+      if(a.floor4) return {...S, why:"건물 4층 이상 층에 표시하는 벽면 이용 간판", law:"시행령 제5조제1항제1호"};
+      if(a.area5 && !a.door) return {...S, why:"면적 5㎡ 이상인 벽면 이용 간판", law:"시행령 제5조제1항제1호"};
+      if(a.neon) return {c:"c",big:"확인 필요",msg:"네온류·전광류·디지털 디스플레이를 사용하는 간판은 크기가 작아도 허가·신고 대상일 수 있습니다.",why:"조명·디지털 광고물 사용",law:"담당 부서 확인"};
+      return {c:"x",big:"허가·신고 제외",msg:"허가·신고 없이 표시할 수 있으나, 표시방법(위치·크기·수량 등)은 지켜야 합니다.",why:"3층 이하에 표시하는 면적 5㎡ 미만 간판(또는 출입구 양옆 세로 간판)",law:"시행령 제5조제1항제1호 반대해석"};
+    case "proj":
+      if(a.sign) return {...S, why:"의료기관·약국 또는 이용·미용업소 표지등", law:"시행령 제5조제1항제4호"};
+      if(a.h5 && a.a1) return {...P, why:"높이 5m 이상이고 한 면 면적 1㎡ 이상인 돌출간판", law:"시행령 제4조제1항제2호"};
+      return {...S, why:a.h5?"한 면의 면적이 1㎡ 미만인 돌출간판":"윗부분 높이가 5m 미만인 돌출간판", law:"시행령 제5조제1항제4호"};
+    case "pole": return a.h4 ? {...P, why:"높이 4m 이상인 지주 이용 간판", law:"시행령 제4조"} : {...S, why:"높이 4m 미만인 지주 이용 간판", law:"시행령 제5조제1항제5호"};
+    case "roof": return {...P, why:"모든 옥상간판", law:"시행령 제4조"};
+    case "stand":return {...S, why:"모든 입간판", law:"시행령 제5조제1항제5호의2"};
+    case "banner":return a.fac30 ? {...P, why:"면적 30㎡를 초과하는 현수막 게시시설", law:"시행령 제5조제2항 단서"} : {...S, why:"현수막(가로등 현수기 포함)", law:"시행령 제5조제1항제6호"};
+    case "show": return a.first ? {...P, why:"최초로 표시하는 공연간판", law:"시행령 제4조"} : {...S, why:"최초 표시가 아닌 공연간판", law:"시행령 제5조제1항제3호"};
+    case "balloon":return {...P, why:"모든 애드벌룬", law:"시행령 제4조"};
+    case "paper":return {...S, why:"벽보·전단", law:"시행령 제5조"};
+    default: return {c:"c",big:"확인 필요",msg:"창문 이용 광고물, 디지털 광고물 등은 형태에 따라 기준이 달라 담당 부서 상담이 필요합니다.",why:"그 밖의 광고물",law:"담당 부서 확인"};
+  }
+}
+
+const wiz = {step:0,type:null,ans:{}};
+function drawDiagnose(el){
+  const qs = (QUESTIONS[wiz.type]||[]).filter(q=>!q.if||q.if(wiz.ans));
+  const total = 3, pct = [15,55,100][wiz.step];
+  let body = "";
+  if(wiz.step===0){
+    body = `<h3 style="margin-bottom:12px">1단계 · 설치하려는 광고물 종류를 고르세요</h3>
+      <div class="opts">${TYPES.map(t=>`<button class="opt ${wiz.type===t.k?'sel':''}" data-t="${t.k}"><b>${t.n}</b><span>${t.d}</span></button>`).join("")}</div>`;
+  } else if(wiz.step===1){
+    const name = TYPES.find(t=>t.k===wiz.type).n;
+    body = `<h3 style="margin-bottom:14px">2단계 · ${name}의 크기와 위치를 알려주세요</h3>` +
+      (qs.length ? qs.map(q=>`<div class="q"><p>${q.t}</p><div class="yn">
+        <button class="opt ${wiz.ans[q.k]===true?'sel':''}" data-q="${q.k}" data-v="1"><b>예</b></button>
+        <button class="opt ${wiz.ans[q.k]===false?'sel':''}" data-q="${q.k}" data-v="0"><b>아니요</b></button></div></div>`).join("")
+        : `<p class="lead">이 광고물은 크기와 관계없이 기준이 정해져 있습니다. '결과 보기'를 눌러 주십시오.</p>`);
+  } else {
+    const r = judge(wiz.type, wiz.ans);
+    const docs = r.c==="p"||r.c==="s";
+    body = `<h3 style="margin-bottom:14px">3단계 · 진단 결과</h3>
+      <div class="result ${r.c}">
+        <div style="color:var(--muted);font-size:14px">${TYPES.find(t=>t.k===wiz.type).n}</div>
+        <div class="big">${r.big}</div>
+        <div>${r.msg}</div>
+        <ul><li>판단 이유: ${r.why}</li><li>근거: 「옥외광고물법」 ${r.law}</li>
+        <li>도시지역, 도로·철도 주변 등 법 제3조의 지역에 표시하는 경우를 기준으로 합니다.</li></ul>
+      </div>
+      ${docs?`<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" onclick="docState.mode='${r.c==='p'?'permit':'report'}';go('documents')">→ 다음: ${r.big} 구비서류 확인</button><button class="btn" onclick="calc.k='${({wall:wiz.ans.other?'wallHo':'wallH',proj:'proj',pole:'pole',roof:'roof',stand:'stand',banner:wiz.ans.fac30?'bfac':'banner',show:'show',balloon:'balloon',paper:'poster'})[wiz.type]||'wallH'}';go('fees')">🧮 수수료 계산해 보기</button></div>`:
+      `<button class="btn primary" onclick="go('contact')">→ 담당 부서에 문의하기</button>`}
+      <div class="note warn">자가진단은 참고용입니다. 지역·건물 여건, 심의 대상 여부에 따라 결과가 달라질 수 있으니 설치 전 반드시 담당 부서(${CONTACT.tel})와 상담하시기 바랍니다.</div>`;
+  }
+  const ready = wiz.step===0 ? !!wiz.type : wiz.step===1 ? qs.every(q=>typeof wiz.ans[q.k]==="boolean") : true;
+  el.innerHTML = `<h2>🧭 허가·신고 대상 자가진단</h2>
+    <p class="lead">세 단계로 내 광고물이 허가 대상인지 신고 대상인지 확인합니다.</p>
+    <div class="wiz-bar"><i style="width:${pct}%"></i></div>
+    <div class="wiz-label">${wiz.step+1} / ${total} 단계</div>
+    ${body}
+    <div class="pager" style="margin-top:20px">
+      <button class="btn" id="wb" ${wiz.step===0?"disabled":""}>이전 질문</button>
+      ${wiz.step<2?`<button class="btn primary" id="wn" ${ready?"":"disabled"}>${wiz.step===1?"결과 보기":"다음 질문"}</button>`
+        :`<button class="btn" id="wr">처음부터 다시</button>`}
+    </div>`;
+  el.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{ if(wiz.type!==b.dataset.t){wiz.ans={};} wiz.type=b.dataset.t; drawDiagnose(el); });
+  el.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{ wiz.ans[b.dataset.q]=b.dataset.v==="1"; drawDiagnose(el); });
+  const wb=el.querySelector("#wb"), wn=el.querySelector("#wn"), wr=el.querySelector("#wr");
+  if(wb) wb.onclick=()=>{wiz.step--;drawDiagnose(el);};
+  if(wn) wn.onclick=()=>{wiz.step++;drawDiagnose(el);};
+  if(wr) wr.onclick=()=>{wiz.step=0;wiz.type=null;wiz.ans={};drawDiagnose(el);};
+}
+
+/* =========================================================
+   나. 종류별 표시 기준
+   ========================================================= */
+const STD = [
+  {n:"벽면 이용 간판", def:"건물 벽면에 가로형·세로형으로 붙이거나 직접 표시하는 간판",
+   p:["한 변의 길이가 10m 이상인 것","4층 이상 층의 벽면에 표시하는 타사광고"],
+   s:["면적 5㎡ 이상인 것(출입구 양옆 세로 간판 제외)","건물 4층 이상 층에 표시하는 것"],
+   x:"3층 이하에 표시하는 면적 5㎡ 미만 간판은 허가·신고 대상이 아닙니다(표시방법은 준수)."},
+  {n:"돌출간판", def:"건물 벽면에 튀어나오게 붙이는 간판(이용·미용업소 표지등 포함)",
+   p:["신고 대상을 제외한 돌출간판(높이 5m 이상 + 한 면 1㎡ 이상)"],
+   s:["의료기관·약국 표지등, 이용·미용업소 표지등","윗부분 높이가 지면에서 5m 미만인 것","한 면의 면적이 1㎡ 미만인 것"]},
+  {n:"지주 이용 간판", def:"땅에 기둥(지주)을 세워 표시하는 간판",
+   p:["윗부분까지 높이가 지면에서 4m 이상인 것"], s:["윗부분까지 높이가 지면에서 4m 미만인 것"]},
+  {n:"옥상간판", def:"건물 옥상에 게시시설을 설치하여 표시하는 간판", p:["모든 옥상간판"], s:[]},
+  {n:"입간판", def:"건물 부지 안 지면에 세워 두는 간판", p:[], s:["모든 입간판"]},
+  {n:"현수막", def:"천·비닐 등에 문자·도형을 표시하여 거는 광고물(가로등 현수기 포함)",
+   p:["면적 30㎡를 초과하는 현수막 게시시설"], s:["현수막","30㎡ 이하 현수막 게시시설"]},
+  {n:"공연간판", def:"공연·영화 등의 내용을 알리는 간판", p:["최초로 표시하는 공연간판"], s:["최초 표시가 아닌 공연간판"]},
+  {n:"애드벌룬·벽보·전단", def:"공중에 띄우는 광고물, 붙이는 종이 광고물, 배포 광고물", p:["애드벌룬"], s:["벽보","전단"]}
+];
+let stdTab = 0;
+function drawStandards(el){
+  const s = STD[stdTab];
+  const li = a => a.length ? `<ul>${a.map(x=>`<li>${x}</li>`).join("")}</ul>` : `<p style="color:var(--muted);font-size:14px">해당 없음</p>`;
+  el.innerHTML = `<h2>📐 광고물 종류별 표시 기준</h2>
+    <p class="lead">광고물 종류를 고르면 허가·신고 기준을 보여드립니다.</p>
+    <div class="tabs">${STD.map((x,i)=>`<button class="${i===stdTab?'on':''}" data-i="${i}">${x.n}</button>`).join("")}</div>
+    <div class="std">
+      <div class="box full"><h4>정의</h4><p style="color:var(--muted);font-size:14px">${s.def}</p></div>
+      <div class="box"><h4><span class="tag p">허가</span> 이런 경우 허가를 받습니다</h4>${li(s.p)}</div>
+      <div class="box"><h4><span class="tag s">신고</span> 이런 경우 신고합니다</h4>${li(s.s)}</div>
+      ${s.x?`<div class="box full"><h4><span class="tag x">제외</span> 허가·신고 제외</h4><p style="color:var(--muted);font-size:14px">${s.x}</p></div>`:""}
+    </div>
+    <p class="law">근거: 「옥외광고물 등의 관리와 옥외광고산업 진흥에 관한 법률 시행령」 제3조(분류), 제4조(허가 대상), 제5조(신고 대상)</p>
+    <div class="note"><b>공통 유의사항</b><br>
+      · 간판은 허가(신고)를 마친 뒤에 설치해야 합니다.<br>
+      · 간판의 표시기간은 원칙적으로 3년 이내이며, 계속 사용하려면 기간 연장을 신청해야 합니다.<br>
+      · 4층 이상 또는 한 변 10m 이상 벽면 간판, 높이 5m 이상·면적 1㎡ 이상 돌출간판, 옥상간판, 높이 4m 이상 지주 간판 등은 안전점검 대상입니다.</div>
+    <div class="note warn">간판 크기·높이·돌출 폭·업소별 수량 등 세부 표시방법은 「경기도 옥외광고물 조례」 및 「남양주시 조례」에서 정합니다. 세부 수치는 ${chk}</div>`;
+  el.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>{stdTab=+b.dataset.i;drawStandards(el);});
+}
+
+/* =========================================================
+   다. 구비서류 체크리스트
+   ========================================================= */
+const DOCS = {   // 남양주시 민원편람 「옥외광고물등 표시(허가·신고, 변경, 연장) 신청」 기준
+  permit:{n:"허가 신청", items:[
+    ["옥외광고물등 표시 허가 신청서 및 안전점검 신청서(별지 제1호서식)","안전점검 대상이 아니면 안전점검 신청란은 작성하지 않습니다."],
+    ["표시 장소 주변을 알 수 있는 원색사진 1부","도로가 함께 보이도록 촬영"],
+    ["광고물의 원색도안 1부",""],
+    ["광고물의 형상·규격·재료·구조·디자인 등에 관한 설명서 및 설계도서 각 1부",""],
+    ["토지·건물 소유자(관리자)의 승낙서 1부","다른 사람이 소유·관리하는 토지나 건물에 표시하는 경우"],
+    ["옥외광고심의 관련 서류 1부","법령·조례에서 심의를 거치도록 정한 광고물인 경우"],
+    ["구조안전확인 서류 1부","조례로 정한 광고물인 경우"]]},
+  report:{n:"신고", items:[
+    ["옥외광고물등 표시 신고서(별지 제1호서식)","원색사진·원색도안·설계도서는 신고 대상 광고물의 경우 제출하지 않습니다."],
+    ["토지·건물 소유자(관리자)의 승낙서 1부","다른 사람이 소유·관리하는 토지나 건물에 표시하는 경우"],
+    ["옥외광고심의 관련 서류 1부","심의 대상 광고물인 경우"],
+    ["구조안전확인 서류 1부","조례로 정한 광고물인 경우"]]},
+  change:{n:"변경", items:[
+    ["옥외광고물등 표시 변경 신청서(신고서)(별지 제1호서식)",""],
+    ["기존 허가증 또는 신고증명서",""],
+    ["변경 내용을 알 수 있는 원색사진 또는 원색도안","광고 내용만 바꾸는 경우 수수료는 2분의 1입니다."]]},
+  extend:{n:"기간 연장", items:[
+    ["옥외광고물등 표시 기간연장 신청서(별지 제1호서식)","표시기간 만료일 전후 30일 이내 신청"],
+    ["광고물의 현재 원색사진",""],
+    ["안전점검 신청서","안전점검 대상 광고물인 경우(별지 제1호서식에 함께 작성)"]]}
+};
+const store = { get(k,d){ try{ return JSON.parse(localStorage.getItem(k)) ?? d; }catch{ return d; } },
+                set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch{} } };
+const docState = {mode:"permit", checked: store.get("oa-docs", {})};
+function drawDocuments(el){
+  const d = DOCS[docState.mode];
+  const ck = docState.checked[docState.mode] || (docState.checked[docState.mode]=[]);
+  const done = ck.filter(Boolean).length, all = d.items.length;
+  el.innerHTML = `<h2>📋 구비서류 체크리스트</h2>
+    <p class="lead">신청 종류를 고른 뒤, 준비한 서류에 표시해 보세요.</p>
+    <div class="tabs">${Object.entries(DOCS).map(([k,v])=>`<button class="${k===docState.mode?'on':''}" data-m="${k}">${v.n}</button>`).join("")}</div>
+    <div class="meter"><div class="wiz-bar"><i style="width:${all?done/all*100:0}%"></i></div><b style="color:var(--text)">${done} / ${all}</b> 준비</div>
+    <ul class="cl">${d.items.map((it,i)=>`<li><label><input type="checkbox" data-c="${i}" ${ck[i]?"checked":""}>
+      <div>${it[0]}${it[1]?`<small>${it[1]}</small>`:""}</div></label></li>`).join("")}</ul>
+    ${done===all?`<div class="note">✅ 모든 서류를 준비하셨습니다. 다음 단계에서 처리 절차를 확인하십시오.</div>`:""}
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+      <a class="btn" href="${LINKS.forms}" target="_blank" rel="noopener" style="text-decoration:none">📄 신청서 서식 내려받기</a>
+      <a class="btn" href="${LINKS.gov24}" target="_blank" rel="noopener" style="text-decoration:none">💻 정부24 온라인 신청</a>
+      <button class="btn" id="rst">체크 초기화</button></div>
+    <p class="law">근거: 「옥외광고물법」 제3조, 같은 법 시행령 제7조 / 남양주시 민원편람. 체크한 내용은 이 기기의 브라우저에만 저장됩니다.</p>
+    <div class="note warn">· 관리자(영업주)가 바뀐 경우에는 변경된 날부터 15일 이내에 관리자 변경 신고를 해야 합니다.<br>· 광고물 종류에 따라 추가 서류가 필요할 수 있으니 접수 전 문의해 주십시오.</div>`;
+  el.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{docState.mode=b.dataset.m;drawDocuments(el);});
+  el.querySelectorAll("[data-c]").forEach(b=>b.onchange=()=>{ck[+b.dataset.c]=b.checked;store.set("oa-docs",docState.checked);drawDocuments(el);});
+  el.querySelector("#rst").onclick=()=>{docState.checked[docState.mode]=[];store.set("oa-docs",docState.checked);drawDocuments(el);};
+}
+
+/* =========================================================
+   라. 처리 절차 및 처리 기간
+   ========================================================= */
+function drawProcess(el){
+  el.innerHTML = `<h2>🔄 처리 절차 및 처리 기간</h2>
+    <p class="lead">설치 전 상담부터 허가증(신고필증) 교부까지의 흐름입니다.</p>
+    <ol class="flow">
+      <li data-n="1"><h4>사전 상담</h4><p>자가진단 결과와 설치 위치·크기를 가지고 담당 부서와 상담합니다.</p></li>
+      <li data-n="2"><h4>신청서 및 구비서류 제출</h4><p>${CONTACT.office} ${CONTACT.dept}에 방문하거나 <a href="${LINKS.gov24}" target="_blank" rel="noopener">정부24</a>로 온라인 신청합니다. (광고주 또는 옥외광고업자)</p></li>
+      <li data-n="3"><h4>서류 검토 · 현장 확인</h4><p>표시방법 적합 여부를 검토하고, 필요 시 현장을 확인합니다. 심의 대상은 옥외광고심의위원회 심의를 거칩니다.</p></li>
+      <li data-n="4"><h4>수수료 납부</h4><p>신청 시 발급되는 고지서로 수수료를 납부합니다. 안전점검 대상은 안전점검 수수료를 별도로 납부합니다. <a href="#fees">수수료 계산하기 →</a></p></li>
+      <li data-n="5"><h4>허가증 · 신고필증 교부</h4><p>교부받은 뒤에 광고물을 설치합니다.</p></li>
+      <li data-n="6"><h4>설치 및 실명제 표시</h4><p>광고물에 표시자·제작자 등을 알리는 실명 표시를 부착합니다.</p></li>
+    </ol>
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th>구분</th><th>처리 기간</th><th>비고</th></tr>
+      <tr><td><span class="tag p">허가</span></td><td><b>${val(PERIOD.permit)}</b></td><td>법정처리기간(남양주시 민원편람)</td></tr>
+      <tr><td><span class="tag s">신고</span></td><td><b>${val(PERIOD.report)}</b></td><td>법정처리기간(남양주시 민원편람)</td></tr>
+      <tr><td>심의 대상</td><td><b>${val(PERIOD.review)}</b></td><td>옥외광고심의위원회 심의를 거치는 경우(법 제3조제9항)</td></tr>
+      <tr><td>신청 방법</td><td colspan="2">방문(행정복지센터·읍·면) 또는 정부24 온라인 신청</td></tr>
+    </table></div>
+    <div class="note">· 정해진 기간 안에 처리 결과나 기간 연장 통지가 없으면, 그 기간이 끝난 다음 날 허가(신고수리)된 것으로 봅니다. (법 제3조제10항)<br>
+      · 표시기간 만료 후 계속 사용하려면 만료일 전후 30일 이내에 기간 연장을 신청해야 합니다.</div>`;
+}
+
+/* =========================================================
+   마. 수수료
+   ========================================================= */
+/* 수수료 계산식 — 남양주시 수수료 계산식(엑셀)과 같은 방식
+   초과 면적의 1㎡ 미만 단수는 1㎡로 올리고, 결과는 100원 미만을 버립니다. */
+const calc = { k:"wallH", w:"", h:"", sides:1, qty:1, neon:false, kind:"new", safety:false };
+function feeOf(rule, area){
+  if(rule.mode==="count") return rule.base;
+  const over = Math.max(0, area - rule.upTo);
+  return rule.base + Math.ceil(over - 1e-9) * rule.add;
+}
+function safetyOf(key, area){
+  const s = SAFETY_RULES[key]; if(!s) return null;
+  if(s.min && area < s.min) return {fee:0, note:`면적 ${s.min}㎡ 미만은 안전점검 대상이 아닙니다.`};
+  let base;
+  if(s.t1!==null && area<=s.t1) base=s.f1;
+  else if(area<=s.t2) base=s.f2;
+  else base=s.f2 + Math.ceil(area - s.t2 - 1e-9)*s.add;
+  return {base, fee: Math.floor(base*1.1/100)*100};
+}
+function calcResult(){
+  const r = FEE_RULES.find(x=>x.k===calc.k);
+  const w=parseFloat(calc.w)||0, hh=parseFloat(calc.h)||0;
+  const sides = r.sides ? calc.sides : 1;
+  const area = Math.round(w*hh*sides*100)/100;
+  const qty = Math.max(1, parseInt(calc.qty)||1);
+  const needSize = r.mode==="area";
+  let lines=[], total=0, ok = !needSize || area>0;
+  if(ok){
+    let fee = feeOf(r, area) * qty;
+    lines.push([`기본 수수료${needSize?` (면적 ${area}㎡)`:""}${qty>1?` × ${qty}${r.qty||r.unit||"개"}`:""}`, fee]);
+    if(calc.neon){ lines.push(["네온류·전광류 사용(2배)", fee]); fee*=2; }
+    if(calc.kind==="content"){ const half=Math.floor(fee/2/100)*100; lines.push(["광고 내용만 변경(2분의 1)", half-fee]); fee=half; }
+    fee = Math.floor(fee/100)*100; total+=fee;
+    if(calc.safety && r.safety){
+      const s = safetyOf(r.safety, needSize?area:0);
+      if(s && s.fee){ lines.push([`안전점검 수수료(별표 4 ${won(s.base)} + 10% 가산)`, s.fee]); total+=s.fee; }
+      else if(s) lines.push([s.note, 0]);
+    }
+  }
+  return `<div class="lbl">예상 수수료</div>
+    <div class="sum">${ok?won(total):"—"}</div>
+    ${ok?`<ul>${lines.map(([t,v])=>`<li><span>${t}</span><b>${v<0?"−"+won(-v):(v?won(v):"")}</b></li>`).join("")}</ul>`:`<p style="font-size:14px;color:var(--muted)">가로·세로 길이(m)를 입력하십시오.</p>`}
+    <small>조례 별표 3·4 기준 참고 금액이며, 실제 납부액은 접수 시 산정한 고지 금액에 따릅니다.</small>`;
+}
+function drawFeeCalc(box){
+  const r = FEE_RULES.find(x=>x.k===calc.k);
+  const groups = [...new Set(FEE_RULES.map(x=>x.g))];
+  const needSize = r.mode==="area";
+  box.innerHTML = `
+    <div class="calc">
+      <div class="calc-in">
+        <label class="fld"><span>광고물 종류</span>
+          <select id="c-k">${groups.map(g=>`<optgroup label="${g}">${FEE_RULES.filter(x=>x.g===g).map(x=>`<option value="${x.k}" ${x.k===calc.k?"selected":""}>${x.n}</option>`).join("")}</optgroup>`).join("")}</select></label>
+        ${needSize?`<div class="row2">
+          <label class="fld"><span>가로(m)</span><input id="c-w" type="number" inputmode="decimal" min="0" step="0.01" value="${calc.w}" placeholder="예) 5.8"></label>
+          <label class="fld"><span>세로(m)</span><input id="c-h" type="number" inputmode="decimal" min="0" step="0.01" value="${calc.h}" placeholder="예) 1.5"></label></div>`:""}
+        ${r.sides?`<div class="fld"><span>표시 면</span><div class="seg">
+          <button data-s="1" class="${calc.sides==1?'on':''}">한 면</button><button data-s="2" class="${calc.sides==2?'on':''}">양면</button></div></div>`:""}
+        ${(r.mode==="count"||r.qty)?`<label class="fld"><span>수량(${r.qty||r.unit})</span><input id="c-q" type="number" min="1" step="1" value="${calc.qty}"></label>`:""}
+        <div class="fld"><span>신청 구분</span><div class="seg">
+          <button data-kind="new" class="${calc.kind==='new'?'on':''}">신규·연장·규격 변경</button><button data-kind="content" class="${calc.kind==='content'?'on':''}">광고 내용만 변경</button></div></div>
+        <label class="tg"><input type="checkbox" id="c-n" ${calc.neon?"checked":""}> 네온류·전광류 사용 <small>(단순 조명·광원 비노출은 제외, 점멸·동영상은 포함)</small></label>
+        ${r.safety?`<label class="tg"><input type="checkbox" id="c-s" ${calc.safety?"checked":""}> 안전점검 대상 광고물 <small>(${SAFETY_RULES[r.safety].target})</small></label>`:""}
+      </div>
+      <div class="calc-out" id="c-out" aria-live="polite">${calcResult()}</div>
+    </div>`;
+  const re = ()=>drawFeeCalc(box);
+  const out = ()=>{ box.querySelector("#c-out").innerHTML = calcResult(); };
+  box.querySelector("#c-k").onchange=e=>{calc.k=e.target.value;calc.safety=false;calc.qty=1;re();};
+  [["#c-w","w"],["#c-h","h"],["#c-q","qty"]].forEach(([id,key])=>{const i=box.querySelector(id); if(i) i.oninput=e=>{calc[key]=e.target.value; out();};});
+  box.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{calc.sides=+b.dataset.s;re();});
+  box.querySelectorAll("[data-kind]").forEach(b=>b.onclick=()=>{calc.kind=b.dataset.kind;re();});
+  box.querySelector("#c-n").onchange=e=>{calc.neon=e.target.checked;out();};
+  const s=box.querySelector("#c-s"); if(s) s.onchange=e=>{calc.safety=e.target.checked;out();};
+}
+function feeText(r){
+  if(r.mode==="count") return `${r.unit}당 <b>${won(r.base)}</b>`;
+  return `${r.upTo}㎡ 이하 <b>${won(r.base)}</b><br><small>초과 시 1㎡마다 ${won(r.add)}</small>`;
+}
+function drawFees(el){
+  el.innerHTML = `<h2>💳 수수료 안내</h2>
+    <p class="lead">허가·신고 수수료는 「남양주시 옥외광고물 등의 관리와 옥외광고산업 진흥에 관한 조례」 제25조 및 [별표 3]에 따릅니다.</p>
+    <h3 class="h3">🧮 수수료 계산기</h3>
+    <div id="calcBox"></div>
+    <h3 class="h3">① 허가·신고 수수료 <small>(조례 별표 3)</small></h3>
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th>광고물 종류</th><th>구분</th><th>수수료</th></tr>
+      ${(()=>{ const rows=[]; FEE_RULES.forEach(f=>{ rows.push([f.g,f.n,feeText(f)]); if(f.k==="balloon") rows.push([f.g,"옥상에 고정 / 지면에 설치","옥상간판 / 지주 이용 간판에 준함"]); });
+         return rows.map((r,i)=>{ const first = i===0 || rows[i-1][0]!==r[0]; const span = rows.filter(x=>x[0]===r[0]).length;
+           return `<tr>${first?`<td rowspan="${span}"><b>${r[0]}</b></td>`:""}<td>${r[1]}</td><td>${r[2]}</td></tr>`; }).join(""); })()}
+    </table></div>
+    <div class="note"><b>수수료 적용 기준 (별표 3 비고)</b><br>
+      · 네온류·전광류를 사용하는 경우: 해당 광고물 수수료의 <b>2배</b> (단순 조명, 광원이 직접 드러나지 않는 경우는 제외하되, 빛이 점멸하거나 동영상 변화가 있으면 포함)<br>
+      · 광고 내용만 변경: 수수료의 <b>2분의 1</b> / 규격·자재·표시 위치·장소 변경: 전액<br>
+      · 허가·신고 기간 연장: 수수료 전액<br>
+      · 돌출간판·지주 이용 간판은 양면일 경우 두 면을 합한 연면적으로 계산합니다.</div>
+    <h3 class="h3">② 안전점검 수수료 <small>(조례 별표 4 · 안전점검 대상 광고물만)</small></h3>
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th>광고물 종류</th><th>점검 대상</th><th>수수료(별표 4)</th></tr>
+      ${Object.values(SAFETY_RULES).map(s=>`<tr><td>${s.n}</td><td>${s.target}</td><td>${s.t1!==null?`${s.t1}㎡ 이하 ${won(s.f1)}<br>${s.t1}㎡ 초과 ${s.t2}㎡ 이하 ${won(s.f2)}`:`${s.min}㎡ 이상 ${s.t2}㎡ 이하 ${won(s.f2)}`}<br>${s.t2}㎡ 초과 시 1㎡마다 ${won(s.add)} 가산</td></tr>`).join("")}
+    </table></div>
+    <p class="law">근거: 「옥외광고물법」 제17조, 「남양주시 옥외광고물 등의 관리와 옥외광고산업 진흥에 관한 조례」(제2488호, 2025. 12. 29. 시행) 제25조, [별표 3], [별표 4]</p>
+    <div class="note warn">· 수수료는 신청서(신고서)를 제출하면서 고지서로 납부합니다.<br>
+      · 과오납, 수리 전 신청 변경·철회, 시의 귀책사유 등에는 수수료를 반환합니다. (조례 제25조제2항)<br>
+      · 안전점검 수수료는 남양주시 산정 방식에 따라 별표 4 금액에 10%를 가산하여 계산했습니다.<br>
+      · 문의: ${CONTACT.tel}</div>`;
+  drawFeeCalc(el.querySelector("#calcBox"));
+}
+
+/* =========================================================
+   바. 자주 묻는 질문
+   ========================================================= */
+const FAQ = [
+  ["인터넷으로 신청할 수 있나요?","네. 방문 신청 외에 정부24에서 온라인으로 신청할 수 있습니다. 처리기간은 허가 7일, 신고 3일입니다. (심의 대상은 20일 이내)"],
+  ["수수료는 얼마인가요?","광고물 종류와 면적에 따라 다릅니다. 예를 들어 자사 가로형 간판은 6㎡ 이하 3,000원, 돌출간판은 연면적 6㎡ 이하 15,000원입니다. '수수료 안내'의 계산기로 미리 확인해 보십시오."],
+  ["LED·네온 간판은 수수료가 다른가요?","네온류·전광류를 사용하는 광고물은 해당 수수료의 2배가 적용됩니다. 단순 조명이나 광원이 직접 드러나지 않는 경우는 제외되지만, 빛이 점멸하거나 동영상 변화가 있으면 2배가 적용됩니다."],
+  ["신청을 취소하면 수수료를 돌려받을 수 있나요?","허가·신고를 수리하기 전에 신청을 변경하거나 철회한 경우, 과오납한 경우 등에는 수수료를 반환받을 수 있습니다. (남양주시 조례 제25조제2항)"],
+  ["작은 간판도 허가나 신고를 해야 하나요?","3층 이하에 표시하는 면적 5㎡ 미만 벽면 이용 간판은 허가·신고 대상이 아닙니다. 다만 표시방법(위치·크기·수량 등)은 지켜야 하고, 네온류·전광류 등을 쓰는 경우에는 대상이 될 수 있으니 문의해 주십시오."],
+  ["내 건물(사유지)에 설치하는 간판도 신고해야 하나요?","네. 사유지에 설치하는 광고물도 종류와 규모에 따라 허가·신고 절차를 거쳐야 합니다."],
+  ["허가·신고 없이 간판을 달면 어떻게 되나요?","시정 명령(제거 등)을 받을 수 있으며, 이행하지 않으면 과태료 또는 이행강제금이 부과될 수 있습니다. 반드시 허가(신고) 후 설치하십시오."],
+  ["간판을 몇 개까지 달 수 있나요?","한 업소에서 표시할 수 있는 간판 총수량은 시행령과 조례로 제한됩니다. 구체적인 수량 기준은 건물 위치(곡각지점 등)에 따라 다르므로 상담이 필요합니다."],
+  ["간판 허가(신고)는 언제까지 유효한가요?","간판의 표시기간은 원칙적으로 3년 이내입니다. 계속 사용하려면 만료일 전후 30일 이내에 기간 연장을 신청해야 합니다."],
+  ["가게를 인수했는데 기존 간판을 그대로 써도 되나요?","광고물 관리자(영업주)가 바뀐 경우 변경된 날부터 15일 이내에 관리자 변경 신고를 해야 합니다. 광고 내용을 바꾸면 변경 허가(신고)가 필요합니다."],
+  ["현수막은 아무 곳에나 걸 수 있나요?","현수막은 원칙적으로 지정 게시대에 신고 후 게시해야 합니다. 가로수·전봇대 등에 무단으로 거는 현수막은 정비 대상이며 과태료가 부과될 수 있습니다."],
+  ["입간판(세움 간판)을 가게 앞 인도에 둬도 되나요?","입간판은 신고 대상이며, 건물 부지 안에 두어야 합니다. 보도(인도) 등 도로에 내놓는 입간판은 정비 대상이 됩니다. 세부 기준은 문의해 주십시오."],
+  ["간판 제작·설치 업체도 따로 갖춰야 할 것이 있나요?","옥외광고사업자는 옥외광고사업 등록을 해야 하며, 2021년 6월 9일부터 옥외광고물 손해배상 책임보험(또는 같은 내용이 포함된 보험) 가입이 의무화되었습니다. 위반 시 과태료가 부과될 수 있습니다."]
+];
+function drawFaq(el){
+  el.innerHTML = `<h2>💬 자주 묻는 질문</h2>
+    <p class="lead">질문을 누르면 답변이 열립니다.</p>
+    <div class="faq">${FAQ.map(([q,a],i)=>`<details ${i===0?"open":""}><summary>${q}</summary><div class="a">${a}</div></details>`).join("")}</div>`;
+}
+
+/* =========================================================
+   사. 문의처
+   ========================================================= */
+function drawContact(el){
+  el.innerHTML = `<h2>☎️ 문의처</h2>
+    <p class="lead">옥외광고물 허가·신고 상담은 아래로 연락해 주십시오.</p>
+    <div class="contact">
+      <div class="box"><small>담당 기관</small><div class="v">${CONTACT.office}</div><small>${CONTACT.dept} · ${CONTACT.area}</small></div>
+      <div class="box"><small>전화번호</small><div class="v">${CONTACT.tel}</div>
+        <button class="btn copy" id="cp">번호 복사</button> <a class="btn copy" style="text-decoration:none;display:inline-block" href="tel:${CONTACT.tel.replace(/-/g,"")}">전화 걸기</a></div>
+      <div class="box"><small>상담 시간</small><div class="v" style="font-size:16px">${CONTACT.hours}</div></div>
+      <div class="box"><small>방문 전 준비</small><div class="v" style="font-size:16px">자가진단 결과 · 설치 위치 사진 · 간판 도안</div></div>
+    </div>
+    <div class="note">방문 상담 시 미리 연락 주시면 더 정확하게 안내해 드릴 수 있습니다.</div>
+    <h3 class="h3">🔗 공식 자료 바로가기</h3>
+    <div class="links">
+      ${[["정부24 옥외광고물 표시 허가·신고 신청",LINKS.gov24,"온라인 신청"],
+         ["남양주시 민원편람 · 신청서 서식",LINKS.forms,"별지 제1호서식, 작성예시, 안전점검 수수료"],
+         ["옥외광고물법",LINKS.law,"국가법령정보센터"],
+         ["옥외광고물법 시행령",LINKS.decree,"허가·신고 대상(제4조·제5조)"],
+         ["경기도 옥외광고물 조례",LINKS.gg,"표시방법 세부 기준"],
+         ["남양주시 옥외광고물 조례",LINKS.nyj,"수수료(별표 3·4), 과태료 기준"],
+         ["남양주시 특정구역 지정 고시",LINKS.zone,"특정구역·정비시범구역"],
+         ["남양주시 현수막 지정게시대 현황",LINKS.banner,"게시대 위치"],
+         ["찾기쉬운 생활법령 · 옥외광고물",LINKS.easylaw,"법제처 생활법령"],
+         ["월간 팝사인(업계 소식)",LINKS.popsign,"옥외광고 업계 동향·제도 변경 기사"]]
+        .map(([t,u,d])=>`<a class="lk" href="${u}" target="_blank" rel="noopener"><b>${t}</b><span>${d}</span></a>`).join("")}
+    </div>`;
+  el.querySelector("#cp").onclick = async e => {
+    try{ await navigator.clipboard.writeText(CONTACT.tel); e.target.textContent="복사했습니다"; }
+    catch{ e.target.textContent=CONTACT.tel; }
+  };
+}
+
+const SECTIONS = {
+  diagnose:drawDiagnose, standards:drawStandards, documents:drawDocuments,
+  process:drawProcess, fees:drawFees, faq:drawFaq, contact:drawContact
+};
+route();
+</script>
+</body>
+</html>
