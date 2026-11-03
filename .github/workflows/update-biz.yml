@@ -3,7 +3,12 @@ name: 옥외광고업 현황 자동 갱신
 on:
   schedule:
     - cron: "17 21 * * *"   # 매일 06:17 (한국시간)
-  workflow_dispatch: {}      # Actions 탭에서 수동 실행
+  workflow_dispatch:          # Actions 탭에서 수동 실행
+    inputs:
+      force:
+        description: "새 게시글이 없어도 다시 내려받아 갱신"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -26,7 +31,7 @@ jobs:
         run: pip install xlrd openpyxl
 
       - name: 남양주시 게시판 확인 및 변환
-        run: python scripts/update_biz.py
+        run: python scripts/update_biz.py ${{ inputs.force && '--force' || '' }}
 
       - name: 바뀐 내용이 있으면 저장
         run: |
