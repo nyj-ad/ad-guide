@@ -279,6 +279,32 @@ p,li,.a,summary{text-wrap:pretty}
   .faq summary{letter-spacing:-.03em}
   .contact .v{font-size:19px;letter-spacing:-.04em}
 }
+
+/* 9. AI 활용 표시 */
+.ai-badge{display:inline-flex;align-items:center;gap:8px;margin:14px auto 0;padding:5px 12px 5px 5px;border-radius:999px;background:#fff;border:1px solid #dfe3fb;text-decoration:none;color:var(--muted);font-size:13px;box-shadow:0 2px 8px rgba(63,110,245,.08);transition:.2s;max-width:100%}
+.ai-badge:hover{border-color:#c7d3fb;color:var(--text)}
+.ai-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:999px;background:var(--grad);color:#fff;font-size:12px;font-weight:700;white-space:nowrap}
+.ai-tag .ic{width:13px;height:13px}
+.ai-tag.lg{font-size:13px;padding:5px 12px;margin-bottom:10px}
+.ai-txt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ai-go{width:14px;height:14px;color:#a3a9bd;flex-shrink:0}
+.hero .search{margin-top:18px}
+.ft-ai{color:var(--blue);text-decoration:none;font-weight:500}
+.ai-hero{text-align:left;margin-bottom:6px}
+.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ai-box{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:#fff}
+.ai-h{display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px;margin-bottom:8px}
+.ai-h .ic{color:var(--blue);width:20px;height:20px}
+.ai-box ul{list-style:none;display:grid;gap:6px;font-size:14px;color:var(--text)}
+.ai-box li{position:relative;padding-left:14px;line-height:1.55}
+.ai-box li::before{content:"";position:absolute;left:2px;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--purple)}
+.ai-box small{display:block;margin-top:10px;font-size:12px;color:#8a90a3}
+.ai-call{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:16px;padding:18px 20px;border-radius:14px;border:1px solid #dfe3fb;background:linear-gradient(135deg,var(--blue-soft),var(--purple-soft))}
+.ai-call p{font-size:13.5px;color:var(--muted);margin-top:2px}
+.ai-call .btn{white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.ai-law{margin-top:16px;font-size:12.5px;color:#8a90a3;line-height:1.6}
+@media (max-width:720px){.ai-grid{grid-template-columns:1fr}.ai-call{flex-direction:column;align-items:stretch}.ai-call .btn{justify-content:center}}
+@media (max-width:520px){.ai-badge{font-size:12.5px;gap:6px}.ai-box{padding:16px}.ai-box ul{font-size:13.5px}.ai-h{font-size:15px}}
 </style>
 </head>
 <body>
@@ -301,6 +327,7 @@ p,li,.a,summary{text-wrap:pretty}
 <footer>
   <div class="wrap">
     © 2026 [남양주시 진건·퇴계원행정복지센터 도시건축과 건축팀]. All Rights Reserved.
+    <div class="upd"><a class="ft-ai" href="#ai">AI 활용 안내</a></div>
     <div class="upd">안내 기준일: 2026. 11. · 이 페이지는 이해를 돕기 위한 안내이며, 최종 판단은 담당 부서의 검토 결과에 따릅니다.</div>
   </div>
 </footer>
@@ -390,7 +417,7 @@ const SAFETY_RULES = {
 const won = n => n.toLocaleString("ko-KR") + "원";
 
 /* ---------- 아이콘: Lucide (ISC 라이선스, lucide.dev) ---------- */
-const ICONS = {"compass": "<circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z\" />", "ruler": "<path d=\"M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z\" /> <path d=\"m14.5 12.5 2-2\" /> <path d=\"m11.5 9.5 2-2\" /> <path d=\"m8.5 6.5 2-2\" /> <path d=\"m17.5 15.5 2-2\" />", "clipboard-list": "<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\" /> <path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\" /> <path d=\"M12 11h4\" /> <path d=\"M12 16h4\" /> <path d=\"M8 11h.01\" /> <path d=\"M8 16h.01\" />", "route": "<circle cx=\"6\" cy=\"19\" r=\"3\" /> <path d=\"M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15\" /> <circle cx=\"18\" cy=\"5\" r=\"3\" />", "calculator": "<rect width=\"16\" height=\"20\" x=\"4\" y=\"2\" rx=\"2\" /> <line x1=\"8\" x2=\"16\" y1=\"6\" y2=\"6\" /> <line x1=\"16\" x2=\"16\" y1=\"14\" y2=\"18\" /> <path d=\"M16 10h.01\" /> <path d=\"M12 10h.01\" /> <path d=\"M8 10h.01\" /> <path d=\"M12 14h.01\" /> <path d=\"M8 14h.01\" /> <path d=\"M12 18h.01\" /> <path d=\"M8 18h.01\" />", "building-2": "<path d=\"M10 12h4\" /> <path d=\"M10 8h4\" /> <path d=\"M14 21v-3a2 2 0 0 0-4 0v3\" /> <path d=\"M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2\" /> <path d=\"M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16\" />", "message-circle-question": "<path d=\"M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719\" /> <path d=\"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3\" /> <path d=\"M12 17h.01\" />", "phone": "<path d=\"M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384\" />", "search": "<path d=\"m21 21-4.34-4.34\" /> <circle cx=\"11\" cy=\"11\" r=\"8\" />", "monitor-smartphone": "<path d=\"M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h8\" /> <path d=\"M10 19v-3.96 3.15\" /> <path d=\"M7 19h5\" /> <rect width=\"6\" height=\"10\" x=\"16\" y=\"12\" rx=\"2\" />", "file-down": "<path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\" /> <path d=\"M14 2v5a1 1 0 0 0 1 1h5\" /> <path d=\"M12 18v-6\" /> <path d=\"m9 15 3 3 3-3\" />", "circle-check-big": "<path d=\"M21.801 10A10 10 0 1 1 17 3.335\" /> <path d=\"m9 11 3 3L22 4\" />", "calendar-days": "<path d=\"M8 2v3\" /> <path d=\"M16 2v3\" /> <rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\" /> <path d=\"M3 9h18\" /> <path d=\"M8 13h.01\" /> <path d=\"M12 13h.01\" /> <path d=\"M16 13h.01\" /> <path d=\"M8 17h.01\" /> <path d=\"M12 17h.01\" /> <path d=\"M16 17h.01\" />", "refresh-cw": "<path d=\"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8\" /> <path d=\"M21 3v5h-5\" /> <path d=\"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16\" /> <path d=\"M8 16H3v5\" />", "map-pin": "<path d=\"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0\" /> <circle cx=\"12\" cy=\"10\" r=\"3\" />", "link": "<path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\" /> <path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\" />"};
+const ICONS = {"sparkles": "<path d=\"M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z\" /> <path d=\"M20 2v4\" /> <path d=\"M22 4h-4\" /> <circle cx=\"4\" cy=\"20\" r=\"2\" />", "user-check": "<path d=\"m16 11 2 2 4-4\" /> <path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\" /> <circle cx=\"9\" cy=\"7\" r=\"4\" />", "shield-check": "<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\" /> <path d=\"m9 12 2 2 4-4\" />", "ban": "<circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"M4.929 4.929 19.07 19.071\" />", "chevron-right": "<path d=\"m9 18 6-6-6-6\" />","compass": "<circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z\" />", "ruler": "<path d=\"M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z\" /> <path d=\"m14.5 12.5 2-2\" /> <path d=\"m11.5 9.5 2-2\" /> <path d=\"m8.5 6.5 2-2\" /> <path d=\"m17.5 15.5 2-2\" />", "clipboard-list": "<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\" /> <path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\" /> <path d=\"M12 11h4\" /> <path d=\"M12 16h4\" /> <path d=\"M8 11h.01\" /> <path d=\"M8 16h.01\" />", "route": "<circle cx=\"6\" cy=\"19\" r=\"3\" /> <path d=\"M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15\" /> <circle cx=\"18\" cy=\"5\" r=\"3\" />", "calculator": "<rect width=\"16\" height=\"20\" x=\"4\" y=\"2\" rx=\"2\" /> <line x1=\"8\" x2=\"16\" y1=\"6\" y2=\"6\" /> <line x1=\"16\" x2=\"16\" y1=\"14\" y2=\"18\" /> <path d=\"M16 10h.01\" /> <path d=\"M12 10h.01\" /> <path d=\"M8 10h.01\" /> <path d=\"M12 14h.01\" /> <path d=\"M8 14h.01\" /> <path d=\"M12 18h.01\" /> <path d=\"M8 18h.01\" />", "building-2": "<path d=\"M10 12h4\" /> <path d=\"M10 8h4\" /> <path d=\"M14 21v-3a2 2 0 0 0-4 0v3\" /> <path d=\"M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2\" /> <path d=\"M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16\" />", "message-circle-question": "<path d=\"M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719\" /> <path d=\"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3\" /> <path d=\"M12 17h.01\" />", "phone": "<path d=\"M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384\" />", "search": "<path d=\"m21 21-4.34-4.34\" /> <circle cx=\"11\" cy=\"11\" r=\"8\" />", "monitor-smartphone": "<path d=\"M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h8\" /> <path d=\"M10 19v-3.96 3.15\" /> <path d=\"M7 19h5\" /> <rect width=\"6\" height=\"10\" x=\"16\" y=\"12\" rx=\"2\" />", "file-down": "<path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\" /> <path d=\"M14 2v5a1 1 0 0 0 1 1h5\" /> <path d=\"M12 18v-6\" /> <path d=\"m9 15 3 3 3-3\" />", "circle-check-big": "<path d=\"M21.801 10A10 10 0 1 1 17 3.335\" /> <path d=\"m9 11 3 3L22 4\" />", "calendar-days": "<path d=\"M8 2v3\" /> <path d=\"M16 2v3\" /> <rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\" /> <path d=\"M3 9h18\" /> <path d=\"M8 13h.01\" /> <path d=\"M12 13h.01\" /> <path d=\"M16 13h.01\" /> <path d=\"M8 17h.01\" /> <path d=\"M12 17h.01\" /> <path d=\"M16 17h.01\" />", "refresh-cw": "<path d=\"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8\" /> <path d=\"M21 3v5h-5\" /> <path d=\"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16\" /> <path d=\"M8 16H3v5\" />", "map-pin": "<path d=\"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0\" /> <circle cx=\"12\" cy=\"10\" r=\"3\" />", "link": "<path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\" /> <path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\" />"};
 /* 본문용 선 아이콘 */
 const ic = (n, c="") => `<svg class="ic ${c}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]||""}</svg>`;
 /* 메뉴용 간판 그림 (직접 그린 SVG) — 메뉴별로 실제 옥외광고물 종류를 표현 */
@@ -508,11 +535,67 @@ const val = v => v ? v : chk;
 function route(){
   const id = (location.hash || "#home").slice(1);
   const idx = MENUS.findIndex(m => m.id === id);
-  if (idx < 0) renderHome(); else renderSection(idx);
+  if (id === "ai") renderAI(); else if (idx < 0) renderHome(); else renderSection(idx);
   window.scrollTo({top:0,behavior:"instant"});
 }
 window.addEventListener("hashchange", route);
 function go(id){ location.hash = id; }
+
+
+/* ---------- AI 활용 안내 ----------
+   근거: 「남양주시 공공 인공지능 행정서비스의 안전한 이용 및 시민 권리 보호에 관한 조례안」(발의 중)
+   — 시민이 인공지능을 활용한 서비스임을 알 수 있도록 표시 */
+function renderAI(){
+  app.innerHTML = `
+    <button class="home-btn" onclick="go('home')">← 처음 화면</button>
+    <section class="panel glass ai-page">
+      <div class="ai-hero">
+        <span class="ai-tag lg">${ic("sparkles")}AI 활용 서비스</span>
+        <h2>AI 활용 안내</h2>
+        <p class="lead">이 안내 페이지는 생성형 인공지능(AI)의 도움을 받아 만들었습니다.<br class="br-m"> 시민 여러분이 알고 이용하실 수 있도록 알려드립니다.</p>
+      </div>
+      <div class="ai-grid">
+        <div class="ai-box">
+          <div class="ai-h">${ic("sparkles")}AI가 도운 일</div>
+          <ul>
+            <li>안내 문구 초안 작성과 화면 디자인</li>
+            <li>자가진단·수수료 계산기 프로그램 제작</li>
+            <li>등록 광고업체 현황 자료 변환·자동 갱신 프로그램 제작</li>
+          </ul>
+          <small>사용 도구: Anthropic Claude</small>
+        </div>
+        <div class="ai-box">
+          <div class="ai-h">${ic("ban")}AI가 하지 않는 일</div>
+          <ul>
+            <li>AI가 실시간으로 답변을 만들어 내지 않습니다.</li>
+            <li>자가진단·수수료는 법령·조례에 정한 기준대로 계산합니다.</li>
+            <li>허가·신고 여부를 최종 결정하지 않습니다.</li>
+          </ul>
+        </div>
+        <div class="ai-box">
+          <div class="ai-h">${ic("user-check")}담당 공무원이 확인한 일</div>
+          <ul>
+            <li>안내 내용을 옥외광고물법·시행령, 경기도·남양주시 조례와 대조해 검토</li>
+            <li>수수료는 남양주시 조례 별표 3·4 기준으로 확인</li>
+            <li>허가·신고 결정은 담당 부서가 검토해 처리</li>
+          </ul>
+        </div>
+        <div class="ai-box">
+          <div class="ai-h">${ic("shield-check")}개인정보 보호</div>
+          <ul>
+            <li>이름·연락처 등 개인정보를 받지 않습니다.</li>
+            <li>입력한 크기·선택 내용은 휴대전화 안에서만 계산하며 시 서버로 보내지 않습니다.</li>
+            <li>체크리스트 표시는 이용 중인 기기의 브라우저에만 남습니다.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ai-call">
+        <div><b>사람에게 직접 상담받을 수 있습니다</b><p>안내 내용이 실제와 다르거나 궁금한 점이 있으면 담당자에게 연락해 주십시오.</p></div>
+        <a class="btn primary" href="tel:${CONTACT.tel.replace(/-/g,"")}">${ic("phone")} ${CONTACT.tel}</a>
+      </div>
+      <p class="ai-law">이 안내는 「남양주시 공공 인공지능 행정서비스의 안전한 이용 및 시민 권리 보호에 관한 조례안」(발의 중)의 취지에 따라, 시민이 인공지능을 활용한 서비스임을 알 수 있도록 표시한 것입니다.</p>
+    </section>`;
+}
 
 /* ---------- 첫 화면 ---------- */
 function renderHome(){
@@ -521,6 +604,7 @@ function renderHome(){
       <div class="chip">진건읍 옥외광고물 민원 길잡이</div>
       <h1>간판 달기 전에<br><span>허가·신고부터 확인하세요</span></h1>
       <p>광고물은 반드시 허가(신고)를 마친 뒤에<br class="br-m"> 설치해야 합니다.</p>
+      <a class="ai-badge" href="#ai" aria-label="AI 활용 안내 자세히 보기"><span class="ai-tag">${ic("sparkles")}AI 활용</span><span class="ai-txt">AI의 도움을 받아 만든 안내 페이지입니다</span>${ic("chevron-right","ai-go")}</a>
       <form class="search glass" onsubmit="event.preventDefault()">
         <input id="q" placeholder="예) 돌출간판, 서류, 수수료" autocomplete="off">
         <button type="submit">찾기</button>
