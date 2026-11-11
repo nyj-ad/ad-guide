@@ -354,6 +354,18 @@ p,li,.a,summary{text-wrap:pretty}
 .vg-tbl{width:100%;border-collapse:collapse;font-size:13.5px}
 .vg-tbl th,.vg-tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
 .vg-tbl th{background:var(--soft);font-weight:700}
+.vg-cmp-start{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px;padding:14px 16px;border:1px dashed #c7d3fb;border-radius:12px;background:var(--blue-soft);font-size:13.5px;color:#2c4aa8}
+.vg-cmp{margin-top:8px}
+.vg-cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.vg-cmp-grid figure{border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff;text-align:center;min-width:0}
+.vg-cmp-grid figcaption{display:flex;flex-direction:column;align-items:center;gap:5px;margin-bottom:6px;font-size:14px}
+.vg-cmp-grid svg{width:100%;height:auto;max-height:240px}
+.vg-cmp-grid small{font-size:12px;color:var(--muted)}
+.vg-cmp-grid .vg-badge{white-space:normal;text-align:center}
+.vg-diff{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;font-size:13px}
+.vg-diff li{padding:5px 10px;border-radius:999px;background:var(--soft);border:1px solid var(--line)}
+.vg-diff b{font-weight:500;color:var(--muted);margin-right:4px}
+@media print{.vg-cmp-start,.vg-cmp .vg-act{display:none!important}.vg-cmp{break-inside:avoid}}
 @media (max-width:820px){.vg-sim{grid-template-columns:1fr}.vg-out{order:-1;position:sticky;top:68px;z-index:5;box-shadow:0 6px 18px rgba(20,24,40,.08)}.vg-pics svg{max-height:34vh}}
 @media (max-width:520px){.vg-in{padding:14px;gap:10px}.vg-row{flex-direction:column;gap:6px;padding:12px 14px}.vg-act .btn{flex:1 1 100%;text-align:center}.vg-legend{font-size:11.5px}}
 @media print{
@@ -684,7 +696,7 @@ function renderHome(){
     </section>
     <div class="cta2">
       <div class="cta glass">
-        <div><h2>${sign("visual")}간판 설치기준, 그림으로 확인하세요</h2><p>건물 그림 위에서 내 간판 크기와<br class="br-m"> 기준 범위를 비교해 봅니다.</p></div>
+        <div><h2>${sign("visual")}간판 기준을 내 건물 그림으로</h2><p>층·크기·구역을 넣으면 기준 범위와<br class="br-m"> 내 간판의 차이를 그림으로 보여 드립니다.</p></div>
         <button class="btn primary" onclick="go('visual')">내 간판 설치기준 알아보기</button>
       </div>
       <div class="cta glass">

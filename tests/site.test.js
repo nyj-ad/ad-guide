@@ -72,6 +72,34 @@ const t = (name, ok, note="") => { out.push(`${ok?"PASS":"FAIL"} | ${name}${note
   await p.locator("#vgQ").fill("주차장"); await p.waitForTimeout(600);
   t("검색: 근거 없으면 답하지 않음", /찾지 못했습니다/.test(await p.locator("#vgHits").innerText()));
   t("'AI 챗봇이 아닙니다' 표시", /AI 챗봇이 아닙니다/.test(await p.locator("#app").innerText()));
+  // 원안·수정안 비교
+  await p.goto(BASE+"#visual"); await p.waitForSelector(".vg-sim");
+  await p.evaluate(()=>window.__VG.drop()); await set({type:"wall",region:"general"});
+  await p.click('[data-pre="1"]'); await p.click("#vgKeep");
+  await set({signW:6,signH:80,signD:20});
+  t("비교: 원안(제한)·수정안(부합) 나란히 표시", await p.evaluate(()=>{ const f=[...document.querySelectorAll("#vgCompare figure")]; return f.length===2 && /제한 또는 위반/.test(f[0].textContent) && /기준에 부합/.test(f[1].textContent) && f.every(x=>x.querySelector("svg")); }));
+  t("비교: 바뀐 값 3개 표시", (await p.locator(".vg-diff li").count())===3);
+  await p.click("#vgBack"); t("비교: 원안 값으로 되돌리기", await p.evaluate(()=>window.__VG.V.signH===140));
+  await p.click("#vgDrop"); t("비교: 끝내기", (await p.locator("#vgCompare").count())===0);
+  // 인쇄 화면
+  await p.emulateMedia({media:"print"});
+  t("인쇄: 입력란 숨김·결과와 그림 표시", await p.evaluate(()=>getComputedStyle(document.querySelector(".vg-in")).display==="none" && getComputedStyle(document.querySelector("#vgSummary")).display!=="none" && getComputedStyle(document.querySelector(".vg-pics")).display!=="none" && getComputedStyle(document.querySelector("header")).display==="none"));
+  await p.emulateMedia({media:"screen"});
+  // 지역 규칙 바꿔 끼우기(가상 지역)
+  const s2 = await mk({viewport:{width:1100,height:900}});
+  await s2.goto(BASE+"?rules=sample#visual"); await s2.waitForSelector(".vg-sim");
+  t("가상 지역: 예시 안내 문구 표시", /가상 지역 예시 화면/.test(await s2.locator("#vgSample").innerText()));
+  t("가상 지역: 구역 버튼이 규칙 파일대로 바뀜", /가상 경관구역 A/.test(await s2.locator(".vg-reg").innerText()) && !/신택지/.test(await s2.locator(".vg-reg").innerText()));
+  await s2.evaluate(()=>{ Object.assign(window.__VG.V,{type:"wall",region:"general",floors:3,floor:1,bldgW:8,bandH:100,noWindow:false,signW:6,signH:80,signD:28,form:"panel"}); window.drawVisual(document.getElementById("panel")); });
+  t("가상 지역: 같은 코드로 다른 기준 적용(돌출 28cm → 제한)", /제한 또는 위반/.test(await s2.locator("#vgResult .big").innerText()));
+  t("가상 지역: 결과에 '가상 예시' 표시", /가상 예시\(실제 기준 아님\)/.test(await s2.locator("#vgSummary").innerText()));
+  await set({type:"wall",region:"general",floors:3,floor:1,bldgW:8,bandH:100,noWindow:false,signW:6,signH:80,signD:28,form:"panel"});
+  t("남양주 기준: 같은 입력(돌출 28cm) → 부합", (await verdict())==="확인된 기준에 부합");
+  const s3 = await mk({viewport:{width:800,height:800}});
+  await s3.goto(BASE+"?rules=../../x#visual"); await s3.waitForSelector(".vg-sim");
+  t("규칙 파일 이름에 경로 문자를 넣으면 기본 파일 사용", await s3.evaluate(()=>window.__VG.file==="data/regulations.json"));
+  const sm = JSON.parse(fs.readFileSync(path.join(root,"data/regulations.sample.json"),"utf8"));
+  t("가상 지역 파일: sample 표시와 '실제 아님' 문구", sm.meta.sample===true && sm.rules.every(r=>r.status==="sample" && /가상/.test(r.rule)));
   // 접근성 기본
   t("그림에 대체 설명(role=img + aria-label)", await p.evaluate(()=>[...document.querySelectorAll(".vg-pics svg")].every(s=>s.getAttribute("role")==="img" && (s.getAttribute("aria-label")||"").length>10)));
   t("입력란 전부 이름표 있음", await p.evaluate(()=>[...document.querySelectorAll(".vg-in input,.vg-in select,#vgQ")].every(n=>n.closest("label")||n.getAttribute("aria-label"))));

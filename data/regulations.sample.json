@@ -1,0 +1,180 @@
+{
+ "_about": "가상 지역 예시. 규칙 파일을 바꿔 끼우는 구조를 보여 주기 위한 것이며 실제 어느 지역의 기준도 아니다. 수치는 임의로 정했다.",
+ "updated": "2026-11-11",
+ "meta": {
+  "area_name": "가상 지역(예시시)",
+  "sample": true,
+  "zone_help": "이 화면은 규칙 파일을 바꿔 끼우는 구조를 보여 주는 가상 예시입니다. 구역 이름과 수치는 실제 기준이 아닙니다.",
+  "zone_help_url": "",
+  "zone_help_link": "",
+  "layers": {
+   "general": [
+    "general"
+   ],
+   "zone-a": [
+    "zone-a",
+    "general"
+   ],
+   "unknown": [
+    "general"
+   ]
+  },
+  "no_verdict_regions": [],
+  "uncertain_regions": [
+   "unknown"
+  ],
+  "draw": {
+   "wallProj": {
+    "default": "S-WALL-PROJ"
+   },
+   "wallHeight": {
+    "default": "S-WALL-HEIGHT"
+   },
+   "projBottom": {
+    "default": "S-PROJ-BOTTOM"
+   },
+   "projOut": {
+    "default": "S-PROJ-OUT"
+   }
+  },
+  "compare": null
+ },
+ "status_labels": {
+  "sample": "가상 예시(실제 기준 아님)",
+  "unverified": "미확인"
+ },
+ "regions": {
+  "general": "일반 구역(가상)",
+  "zone-a": "가상 경관구역 A",
+  "unknown": "잘 모르겠음"
+ },
+ "sources": {
+  "SAMPLE": {
+   "name": "가상 예시 기준",
+   "id_text": "실제 법령 아님",
+   "effective": null,
+   "url": "",
+   "level": "sample",
+   "how": "구조 시연용으로 임의 작성"
+  }
+ },
+ "rules": [
+  {
+   "id": "S-WALL-WIDTH",
+   "sign_type": "wall",
+   "region": "general",
+   "condition": "간판의 가로 크기",
+   "rule": "(가상) 건물의 가로폭 이내",
+   "source": "SAMPLE",
+   "article": "예시 1",
+   "status": "sample",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "",
+   "check": {
+    "field": "signW",
+    "op": "<=",
+    "ref": "bldgW",
+    "unit": "m"
+   }
+  },
+  {
+   "id": "S-WALL-HEIGHT",
+   "sign_type": "wall",
+   "region": "general",
+   "condition": "간판의 세로 크기",
+   "rule": "(가상) 위층과 아래층 창문 사이 벽면 높이 이내",
+   "source": "SAMPLE",
+   "article": "예시 2",
+   "status": "sample",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "",
+   "check": {
+    "field": "signH",
+    "op": "<=",
+    "ref": "bandH",
+    "unit": "cm"
+   }
+  },
+  {
+   "id": "S-WALL-PROJ",
+   "sign_type": "wall",
+   "region": "general",
+   "condition": "벽면에서 튀어나오는 폭",
+   "rule": "(가상) 돌출 폭 25cm 이내",
+   "source": "SAMPLE",
+   "article": "예시 3",
+   "status": "sample",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "",
+   "check": {
+    "field": "signD",
+    "op": "<=",
+    "value": 25,
+    "unit": "cm"
+   }
+  },
+  {
+   "id": "S-A-WALL-LETTER",
+   "sign_type": "wall",
+   "region": "zone-a",
+   "condition": "간판 글자 크기",
+   "rule": "(가상) 경관구역 A는 50cm 이하",
+   "source": "SAMPLE",
+   "article": "예시 4",
+   "status": "sample",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "",
+   "check": {
+    "field": "signH",
+    "op": "<=",
+    "value": 50,
+    "unit": "cm"
+   }
+  },
+  {
+   "id": "S-PROJ-BOTTOM",
+   "sign_type": "proj",
+   "region": "general",
+   "condition": "간판 아랫부분 높이",
+   "rule": "(가상) 지면에서 3.5m 이상",
+   "source": "SAMPLE",
+   "article": "예시 5",
+   "status": "sample",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "",
+   "check": {
+    "field": "bottom",
+    "op": ">=",
+    "bySidewalk": {
+     "yes": 3.5,
+     "no": 3.5
+    },
+    "unit": "m"
+   }
+  },
+  {
+   "id": "S-PROJ-OUT",
+   "sign_type": "proj",
+   "region": "general",
+   "condition": "벽에서 바깥쪽 끝까지",
+   "rule": "(가상) 벽면에서 90cm 이내",
+   "source": "SAMPLE",
+   "article": "예시 6",
+   "status": "sample",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "",
+   "check": {
+    "field": "out",
+    "op": "<=",
+    "value": 90,
+    "unit": "cm"
+   }
+  }
+ ]
+}

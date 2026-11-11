@@ -63,3 +63,16 @@ node tests/site.test.js
 
 - `docs/01~03`: 기존 사이트 진단, PDF 그림 분석, 기준 검증 기록
 - `docs/challenge/`: AI 챌린지 제출자료 초안
+
+## 지역 규칙 바꿔 끼우기
+
+- 주소에 `?rules=sample`을 붙이면 `data/regulations.sample.json`(가상 지역 예시, 실제 기준 아님)으로 같은 화면이 동작합니다.
+- 절차: `docs/challenge/12-region-adaptation.md`
+
+## 실행 (심사·확인용)
+
+```
+python3 -m http.server 8765
+```
+브라우저에서 http://localhost:8765/ 를 엽니다. index.html을 직접 더블클릭해 열면 기준 자료를 읽지 못합니다.
+자세한 내용: `docs/challenge/08-run-guide.md`

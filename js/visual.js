@@ -8,6 +8,11 @@
 "use strict";
 
 const VG = { data:null, hist:null, err:null, loading:false };
+/* 지역별 규칙 파일: 주소에 ?rules=sample 을 붙이면 data/regulations.sample.json(가상 지역 예시)을 읽는다.
+   파일 이름은 영문 소문자·숫자·하이픈만 허용한다. */
+const RULE_KEY = (new URLSearchParams(location.search).get("rules")||"").toLowerCase();
+const RULE_FILE = /^[a-z0-9-]{1,30}$/.test(RULE_KEY) ? `data/regulations.${RULE_KEY}.json` : "data/regulations.json";
+let V0 = null;        // '원안'으로 저장해 둔 입력값(수정안과 비교용)
 const V = {            // 사용자 입력값(기본값은 설명용 예시)
   type:"wall", region:"general",
   floors:3, floor:1, bldgW:8, bandH:100, noWindow:false,
@@ -43,11 +48,12 @@ async function load(){
   VG.loading = true;
   try{
     const [a,b] = await Promise.all([
-      fetch("data/regulations.json?t="+Date.now(), {cache:"no-store"}).then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }),
+      fetch(RULE_FILE+"?t="+Date.now(), {cache:"no-store"}).then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }),
       fetch("data/historical-visual-examples.json?t="+Date.now(), {cache:"no-store"}).then(r=>r.ok?r.json():null).catch(()=>null)
     ]);
     if (!a || !Array.isArray(a.rules) || !a.sources) throw new Error("empty");
-    VG.data = a; VG.hist = b;
+    VG.data = a; VG.hist = (a.meta && a.meta.sample) ? null : b;
+    if (!a.regions[V.region]) V.region = Object.keys(a.regions)[0];
   }catch(e){ VG.err = true; }
   VG.loading = false;
 }
@@ -71,9 +77,10 @@ function test(c){
   const ok = c.op==="<=" ? v<=lim : v>=lim;
   return {s: ok?"ok":"bad", d:`입력 ${fmt(v)}${u} · 기준 ${fmt(lim)}${u} ${c.op==="<="?"이내":"이상"}`};
 }
+function meta(){ return VG.data.meta || {}; }
 function applicable(){
   const D = VG.data, t = V.type, reg = V.region;
-  const regs = reg==="zone-new"||reg==="zone-etc" ? [reg,"general"] : reg==="zone-pilot" ? ["zone-pilot"] : ["general"];
+  const regs = (meta().layers && meta().layers[reg]) || [reg];
   return D.rules.filter(r => regs.includes(r.region) && (r.sign_type===t || r.sign_type==="all"));
 }
 function evaluate(){
@@ -82,18 +89,20 @@ function evaluate(){
     const src = VG.data.sources[r.source];
     if (r.status==="unverified") return {r, src, s:"none", d:"기준을 확인하지 못해 판정하지 않습니다."};
     if (!r.check) return {r, src, s:"info", d:""};
-    if (r.id==="GG-WALL-HEIGHT" && V.noWindow) return {r, src, s:"need", d:"창문이 없는 벽면은 심의위원회 심의로 세로 크기를 정합니다."};
+    if (r.id===drawRule("wallHeight") && V.noWindow) return {r, src, s:"need", d:"창문이 없는 벽면은 심의위원회 심의로 세로 크기를 정합니다."};
     const t = test(r.check);
     return {r, src, s:t.s, d:t.d||""};
   }).filter(x=>x.s!=="skip");
   const judged = rows.filter(x=>["ok","bad","need"].includes(x.s));
   let overall;
-  if (V.region==="zone-pilot" || !judged.length) overall = "none";
+  if ((meta().no_verdict_regions||[]).includes(V.region) || !judged.length) overall = "none";
   else if (rows.some(x=>x.s==="bad")) overall = "bad";
-  else if (rows.some(x=>x.s==="need") || V.region==="unknown") overall = "need";
+  else if (rows.some(x=>x.s==="need") || (meta().uncertain_regions||[]).includes(V.region)) overall = "need";
   else overall = "ok";
   return {rows, overall};
 }
+function drawRule(k){ const m = (meta().draw||{})[k] || {}; return m[V.region] || m.default; }
+function withState(s, fn){ const bak = Object.assign({}, V); Object.assign(V, s); try{ return fn(); } finally{ Object.assign(V, bak); } }
 function inputsValid(){
   const need = V.type==="wall" ? ["floors","floor","bldgW","bandH","signW","signH","signD"] : ["floors","pFloor","bottom","out","len","thick"];
   for (const k of need){ const v = V[k]; if (v===null || !(v>0)) return false; }
@@ -211,9 +220,12 @@ function render(el){
   const ev = valid ? evaluate() : null;
   const vd = ev ? VERDICT[ev.overall] : null;
   const lim = id => { const r = D.rules.find(x=>x.id===id); return r && r.check ? r.check : {}; };
-  const projLimits = { bottom: (lim("GG-PROJ-BOTTOM").bySidewalk||{})[V.sidewalk], out: V.region==="zone-new" ? ((lim("GOSI-NEW-PROJ-SIZE").multi||[{}])[0].value) : lim("GG-PROJ-OUT").value };
+  const outC = lim(drawRule("projOut"));
+  const limitsNow = () => ({ bottom: (lim(drawRule("projBottom")).bySidewalk||{})[V.sidewalk], out: outC.multi ? (outC.multi[0]||{}).value : outC.value });
+  const projLimits = limitsNow();
+  const M = meta();
   const pic = !valid ? `<div class="vg-empty">크기와 층수를 모두 0보다 큰 숫자로 넣어 주십시오.${(V.type==="wall"?V.floor:V.pFloor)>V.floors?" 설치하는 층이 건물 층수보다 높습니다.":""}</div>`
-    : V.type==="wall" ? `<div class="vg-pics"><figure>${drawWall()}<figcaption>앞에서 본 모습</figcaption></figure><figure class="side">${drawSide(lim("GG-WALL-PROJ").value)}<figcaption>옆에서 본 모습</figcaption></figure></div>`
+    : V.type==="wall" ? `<div class="vg-pics"><figure>${drawWall()}<figcaption>앞에서 본 모습</figcaption></figure><figure class="side">${drawSide(lim(drawRule("wallProj")).value)}<figcaption>옆에서 본 모습</figcaption></figure></div>`
     : `<div class="vg-pics"><figure>${drawProj(projLimits)}<figcaption>앞에서 본 모습</figcaption></figure></div>`;
   const regions = Object.entries(D.regions);
   const floorsOpt = Array.from({length:10},(_,i)=>[i+1,(i+1)+"층"]);
@@ -230,7 +242,27 @@ function render(el){
   const q = V.q.trim();
   const hits = q ? D.rules.filter(r=>(r.condition+r.rule+r.exceptions+D.regions[r.region]).includes(q)) : [];
   const H = VG.hist;
+  /* 원안·수정안 비교 */
+  const sameType = V0 && V0.type===V.type;
+  const ev0 = sameType ? withState(V0, ()=> inputsValid() ? evaluate() : null) : null;
+  const pic0 = ev0 ? withState(V0, ()=> V.type==="wall" ? drawWall() : drawProj(limitsNow())) : "";
+  const picNow = valid ? (V.type==="wall" ? drawWall() : drawProj(projLimits)) : "";
+  const LBL = V.type==="wall" ? {floor:"다는 층",bldgW:"건물 가로폭(m)",bandH:"벽면 높이(cm)",signW:"간판 가로(m)",signH:"간판 세로(cm)",signD:"돌출 폭(cm)",form:"형태",region:"구역",noWindow:"창문 없는 벽면"}
+    : {pFloor:"다는 층",bottom:"아랫부분 높이(m)",out:"돌출(cm)",len:"세로 길이(m)",thick:"두께(cm)",sidewalk:"인도",zone:"용도지역",region:"구역"};
+  const show = (k,x) => k==="region" ? (D.regions[x]||x) : k==="form" ? (x==="panel"?"판류형":"입체형") : k==="noWindow" ? (x?"예":"아니오") : k==="sidewalk" ? (x==="yes"?"있음":"없음") : k==="zone" ? (x==="commercial"?"상업지역":"상업지역 아님") : x;
+  const diffs = ev0 ? Object.keys(LBL).filter(k=>V0[k]!==V[k]).map(k=>`<li><b>${LBL[k]}</b> ${esc(show(k,V0[k]))} → ${esc(show(k,V[k]))}</li>`) : [];
+  const badN = e => e.rows.filter(x=>x.s==="bad").length;
+  const cmp = !ev ? "" : !V0 ? `<div class="vg-cmp-start"><button class="btn" id="vgKeep">지금 값을 '원안'으로 저장</button><span>저장한 뒤 값을 고치면 원안과 수정안을 나란히 비교합니다.</span></div>`
+    : !sameType ? `<div class="vg-cmp-start"><span>저장한 원안은 다른 종류의 간판입니다.</span><button class="btn" id="vgKeep">지금 값으로 다시 저장</button><button class="btn" id="vgDrop">원안 지우기</button></div>`
+    : `<div class="vg-cmp" id="vgCompare"><h3 class="h3">원안과 수정안 비교</h3>
+        <div class="vg-cmp-grid">
+          <figure><figcaption><b>원안</b><span class="vg-badge ${ev0.overall==="ok"?"ok":ev0.overall==="bad"?"bad":"need"}">${VERDICT[ev0.overall].t}</span></figcaption>${pic0}<small>벗어난 항목 ${badN(ev0)}건</small></figure>
+          <figure><figcaption><b>수정안</b><span class="vg-badge ${ev.overall==="ok"?"ok":ev.overall==="bad"?"bad":"need"}">${vd.t}</span></figcaption>${picNow}<small>벗어난 항목 ${badN(ev)}건</small></figure>
+        </div>
+        ${diffs.length?`<ul class="vg-diff">${diffs.join("")}</ul>`:`<p class="vg-help">아직 원안과 같은 값입니다. 크기나 구역을 바꿔 보십시오.</p>`}
+        <div class="vg-act"><button class="btn" id="vgBack">원안 값으로 되돌리기</button><button class="btn" id="vgDrop">비교 끝내기</button></div></div>`;
   el.innerHTML = head + `
+    ${M.sample?`<div class="note warn" id="vgSample"><b>가상 지역 예시 화면입니다.</b> 규칙 파일을 바꿔 끼우는 구조를 보여 주기 위한 것으로, 여기 나오는 구역과 수치는 실제 기준이 아닙니다.</div>`:""}
     <div class="vg-step"><span>1</span><b>어떤 간판인가요?</b></div>
     <div class="opts vg-types">
       <button class="opt ${V.type==="wall"?"sel":""}" data-type="wall"><b>벽면 이용 간판(가로형)</b><span>가게 위 벽면에 가로로 길게 붙이는 간판</span></button>
@@ -239,7 +271,7 @@ function render(el){
     </div>
     <div class="vg-step"><span>2</span><b>가게가 어느 구역에 있나요?</b></div>
     <div class="tabs vg-reg" role="group" aria-label="구역 선택">${regions.map(([k,n])=>`<button class="${V.region===k?"on":""}" data-reg="${k}" aria-pressed="${V.region===k}">${esc(n)}</button>`).join("")}</div>
-    <p class="vg-help">특정구역은 「${esc(D.sources.GOSI_2025_3.name)}」(${esc(D.sources.GOSI_2025_3.id_text)})로 정한 구역입니다. 진건읍은 진건지구(신택지개발지구)와 진건읍 일대 중심시가지 구간이 포함되어 있습니다. 내 가게가 해당하는지는 <a href="${esc(D.sources.GOSI_2025_3.url)}" target="_blank" rel="noopener">고시 위치도</a>나 전화(${CONTACT.tel})로 확인해 주십시오.</p>
+    <p class="vg-help">${esc(M.zone_help||"")} ${M.zone_help_url?`내 가게가 해당하는지는 <a href="${esc(M.zone_help_url)}" target="_blank" rel="noopener">${esc(M.zone_help_link||"자료")}</a>나 전화(${CONTACT.tel})로 확인해 주십시오.`:""}</p>
     <div class="vg-step"><span>3</span><b>건물과 간판 크기를 넣어 보세요</b></div>
     <div class="tabs vg-pre" role="group" aria-label="설명용 예시">${PRESETS[V.type].map((p,i)=>`<button data-pre="${i}" title="${esc(p.d)}">${esc(p.n)}</button>`).join("")}</div>
     <p class="vg-help">위 버튼은 이해를 돕기 위한 <b>설명용 예시</b>이며 실제 허가·신고 사례가 아닙니다.</p>
@@ -256,8 +288,9 @@ function render(el){
         ? `${V.floors}층 건물 ${V.floor}층 · 건물 가로폭 ${fmt(V.bldgW)}m · 간판 ${fmt(V.signW)}m × ${fmt(V.signH)}cm · 돌출 ${fmt(V.signD)}cm · ${V.form==="panel"?"판류형":"입체형"}${V.noWindow?" · 창문 없는 벽면":""}`
         : `${V.floors}층 건물 ${V.pFloor}층 · 아랫부분 ${fmt(V.bottom)}m · 돌출 ${fmt(V.out)}cm · 세로 ${fmt(V.len)}m · 두께 ${fmt(V.thick)}cm`}</p>
       <ul class="vg-rows">${ev.rows.map(rowHtml).join("")}</ul>
-      ${V.region==="unknown"?`<div class="note warn">구역을 모르는 상태에서는 경기도 조례 일반 기준만 비교했습니다. 특정구역 안이면 더 엄격한 기준(입체형 설치, 글자 크기 등)이 적용됩니다.</div>`:""}
-      ${V.region==="zone-pilot"?`<div class="note warn">정비시범구역은 별도 고시의 표시방법을 따릅니다. 이 페이지에서는 아직 그 내용을 확인하지 못했으니 담당 부서(${CONTACT.tel})에 문의해 주십시오.</div>`:""}
+      ${cmp}
+      ${(M.uncertain_regions||[]).includes(V.region)&&!M.sample?`<div class="note warn">구역을 모르는 상태에서는 경기도 조례 일반 기준만 비교했습니다. 특정구역 안이면 더 엄격한 기준(입체형 설치, 글자 크기 등)이 적용됩니다.</div>`:""}
+      ${(M.no_verdict_regions||[]).includes(V.region)?`<div class="note warn">정비시범구역은 별도 고시의 표시방법을 따릅니다. 이 페이지에서는 아직 그 내용을 확인하지 못했으니 담당 부서(${CONTACT.tel})에 문의해 주십시오.</div>`:""}
       <div class="note warn">이 화면은 이해를 돕기 위한 안내이며 <b>허가증이나 적합 확인서가 아닙니다.</b> 실제 허가·신고 여부와 표시방법 적합 여부는 담당 부서가 현장 여건과 심의 대상 여부를 검토해 결정합니다.</div>
       <div class="vg-act"><button class="btn" id="vgPrint">${typeof ic==="function"?ic("file-down"):""} 인쇄·PDF로 저장</button>
         <button class="btn primary" onclick="go('diagnose')">→ 허가·신고 대상 자가진단</button>
@@ -266,12 +299,12 @@ function render(el){
     <h3 class="h3">${typeof ic==="function"?ic("search"):""} 기준 찾아보기 <small>검색형 안내 · AI 챗봇이 아닙니다</small></h3>
     <div class="vg-search"><input id="vgQ" value="${esc(V.q)}" placeholder="예) 돌출, 창문, 글자 크기, 입체형" aria-label="기준 검색어"></div>
     <div id="vgHits">${q ? (hits.length ? `<ul class="vg-rows">${hits.map(r=>rowHtml({r,src:D.sources[r.source],s:r.status==="unverified"?"none":"info",d:"적용: "+D.regions[r.region]})).join("")}</ul>` : `<p class="vg-help">확인된 기준 자료에서 찾지 못했습니다. 근거 없이 답하지 않으니 담당 부서(${CONTACT.tel})에 문의해 주십시오.</p>`) : `<p class="vg-help">확인해 둔 기준 ${D.rules.length}건 안에서만 찾아 보여 드립니다.</p>`}</div>
-    ${H ? `<details class="vg-hist"><summary>이 그림 안내는 어떻게 만들었나요?</summary><div class="a">
+    ${H && M.compare ? `<details class="vg-hist"><summary>이 그림 안내는 어떻게 만들었나요?</summary><div class="a">
       <p>옛 안내 자료(${esc(H.source_title)})가 건물 사진 위에 <b>빨간색으로 한도</b>, <b>초록색으로 기준 치수</b>를 그려 설명한 방식을 참고해 그림 안내를 만들었습니다. 그 자료의 사진과 수치는 쓰지 않았습니다.</p>
       <table class="vg-tbl"><thead><tr><th>항목</th><th>옛 자료(2005년, 참고만)</th><th>지금 확인한 기준</th></tr></thead><tbody>
-        <tr><td>가로</td><td>${esc((H.items.find(i=>i.id==="H-05")||{}).extracted_rule||"")}</td><td>${esc((D.rules.find(r=>r.id==="GG-WALL-WIDTH")||{}).rule||"")}</td></tr>
-        <tr><td>세로</td><td>${esc((H.items.find(i=>i.id==="H-02")||{}).extracted_rule||"")}</td><td>${esc((D.rules.find(r=>r.id==="GG-WALL-HEIGHT")||{}).rule||"")}</td></tr>
-        <tr><td>돌출</td><td>${esc((H.items.find(i=>i.id==="H-04")||{}).extracted_rule||"")}</td><td>${esc((D.rules.find(r=>r.id==="GG-WALL-PROJ")||{}).rule||"")}</td></tr>
+        <tr><td>가로</td><td>${esc((H.items.find(i=>i.id==="H-05")||{}).extracted_rule||"")}</td><td>${esc((D.rules.find(r=>r.id===M.compare.width)||{}).rule||"")}</td></tr>
+        <tr><td>세로</td><td>${esc((H.items.find(i=>i.id==="H-02")||{}).extracted_rule||"")}</td><td>${esc((D.rules.find(r=>r.id===M.compare.height)||{}).rule||"")}</td></tr>
+        <tr><td>돌출</td><td>${esc((H.items.find(i=>i.id==="H-04")||{}).extracted_rule||"")}</td><td>${esc((D.rules.find(r=>r.id===M.compare.proj)||{}).rule||"")}</td></tr>
       </tbody></table>
       <p>옛 자료와 지금 기준은 이렇게 다를 수 있어, 판정에는 출처와 확인일이 있는 현행 기준 자료만 씁니다. 기준 자료 갱신일: ${esc(D.updated)}</p></div></details>` : ""}
     ${typeof bizBox==="function" ? bizBox("기준에 맞는 간판 제작과 신청 서류 준비는 등록된 옥외광고사업자와 상의하십시오.") : ""}`;
@@ -282,18 +315,22 @@ function render(el){
   el.querySelectorAll("[data-type]").forEach(b=>b.onclick=()=>{ V.type=b.dataset.type; redraw(); });
   el.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>go(b.dataset.go));
   el.querySelectorAll("[data-reg]").forEach(b=>b.onclick=()=>{ V.region=b.dataset.reg; redraw(); });
-  el.querySelectorAll("[data-pre]").forEach(b=>b.onclick=()=>{ const p=PRESETS[V.type][+b.dataset.pre]; if(!p.v.region && V.region==="unknown") V.region="general"; Object.assign(V,p.v); redraw(); });
+  el.querySelectorAll("[data-pre]").forEach(b=>b.onclick=()=>{ const p=PRESETS[V.type][+b.dataset.pre]; const pv=Object.assign({},p.v); if(pv.region && !VG.data.regions[pv.region]) delete pv.region; Object.assign(V,pv); redraw(); });
   el.querySelectorAll("[data-k]").forEach(n=>{
     const k=n.dataset.k;
     const set=()=>{ V[k] = n.type==="checkbox" ? n.checked : (n.tagName==="SELECT" && !["floors","floor","pFloor"].includes(k)) ? n.value : num(n.value); };
     if (n.tagName==="SELECT" || n.type==="checkbox") n.onchange=()=>{ set(); redraw(true); };
     else { n.onchange=()=>{ set(); redraw(true); }; n.oninput=()=>{ set(); }; }
   });
+  const snap = () => { V0 = Object.assign({}, V); delete V0.q; };
+  const kp = el.querySelector("#vgKeep"); if (kp) kp.onclick=()=>{ snap(); redraw(); };
+  const dp = el.querySelector("#vgDrop"); if (dp) dp.onclick=()=>{ V0=null; redraw(); };
+  const bk = el.querySelector("#vgBack"); if (bk) bk.onclick=()=>{ Object.assign(V, V0); redraw(); };
   const pr = el.querySelector("#vgPrint"); if (pr) pr.onclick=()=>window.print();
   const qi = el.querySelector("#vgQ");
   if (qi){ let t; qi.oninput=()=>{ V.q=qi.value; clearTimeout(t); t=setTimeout(()=>{ const sy=window.scrollY; render(el); window.scrollTo(0,sy); const n=el.querySelector("#vgQ"); n.focus(); n.setSelectionRange(n.value.length,n.value.length); },350); }; }
 }
 
 window.drawVisual = render;
-window.__VG = { V, VG, evaluate, load };   // 자동화 테스트용
+window.__VG = { V, VG, evaluate, load, keep(){ V0 = Object.assign({}, V); }, drop(){ V0=null; }, file: RULE_FILE };   // 자동화 테스트용
 })();
