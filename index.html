@@ -84,10 +84,11 @@ main{flex:1;padding:36px 0 60px}
 .btn{border:1px solid var(--line);background:#fff;color:var(--text);padding:11px 20px;border-radius:12px;font-weight:500}
 .btn.primary{background:var(--grad);border:0;color:#fff;font-weight:700}
 .btn:disabled{opacity:.4;cursor:default}
-.check{display:inline-block;font-size:12px;font-weight:700;color:var(--warn);background:var(--warn-soft);border:1px solid #f5d9a8;padding:1px 8px;border-radius:999px;vertical-align:middle}
+.check{display:inline-block;font-size:12px;font-weight:500;color:var(--muted);background:var(--soft);border:1px solid var(--line);padding:1px 8px;border-radius:999px;vertical-align:middle}
 .law{font-size:12.5px;color:#8a90a3;margin-top:8px}
 .note{padding:14px 18px;border-radius:12px;background:var(--blue-soft);border:1px solid #d6e0fd;font-size:14px;color:#2c4aa8;margin-top:16px}
-.note.warn{background:var(--warn-soft);border-color:#f5d9a8;color:#8a5200}
+.note.warn{background:#fafbfd;border:1px solid var(--line);border-left:3px solid #e3c27e;color:var(--muted);font-size:13.5px;line-height:1.6}
+.note.warn b{color:var(--text)}
 .tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
 .tbl th,.tbl td{border:1px solid var(--line);padding:11px 12px;text-align:left;vertical-align:top}
 .tbl th{background:var(--soft);font-weight:700;white-space:nowrap}
@@ -116,7 +117,7 @@ main{flex:1;padding:36px 0 60px}
 .result.p{background:var(--purple-soft);border-color:#d9cffb}.result.p .big{color:var(--purple)}
 .result.s{background:var(--blue-soft);border-color:#d6e0fd}.result.s .big{color:var(--blue)}
 .result.x{background:var(--ok-soft);border-color:#bfe9d6}.result.x .big{color:var(--ok)}
-.result.c{background:var(--warn-soft);border-color:#f5d9a8}.result.c .big{color:var(--warn)}
+.result.c{background:var(--soft);border-color:var(--line)}.result.c .big{color:var(--text)}
 .result ul{text-align:left;margin:14px auto 0;max-width:560px;color:var(--muted);font-size:14px;padding-left:18px}
 
 /* 6. 기준·서류·절차·FAQ */
@@ -329,7 +330,7 @@ p,li,.a,summary{text-wrap:pretty}
 .vg-pics figure.side{flex:0 0 30%}
 .vg-pics svg{width:100%;height:auto;display:block}
 .vg-pics figcaption{font-size:12px;color:var(--muted);margin-top:4px}
-.vg-empty{padding:40px 16px;text-align:center;color:var(--warn);font-size:14px}
+.vg-empty{padding:40px 16px;text-align:center;color:var(--muted);font-size:14px}
 .vg-legend{list-style:none;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
 .vg-legend li{display:flex;align-items:center;gap:6px}
 .lg{width:14px;height:14px;border-radius:3px;display:inline-block;flex-shrink:0}
@@ -339,12 +340,17 @@ p,li,.a,summary{text-wrap:pretty}
 .vg-cond{font-size:14px;color:var(--text);padding:12px 16px;border-radius:12px;background:var(--soft);border:1px solid var(--line);margin-bottom:12px}
 .vg-rows{list-style:none;display:grid;gap:8px}
 .vg-row{display:flex;gap:12px;align-items:flex-start;padding:13px 16px;border:1px solid var(--line);border-radius:12px;background:#fff;border-left-width:4px}
-.vg-row.ok{border-left-color:#14a36b}.vg-row.bad{border-left-color:#d43b3b;background:#fff8f8}.vg-row.need{border-left-color:#d9930d;background:#fffbf2}.vg-row.info{border-left-color:#c7d3fb}
+.vg-row.ok{border-left-color:#14a36b}.vg-row.bad{border-left-color:#d43b3b}.vg-row.need{border-left-color:#e3c27e}.vg-row.info{border-left-color:#c7d3fb}
 .vg-row b{font-size:14.5px}.vg-row p{font-size:14px;line-height:1.55}.vg-row em{font-style:normal;color:var(--muted);font-size:13px}
 .vg-badge{flex-shrink:0;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap;margin-top:1px}
-.vg-badge.ok{background:var(--ok-soft);color:#0c7a4e}.vg-badge.bad{background:#fde3e3;color:#b02020}.vg-badge.need{background:var(--warn-soft);color:#8a5200}.vg-badge.info{background:var(--blue-soft);color:#2c4aa8}
+.vg-badge.ok{background:var(--ok-soft);color:#0c7a4e}.vg-badge.bad{background:#fde3e3;color:#b02020}.vg-badge.need{background:var(--soft);color:#5b6178;border:1px solid var(--line)}.vg-badge.info{background:var(--blue-soft);color:#2c4aa8}
 .vg-exc{font-size:13px!important;color:var(--muted)}
 .vg-src{display:block;font-size:12px;color:#8a90a3;margin-top:4px}
+.vg-foot{list-style:none;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);display:grid;gap:5px;font-size:12.5px;color:var(--muted);line-height:1.6}
+.vg-foot li{position:relative;padding-left:12px}
+.vg-foot li::before{content:"";position:absolute;left:2px;top:.72em;width:4px;height:4px;border-radius:50%;background:#b9bfd0}
+.vg-foot b{color:var(--text);font-weight:500}
+.vg-sample{font-size:12.5px;color:var(--muted);padding:8px 12px;border:1px dashed var(--line);border-radius:10px;margin-bottom:6px}
 .vg-act{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
 .h3 small{font-weight:400;font-size:12px;color:var(--muted);margin-left:6px}
 .vg-search input{font:inherit;font-size:15px;width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px}
@@ -895,7 +901,7 @@ function drawStandards(el){
       · 간판은 허가(신고)를 마친 뒤에 설치해야 합니다.<br>
       · 간판의 표시기간은 원칙적으로 3년 이내이며, 계속 사용하려면 기간 연장을 신청해야 합니다.<br>
       · 4층 이상 또는 한 변 10m 이상 벽면 간판, 높이 5m 이상·면적 1㎡ 이상 돌출간판, 옥상간판, 높이 4m 이상 지주 간판 등은 안전점검 대상입니다.</div>
-    <div class="note warn">간판 크기·높이·돌출 폭·업소별 수량 등 세부 표시방법은 「경기도 옥외광고물 조례」 및 「남양주시 조례」에서 정합니다. 세부 수치는 ${chk}</div>
+    <div class="note">간판 크기·위치·돌출 폭 같은 표시방법은 <a href="#visual"><b>그림으로 보는 설치기준</b></a>에서 내 건물 조건을 넣어 확인할 수 있습니다.</div>
     ${bizBox("표시방법에 맞는 간판 제작은 등록된 옥외광고사업자와 상의하십시오.")}`;
   el.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>{stdTab=+b.dataset.i;drawStandards(el);});
 }

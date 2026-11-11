@@ -35,7 +35,7 @@ const PRESETS = {
 const VERDICT = {
   ok:  {c:"x", t:"확인된 기준에 부합", m:"입력한 값은 확인된 기준 범위 안에 있습니다."},
   bad: {c:"p", t:"확인된 기준상 제한 또는 위반 가능성", m:"아래 빨간 항목이 확인된 기준 범위를 벗어납니다."},
-  need:{c:"c", t:"추가 조건 확인 필요", m:"아래 노란 항목은 담당 부서 확인이 있어야 판단할 수 있습니다."},
+  need:{c:"c", t:"추가 조건 확인 필요", m:"아래 '확인 필요' 항목은 담당 부서 확인이 있어야 판단할 수 있습니다."},
   none:{c:"c", t:"근거 미확인으로 판정 불가", m:"이 구역의 기준은 아직 확인하지 못해 판정하지 않습니다."}
 };
 
@@ -262,7 +262,7 @@ function render(el){
         ${diffs.length?`<ul class="vg-diff">${diffs.join("")}</ul>`:`<p class="vg-help">아직 원안과 같은 값입니다. 크기나 구역을 바꿔 보십시오.</p>`}
         <div class="vg-act"><button class="btn" id="vgBack">원안 값으로 되돌리기</button><button class="btn" id="vgDrop">비교 끝내기</button></div></div>`;
   el.innerHTML = head + `
-    ${M.sample?`<div class="note warn" id="vgSample"><b>가상 지역 예시 화면입니다.</b> 규칙 파일을 바꿔 끼우는 구조를 보여 주기 위한 것으로, 여기 나오는 구역과 수치는 실제 기준이 아닙니다.</div>`:""}
+    ${M.sample?`<div class="vg-sample" id="vgSample"><b>가상 지역 예시 화면입니다.</b> 규칙 파일을 바꿔 끼우는 구조를 보여 주기 위한 것으로, 여기 나오는 구역과 수치는 실제 기준이 아닙니다.</div>`:""}
     <div class="vg-step"><span>1</span><b>어떤 간판인가요?</b></div>
     <div class="opts vg-types">
       <button class="opt ${V.type==="wall"?"sel":""}" data-type="wall"><b>벽면 이용 간판(가로형)</b><span>가게 위 벽면에 가로로 길게 붙이는 간판</span></button>
@@ -289,9 +289,11 @@ function render(el){
         : `${V.floors}층 건물 ${V.pFloor}층 · 아랫부분 ${fmt(V.bottom)}m · 돌출 ${fmt(V.out)}cm · 세로 ${fmt(V.len)}m · 두께 ${fmt(V.thick)}cm`}</p>
       <ul class="vg-rows">${ev.rows.map(rowHtml).join("")}</ul>
       ${cmp}
-      ${(M.uncertain_regions||[]).includes(V.region)&&!M.sample?`<div class="note warn">구역을 모르는 상태에서는 경기도 조례 일반 기준만 비교했습니다. 특정구역 안이면 더 엄격한 기준(입체형 설치, 글자 크기 등)이 적용됩니다.</div>`:""}
-      ${(M.no_verdict_regions||[]).includes(V.region)?`<div class="note warn">정비시범구역은 별도 고시의 표시방법을 따릅니다. 이 페이지에서는 아직 그 내용을 확인하지 못했으니 담당 부서(${CONTACT.tel})에 문의해 주십시오.</div>`:""}
-      <div class="note warn">이 화면은 이해를 돕기 위한 안내이며 <b>허가증이나 적합 확인서가 아닙니다.</b> 실제 허가·신고 여부와 표시방법 적합 여부는 담당 부서가 현장 여건과 심의 대상 여부를 검토해 결정합니다.</div>
+      <ul class="vg-foot">
+        ${(M.uncertain_regions||[]).includes(V.region)&&!M.sample?`<li>구역을 모르는 상태라 경기도 조례 일반 기준만 비교했습니다. 특정구역 안이면 입체형 설치, 글자 크기 등 기준이 더해집니다.</li>`:""}
+        ${(M.no_verdict_regions||[]).includes(V.region)?`<li>정비시범구역은 별도 고시의 표시방법을 따르며, 그 내용은 아직 확인하지 못했습니다. 담당 부서(${CONTACT.tel})에 문의해 주십시오.</li>`:""}
+        <li>이 화면은 이해를 돕기 위한 안내이며 <b>허가증이나 적합 확인서가 아닙니다.</b> 허가·신고 여부와 표시방법 적합 여부는 담당 부서가 현장 여건과 심의 대상 여부를 검토해 결정합니다.</li>
+      </ul>
       <div class="vg-act"><button class="btn" id="vgPrint">${typeof ic==="function"?ic("file-down"):""} 인쇄·PDF로 저장</button>
         <button class="btn primary" onclick="go('diagnose')">→ 허가·신고 대상 자가진단</button>
         <button class="btn" onclick="go('contact')">담당 부서 문의</button></div>
