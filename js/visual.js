@@ -287,12 +287,13 @@ function render(el){
       <p class="vg-cond">${esc(V.type==="wall"?"벽면 이용 간판(가로형)":"돌출간판")} · ${esc(D.regions[V.region])} · ${V.type==="wall"
         ? `${V.floors}층 건물 ${V.floor}층 · 건물 가로폭 ${fmt(V.bldgW)}m · 간판 ${fmt(V.signW)}m × ${fmt(V.signH)}cm · 돌출 ${fmt(V.signD)}cm · ${V.form==="panel"?"판류형":"입체형"}${V.noWindow?" · 창문 없는 벽면":""}`
         : `${V.floors}층 건물 ${V.pFloor}층 · 아랫부분 ${fmt(V.bottom)}m · 돌출 ${fmt(V.out)}cm · 세로 ${fmt(V.len)}m · 두께 ${fmt(V.thick)}cm`}</p>
-      <ul class="vg-rows">${ev.rows.map(rowHtml).join("")}</ul>
+      <ul class="vg-rows">${ev.rows.filter(x=>x.s!=="none"||ev.overall==="none").map(rowHtml).join("")}</ul>
+      ${ev.overall!=="none" && ev.rows.some(x=>x.s==="none") ? `<details class="vg-more"><summary>아직 확인하지 못해 비교하지 않은 기준 ${ev.rows.filter(x=>x.s==="none").length}건</summary><ul class="vg-rows">${ev.rows.filter(x=>x.s==="none").map(rowHtml).join("")}</ul></details>` : ""}
       ${cmp}
       <ul class="vg-foot">
         ${(M.uncertain_regions||[]).includes(V.region)&&!M.sample?`<li>구역을 모르는 상태라 경기도 조례 일반 기준만 비교했습니다. 특정구역 안이면 입체형 설치, 글자 크기 등 기준이 더해집니다.</li>`:""}
         ${(M.no_verdict_regions||[]).includes(V.region)?`<li>정비시범구역은 별도 고시의 표시방법을 따르며, 그 내용은 아직 확인하지 못했습니다. 담당 부서(${CONTACT.tel})에 문의해 주십시오.</li>`:""}
-        <li>이 화면은 이해를 돕기 위한 안내이며 <b>허가증이나 적합 확인서가 아닙니다.</b> 허가·신고 여부와 표시방법 적합 여부는 담당 부서가 현장 여건과 심의 대상 여부를 검토해 결정합니다.</li>
+        <li>이해를 돕기 위한 안내이며 허가증이나 적합 확인서가 아닙니다. 허가·신고 여부는 담당 부서가 검토해 결정합니다.</li>
       </ul>
       <div class="vg-act"><button class="btn" id="vgPrint">${typeof ic==="function"?ic("file-down"):""} 인쇄·PDF로 저장</button>
         <button class="btn primary" onclick="go('diagnose')">→ 허가·신고 대상 자가진단</button>

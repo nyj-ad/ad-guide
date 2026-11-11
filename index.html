@@ -87,8 +87,8 @@ main{flex:1;padding:36px 0 60px}
 .check{display:inline-block;font-size:12px;font-weight:500;color:var(--muted);background:var(--soft);border:1px solid var(--line);padding:1px 8px;border-radius:999px;vertical-align:middle}
 .law{font-size:12.5px;color:#8a90a3;margin-top:8px}
 .note{padding:14px 18px;border-radius:12px;background:var(--blue-soft);border:1px solid #d6e0fd;font-size:14px;color:#2c4aa8;margin-top:16px}
-.note.warn{background:#fafbfd;border:1px solid var(--line);border-left:3px solid #e3c27e;color:var(--muted);font-size:13.5px;line-height:1.6}
-.note.warn b{color:var(--text)}
+.note.warn{background:none;border:0;border-top:1px solid var(--line);border-radius:0;padding:12px 2px 0;color:#8a90a3;font-size:12.5px;line-height:1.6}
+.note.warn b{color:var(--muted);font-weight:500}
 .tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
 .tbl th,.tbl td{border:1px solid var(--line);padding:11px 12px;text-align:left;vertical-align:top}
 .tbl th{background:var(--soft);font-weight:700;white-space:nowrap}
@@ -117,7 +117,7 @@ main{flex:1;padding:36px 0 60px}
 .result.p{background:var(--purple-soft);border-color:#d9cffb}.result.p .big{color:var(--purple)}
 .result.s{background:var(--blue-soft);border-color:#d6e0fd}.result.s .big{color:var(--blue)}
 .result.x{background:var(--ok-soft);border-color:#bfe9d6}.result.x .big{color:var(--ok)}
-.result.c{background:var(--soft);border-color:var(--line)}.result.c .big{color:var(--text)}
+.result.c{background:var(--soft);border-color:var(--line)}.result.c .big{color:#4a5068}
 .result ul{text-align:left;margin:14px auto 0;max-width:560px;color:var(--muted);font-size:14px;padding-left:18px}
 
 /* 6. 기준·서류·절차·FAQ */
@@ -340,16 +340,20 @@ p,li,.a,summary{text-wrap:pretty}
 .vg-cond{font-size:14px;color:var(--text);padding:12px 16px;border-radius:12px;background:var(--soft);border:1px solid var(--line);margin-bottom:12px}
 .vg-rows{list-style:none;display:grid;gap:8px}
 .vg-row{display:flex;gap:12px;align-items:flex-start;padding:13px 16px;border:1px solid var(--line);border-radius:12px;background:#fff;border-left-width:4px}
-.vg-row.ok{border-left-color:#14a36b}.vg-row.bad{border-left-color:#d43b3b}.vg-row.need{border-left-color:#e3c27e}.vg-row.info{border-left-color:#c7d3fb}
+.vg-row.ok{border-left-color:#14a36b}.vg-row.bad{border-left-color:#d43b3b}.vg-row.need{border-left-color:#c9cedc}.vg-row.info{border-left-color:#c7d3fb}
 .vg-row b{font-size:14.5px}.vg-row p{font-size:14px;line-height:1.55}.vg-row em{font-style:normal;color:var(--muted);font-size:13px}
 .vg-badge{flex-shrink:0;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap;margin-top:1px}
-.vg-badge.ok{background:var(--ok-soft);color:#0c7a4e}.vg-badge.bad{background:#fde3e3;color:#b02020}.vg-badge.need{background:var(--soft);color:#5b6178;border:1px solid var(--line)}.vg-badge.info{background:var(--blue-soft);color:#2c4aa8}
+.vg-badge.ok{background:var(--ok-soft);color:#0c7a4e}.vg-badge.bad{background:#fde3e3;color:#b02020}.vg-badge.need{background:var(--soft);color:#7a8094}.vg-badge.info{background:var(--blue-soft);color:#2c4aa8}
 .vg-exc{font-size:13px!important;color:var(--muted)}
 .vg-src{display:block;font-size:12px;color:#8a90a3;margin-top:4px}
-.vg-foot{list-style:none;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);display:grid;gap:5px;font-size:12.5px;color:var(--muted);line-height:1.6}
+.vg-foot{list-style:none;margin-top:16px;display:grid;gap:3px;font-size:11.5px;color:#9aa0b2;line-height:1.55}
 .vg-foot li{position:relative;padding-left:12px}
 .vg-foot li::before{content:"";position:absolute;left:2px;top:.72em;width:4px;height:4px;border-radius:50%;background:#b9bfd0}
-.vg-foot b{color:var(--text);font-weight:500}
+.vg-foot b{font-weight:400}
+.vg-more{margin-top:8px;font-size:12.5px;color:#8a90a3}
+.vg-more summary{cursor:pointer;padding:4px 2px}
+.vg-more .vg-rows{margin-top:6px}
+.vg-more .vg-row{background:#fafbfd}
 .vg-sample{font-size:12.5px;color:var(--muted);padding:8px 12px;border:1px dashed var(--line);border-radius:10px;margin-bottom:6px}
 .vg-act{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
 .h3 small{font-weight:400;font-size:12px;color:var(--muted);margin-left:6px}
