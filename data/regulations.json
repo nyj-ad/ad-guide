@@ -1,0 +1,556 @@
+{
+ "_about": "현행 기준 데이터. 과거 참고자료(data/historical-visual-examples.json)와 분리해 관리한다. status가 verified 또는 verified-secondary인 규칙만 판정에 쓰고, unverified는 '근거 미확인으로 판정 불가'로만 표시한다.",
+ "updated": "2026-11-11",
+ "status_labels": {
+  "verified": "원문 확인",
+  "verified-secondary": "법제처 생활법령 해설로 확인(조례 원문 대조 전)",
+  "unverified": "미확인"
+ },
+ "regions": {
+  "general": "특정구역 밖(경기도 조례 일반 기준)",
+  "zone-new": "신택지개발지구(별내·진접·가운·지금·진건지구)",
+  "zone-etc": "구택지개발지구·주요 간선도로변·중심시가지 구간",
+  "zone-pilot": "정비시범구역",
+  "unknown": "잘 모르겠음"
+ },
+ "sources": {
+  "DECREE": {
+   "name": "옥외광고물 등의 관리와 옥외광고산업 진흥에 관한 법률 시행령",
+   "id_text": "대통령령 제36054호, 2026. 1. 27. 타법개정",
+   "effective": "2026-01-27",
+   "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsId=004242",
+   "level": "primary",
+   "how": "국가법령정보센터 화면에서 공포번호·시행일 확인(2026-11-11). 제4조·제5조 내용은 2026-11-03 구축 시 확인."
+  },
+  "GG_EASYLAW": {
+   "name": "경기도 옥외광고물 등의 관리와 옥외광고산업 진흥에 관한 조례 (법제처 찾기쉬운 생활법령정보 「옥외광고물(경기도)」 해설)",
+   "id_text": "법제처 생활법령 2026. 10. 15. 기준",
+   "effective": null,
+   "url": "https://easylaw.go.kr/CSP/CnpClsOrdinMain.laf?popMenu=ov&areaCsmOrdinSeq=1129&ccfNo=1&cciNo=2&cnpClsNo=1",
+   "level": "official-secondary",
+   "how": "법제처 생활법령 해설 본문에서 수치와 근거 조문 표기 확인(2026-11-11). 조례 원문(국가법령정보센터 자치법규)과의 직접 대조는 하지 못함."
+  },
+  "GOSI_2025_3": {
+   "name": "남양주시 옥외광고물 등의 특정구역 지정 및 표시제한·완화 고시",
+   "id_text": "경기도 고시 제2025-3호, 2025. 1. 8.",
+   "effective": "2025-01-08",
+   "url": "https://www.nyj.go.kr/www/selectBbsNttView.do?bbsNo=35&key=2406&nttNo=499044",
+   "level": "primary",
+   "how": "담당자 보유 고시문 원본 파일(hwp) 전문을 읽어 확인(2026-11-11). 구역 목록 표와 위치도 그림은 기계 판독하지 못함."
+  },
+  "NYJ_ORD": {
+   "name": "남양주시 옥외광고물 등의 관리와 옥외광고산업 진흥에 관한 조례",
+   "id_text": "조례 제2488호, 2025. 12. 29. 시행",
+   "effective": "2025-12-29",
+   "url": "https://www.law.go.kr/ordinInfoP.do?ordinSeq=2099101",
+   "level": "partial",
+   "how": "수수료(제25조, 별표 3·4)만 2026-11-03에 확인. 표시방법 관련 조항은 확인하지 못함."
+  },
+  "PILOT_ZONE": {
+   "name": "광고물등 정비시범구역 지정 및 표시방법 고시(진접읍·퇴계원읍 / 화도읍·금곡동·진접읍)",
+   "id_text": "미확인",
+   "effective": null,
+   "url": "https://www.nyj.go.kr/www/selectBbsNttList.do?key=2406&bbsNo=35",
+   "level": "unverified",
+   "how": "원본 파일은 보유하고 있으나 이번 작업에서 내용을 분석하지 않음."
+  }
+ },
+ "rules": [
+  {
+   "id": "GG-WALL-COUNT",
+   "sign_type": "wall",
+   "region": "general",
+   "condition": "한 업소가 표시하는 벽면 이용 간판 수",
+   "rule": "하나의 업소에서 하나의 간판만 표시",
+   "source": "GG_EASYLAW",
+   "article": "제8조제1항",
+   "status": "verified-secondary",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "같은 조 제2항~제4항에 따른 간판 등 예외 있음(굽은 도로에 접한 업소 등은 담당 부서 확인)",
+   "check": null
+  },
+  {
+   "id": "GG-WALL-FLOOR",
+   "sign_type": "wall",
+   "region": "general",
+   "condition": "표시할 수 있는 층",
+   "rule": "건물 7층 이하의 도로에 접한 벽면에 표시",
+   "source": "GG_EASYLAW",
+   "article": "제8조제1항",
+   "status": "verified-secondary",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "건물 가장 높은 층 3면에 건물명 등을 표시하는 간판 등 예외(제8조제2항)",
+   "check": {
+    "field": "floor",
+    "op": "<=",
+    "value": 7,
+    "unit": "층"
+   }
+  },
+  {
+   "id": "GG-WALL-SOLID4",
+   "sign_type": "wall",
+   "region": "general",
+   "condition": "4층 이상에 표시하는 경우",
+   "rule": "4층 이상에는 입체형으로만 표시",
+   "source": "GG_EASYLAW",
+   "article": "제8조제1항",
+   "status": "verified-secondary",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "",
+   "check": {
+    "field": "form",
+    "when": {
+     "field": "floor",
+     "op": ">=",
+     "value": 4
+    },
+    "op": "==",
+    "value": "solid"
+   }
+  },
+  {
+   "id": "GG-WALL-WIDTH",
+   "sign_type": "wall",
+   "region": "general",
+   "condition": "간판의 가로 크기",
+   "rule": "건물의 가로폭 이내",
+   "source": "GG_EASYLAW",
+   "article": "제8조제1항",
+   "status": "verified-secondary",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "",
+   "check": {
+    "field": "signW",
+    "op": "<=",
+    "ref": "bldgW",
+    "unit": "m"
+   }
+  },
+  {
+   "id": "GG-WALL-HEIGHT",
+   "sign_type": "wall",
+   "region": "general",
+   "condition": "간판의 세로 크기",
+   "rule": "위층과 아래층의 창문 간 벽면의 폭 이내",
+   "source": "GG_EASYLAW",
+   "article": "제8조제1항",
+   "status": "verified-secondary",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "창문이 없는 벽면은 시·군 옥외광고심의위원회 심의를 거쳐 정할 수 있음",
+   "check": {
+    "field": "signH",
+    "op": "<=",
+    "ref": "bandH",
+    "unit": "cm"
+   }
+  },
+  {
+   "id": "GG-WALL-PROJ",
+   "sign_type": "wall",
+   "region": "general",
+   "condition": "벽면에서 튀어나오는 폭",
+   "rule": "벽면에 밀착, 돌출 폭 30cm 이내. 출입문·창문을 막지 않을 것",
+   "source": "GG_EASYLAW",
+   "article": "제8조제1항",
+   "status": "verified-secondary",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "",
+   "check": {
+    "field": "signD",
+    "op": "<=",
+    "value": 30,
+    "unit": "cm"
+   }
+  },
+  {
+   "id": "GOSI-COUNT-NEW",
+   "sign_type": "all",
+   "region": "zone-new",
+   "condition": "업소당 간판 총수량",
+   "rule": "신택지개발지구는 1개",
+   "source": "GOSI_2025_3",
+   "article": "제4조제1항",
+   "status": "verified",
+   "checked": "2026-11-11",
+   "effective": "2025-01-08",
+   "exceptions": "굽은 도로·앞뒤 도로 접한 업소의 벽면이용간판 1개 추가, 의료시설·약국 표지 돌출간판, 소형 돌출간판(0.36㎡·두께 0.2m 이하), 종합안내표지판, 창문이용 광고물 등 예외",
+   "check": null
+  },
+  {
+   "id": "GOSI-COUNT-ETC",
+   "sign_type": "all",
+   "region": "zone-etc",
+   "condition": "업소당 간판 총수량",
+   "rule": "구택지개발지구·주요 간선도로변·중심시가지 구간은 2개 이내",
+   "source": "GOSI_2025_3",
+   "article": "제4조제1항",
+   "status": "verified",
+   "checked": "2026-11-11",
+   "effective": "2025-01-08",
+   "exceptions": "GOSI-COUNT-NEW와 같은 예외 조항",
+   "check": null
+  },
+  {
+   "id": "GOSI-NEW-WALL-FORM",
+   "sign_type": "wall",
+   "region": "zone-new",
+   "condition": "간판 형태",
+   "rule": "판류형 금지, 입체형으로 설치",
+   "source": "GOSI_2025_3",
+   "article": "제5조제1항제1호가목",
+   "status": "verified",
+   "checked": "2026-11-11",
+   "effective": "2025-01-08",
+   "exceptions": "1층은 층간 벽면에 베이스판을 설치하고 그 위에 입체형 설치 가능",
+   "check": {
+    "field": "form",
+    "op": "==",
+    "value": "solid"
+   }
+  },
+  {
+   "id": "GOSI-NEW-WALL-FLOOR",
+   "sign_type": "wall",
+   "region": "zone-new",
+   "condition": "표시할 수 있는 층",
+   "rule": "7층 이하에 설치",
+   "source": "GOSI_2025_3",
+   "article": "제5조제1항제1호다목",
+   "status": "verified",
+   "checked": "2026-11-11",
+   "effective": "2025-01-08",
+   "exceptions": "4층 이상 건축물 최상층 3면의 건물명·상호 간판은 별도 기준(같은 호 라목 2))",
+   "check": {
+    "field": "floor",
+    "op": "<=",
+    "value": 7,
+    "unit": "층"
+   }
+  },
+  {
+   "id": "GOSI-NEW-WALL-LETTER",
+   "sign_type": "wall",
+   "region": "zone-new",
+   "condition": "간판 글자 크기",
+   "rule": "3층까지 60cm 이하, 4~5층 70cm 이하, 6~7층 80cm 이하",
+   "source": "GOSI_2025_3",
+   "article": "제5조제1항제1호라목 1)",
+   "status": "verified",
+   "checked": "2026-11-11",
+   "effective": "2025-01-08",
+   "exceptions": "",
+   "check": {
+    "field": "signH",
+    "op": "<=",
+    "byFloor": [
+     [
+      3,
+      60
+     ],
+     [
+      5,
+      70
+     ],
+     [
+      7,
+      80
+     ]
+    ],
+    "unit": "cm"
+   }
+  },
+  {
+   "id": "GOSI-NEW-WALL-HOUSE",
+   "sign_type": "wall",
+   "region": "zone-new",
+   "condition": "점포 겸용 주택",
+   "rule": "주거 부분으로 쓰는 층에는 설치하지 않음",
+   "source": "GOSI_2025_3",
+   "article": "제5조제1항제1호나목",
+   "status": "verified",
+   "checked": "2026-11-11",
+   "effective": "2025-01-08",
+   "exceptions": "점포 위층 주택의 창문 아랫부분까지는 점포 벽면으로 볼 수 있음",
+   "check": null
+  },
+  {
+   "id": "GOSI-NEW-VERT",
+   "sign_type": "wall",
+   "region": "zone-new",
+   "condition": "세로형 벽면이용간판·애드벌룬",
+   "rule": "설치 금지",
+   "source": "GOSI_2025_3",
+   "article": "제5조제1항제6호",
+   "status": "verified",
+   "checked": "2026-11-11",
+   "effective": "2025-01-08",
+   "exceptions": "",
+   "check": null
+  },
+  {
+   "id": "GOSI-ETC-WALL-FORM",
+   "sign_type": "wall",
+   "region": "zone-etc",
+   "condition": "간판 형태",
+   "rule": "판류형 금지, 입체형으로 설치",
+   "source": "GOSI_2025_3",
+   "article": "제5조제2항제1호가목",
+   "status": "verified",
+   "checked": "2026-11-11",
+   "effective": "2025-01-08",
+   "exceptions": "노후건물 1층에 한정해 심의위원회 심의를 거쳐 판류형 설치 가능",
+   "check": {
+    "field": "form",
+    "op": "==",
+    "value": "solid"
+   }
+  },
+  {
+   "id": "GOSI-ETC-WALL-FLOOR",
+   "sign_type": "wall",
+   "region": "zone-etc",
+   "condition": "표시할 수 있는 층",
+   "rule": "7층 이하에 설치",
+   "source": "GOSI_2025_3",
+   "article": "제5조제2항제1호나목",
+   "status": "verified",
+   "checked": "2026-11-11",
+   "effective": "2025-01-08",
+   "exceptions": "",
+   "check": {
+    "field": "floor",
+    "op": "<=",
+    "value": 7,
+    "unit": "층"
+   }
+  },
+  {
+   "id": "GOSI-ETC-WALL-LETTER",
+   "sign_type": "wall",
+   "region": "zone-etc",
+   "condition": "간판 글자 크기",
+   "rule": "3층까지 60cm 이하, 4~5층 70cm 이하, 6~7층 80cm 이하",
+   "source": "GOSI_2025_3",
+   "article": "제5조제2항제1호다목 1)",
+   "status": "verified",
+   "checked": "2026-11-11",
+   "effective": "2025-01-08",
+   "exceptions": "",
+   "check": {
+    "field": "signH",
+    "op": "<=",
+    "byFloor": [
+     [
+      3,
+      60
+     ],
+     [
+      5,
+      70
+     ],
+     [
+      7,
+      80
+     ]
+    ],
+    "unit": "cm"
+   }
+  },
+  {
+   "id": "GG-PROJ-BOTTOM",
+   "sign_type": "proj",
+   "region": "general",
+   "condition": "간판 아랫부분과 지면의 간격",
+   "rule": "3m 이상(인도가 없는 경우 4m 이상)",
+   "source": "GG_EASYLAW",
+   "article": "제9조",
+   "status": "verified-secondary",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "의료기관·약국 표지등, 이용·미용업소 표지등은 예외 있음",
+   "check": {
+    "field": "bottom",
+    "op": ">=",
+    "bySidewalk": {
+     "yes": 3,
+     "no": 4
+    },
+    "unit": "m"
+   }
+  },
+  {
+   "id": "GG-PROJ-OUT",
+   "sign_type": "proj",
+   "region": "general",
+   "condition": "간판 바깥쪽 끝부분",
+   "rule": "벽면으로부터 1.2m를 넘지 않을 것",
+   "source": "GG_EASYLAW",
+   "article": "제9조",
+   "status": "verified-secondary",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "이용·미용업소 표지등은 50cm 이내",
+   "check": {
+    "field": "out",
+    "op": "<=",
+    "value": 120,
+    "unit": "cm"
+   }
+  },
+  {
+   "id": "GG-PROJ-LEN",
+   "sign_type": "proj",
+   "region": "general",
+   "condition": "간판 세로 크기",
+   "rule": "20m 이내(상업지역은 30m 이내)",
+   "source": "GG_EASYLAW",
+   "article": "제9조",
+   "status": "verified-secondary",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "",
+   "check": {
+    "field": "len",
+    "op": "<=",
+    "byZone": {
+     "commercial": 30,
+     "other": 20
+    },
+    "unit": "m"
+   }
+  },
+  {
+   "id": "GG-PROJ-THICK",
+   "sign_type": "proj",
+   "region": "general",
+   "condition": "간판 두께",
+   "rule": "50cm 이내",
+   "source": "GG_EASYLAW",
+   "article": "제9조",
+   "status": "verified-secondary",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "",
+   "check": {
+    "field": "thick",
+    "op": "<=",
+    "value": 50,
+    "unit": "cm"
+   }
+  },
+  {
+   "id": "GG-PROJ-COUNT",
+   "sign_type": "proj",
+   "region": "general",
+   "condition": "업소당 수량과 줄 수",
+   "rule": "하나의 업소는 하나의 간판. 여러 업소는 위아래 일직선으로, 건물 전면 가로폭 10m 이하 1줄·10m 초과마다 1줄 추가",
+   "source": "GG_EASYLAW",
+   "article": "제9조",
+   "status": "verified-secondary",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "",
+   "check": null
+  },
+  {
+   "id": "GOSI-NEW-PROJ-WHO",
+   "sign_type": "proj",
+   "region": "zone-new",
+   "condition": "돌출간판을 달 수 있는 업소와 층",
+   "rule": "벽면이용 간판을 설치할 수 없는 업소에 한정, 2층 이상 5층 이하",
+   "source": "GOSI_2025_3",
+   "article": "제5조제1항제2호가목",
+   "status": "verified",
+   "checked": "2026-11-11",
+   "effective": "2025-01-08",
+   "exceptions": "",
+   "check": {
+    "field": "floor",
+    "op": "between",
+    "value": [
+     2,
+     5
+    ],
+    "unit": "층"
+   }
+  },
+  {
+   "id": "GOSI-NEW-PROJ-SIZE",
+   "sign_type": "proj",
+   "region": "zone-new",
+   "condition": "돌출간판 규격",
+   "rule": "가로 80cm(게시틀 포함 100cm) 이하, 세로 120cm 이하",
+   "source": "GOSI_2025_3",
+   "article": "제5조제1항제2호라목",
+   "status": "verified",
+   "checked": "2026-11-11",
+   "effective": "2025-01-08",
+   "exceptions": "박스형은 가로 120cm·세로 80cm·폭 120cm 이하",
+   "check": {
+    "multi": [
+     {
+      "field": "out",
+      "op": "<=",
+      "value": 100,
+      "unit": "cm"
+     },
+     {
+      "field": "len",
+      "op": "<=",
+      "value": 1.2,
+      "unit": "m"
+     }
+    ]
+   }
+  },
+  {
+   "id": "GOSI-NEW-PROJ-LINE",
+   "sign_type": "proj",
+   "region": "zone-new",
+   "condition": "게시틀과 줄 수",
+   "rule": "건축물 전체에 통일된 게시틀. 전면 폭 10m 이하 1줄, 초과 시 양쪽 끝 2줄",
+   "source": "GOSI_2025_3",
+   "article": "제5조제1항제2호나목·다목",
+   "status": "verified",
+   "checked": "2026-11-11",
+   "effective": "2025-01-08",
+   "exceptions": "",
+   "check": null
+  },
+  {
+   "id": "PILOT-ANY",
+   "sign_type": "all",
+   "region": "zone-pilot",
+   "condition": "정비시범구역의 표시방법",
+   "rule": "이번 작업에서 내용을 확인하지 못함",
+   "source": "PILOT_ZONE",
+   "article": "미확인",
+   "status": "unverified",
+   "checked": "2026-11-11",
+   "effective": null,
+   "exceptions": "",
+   "check": null
+  },
+  {
+   "id": "NYJ-ORD-DISPLAY",
+   "sign_type": "all",
+   "region": "general",
+   "condition": "남양주시 조례의 표시방법 관련 조항",
+   "rule": "이번 작업에서 내용을 확인하지 못함",
+   "source": "NYJ_ORD",
+   "article": "미확인",
+   "status": "unverified",
+   "checked": "2026-11-11",
+   "effective": "2025-12-29",
+   "exceptions": "",
+   "check": null
+  }
+ ]
+}

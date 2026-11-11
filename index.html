@@ -305,6 +305,63 @@ p,li,.a,summary{text-wrap:pretty}
 .ai-law{margin-top:16px;font-size:12.5px;color:#8a90a3;line-height:1.6}
 @media (max-width:720px){.ai-grid{grid-template-columns:1fr}.ai-call{flex-direction:column;align-items:stretch}.ai-call .btn{justify-content:center}}
 @media (max-width:520px){.ai-badge{font-size:12.5px;gap:6px}.ai-box{padding:16px}.ai-box ul{font-size:13.5px}.ai-h{font-size:15px}}
+
+/* 10. 그림으로 보는 설치기준 */
+.cta2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px}
+.cta2 .cta{margin:0;flex-direction:column;align-items:flex-start}
+.cta2 .cta .btn{margin-top:auto}
+@media (max-width:820px){.cta2{grid-template-columns:1fr;gap:10px}}
+.vg-step{display:flex;align-items:center;gap:10px;margin:24px 0 10px;font-size:16px}
+.vg-step span{width:26px;height:26px;border-radius:50%;background:var(--grad);color:#fff;font-weight:700;font-size:13px;display:grid;place-items:center;flex-shrink:0}
+.vg-types .opt.sel{border-color:var(--blue);background:var(--blue-soft);box-shadow:0 0 0 2px rgba(63,110,245,.15)}
+.vg-reg,.vg-pre{margin-bottom:8px}
+.vg-help{font-size:13px;color:var(--muted);line-height:1.6}
+.vg-sim{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:18px;margin-top:14px;align-items:start}
+.vg-in{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--soft)}
+.vg-unit{position:relative;display:block}
+.vg-unit input{padding-right:38px}
+.vg-unit i{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-style:normal;font-size:13px;color:var(--muted)}
+.vg-chk{grid-column:1/-1;display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text)}
+.vg-chk input{width:18px;height:18px}
+.vg-out{border:1px solid var(--line);border-radius:14px;background:#fff;padding:14px}
+.vg-pics{display:flex;gap:10px;align-items:flex-end;justify-content:center}
+.vg-pics figure{flex:1;min-width:0;text-align:center}
+.vg-pics figure.side{flex:0 0 30%}
+.vg-pics svg{width:100%;height:auto;display:block}
+.vg-pics figcaption{font-size:12px;color:var(--muted);margin-top:4px}
+.vg-empty{padding:40px 16px;text-align:center;color:var(--warn);font-size:14px}
+.vg-legend{list-style:none;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.vg-legend li{display:flex;align-items:center;gap:6px}
+.lg{width:14px;height:14px;border-radius:3px;display:inline-block;flex-shrink:0}
+.lg.g{background:#e3f6ee;border:1.5px dashed #14a36b}.lg.b{background:#3f6ef5}.lg.r{background:repeating-linear-gradient(45deg,#d43b3b 0 3px,#fde3e3 3px 6px)}
+.vg-result{margin-top:18px;padding:18px}.vg-result .big{font-size:20px;line-height:1.35}
+.vg-result.p{background:#fff3f3;border-color:#f3c4c4}.vg-result.p .big{color:#b02020}
+.vg-cond{font-size:14px;color:var(--text);padding:12px 16px;border-radius:12px;background:var(--soft);border:1px solid var(--line);margin-bottom:12px}
+.vg-rows{list-style:none;display:grid;gap:8px}
+.vg-row{display:flex;gap:12px;align-items:flex-start;padding:13px 16px;border:1px solid var(--line);border-radius:12px;background:#fff;border-left-width:4px}
+.vg-row.ok{border-left-color:#14a36b}.vg-row.bad{border-left-color:#d43b3b;background:#fff8f8}.vg-row.need{border-left-color:#d9930d;background:#fffbf2}.vg-row.info{border-left-color:#c7d3fb}
+.vg-row b{font-size:14.5px}.vg-row p{font-size:14px;line-height:1.55}.vg-row em{font-style:normal;color:var(--muted);font-size:13px}
+.vg-badge{flex-shrink:0;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap;margin-top:1px}
+.vg-badge.ok{background:var(--ok-soft);color:#0c7a4e}.vg-badge.bad{background:#fde3e3;color:#b02020}.vg-badge.need{background:var(--warn-soft);color:#8a5200}.vg-badge.info{background:var(--blue-soft);color:#2c4aa8}
+.vg-exc{font-size:13px!important;color:var(--muted)}
+.vg-src{display:block;font-size:12px;color:#8a90a3;margin-top:4px}
+.vg-act{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.h3 small{font-weight:400;font-size:12px;color:var(--muted);margin-left:6px}
+.vg-search input{font:inherit;font-size:15px;width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px}
+.vg-hist{margin-top:20px;border:1px solid var(--line);border-radius:12px;padding:0 16px;background:#fff}
+.vg-hist summary{padding:13px 0;cursor:pointer;font-weight:500;font-size:14.5px}
+.vg-hist .a{padding-bottom:14px;font-size:14px;display:grid;gap:10px}
+.vg-tbl{width:100%;border-collapse:collapse;font-size:13.5px}
+.vg-tbl th,.vg-tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.vg-tbl th{background:var(--soft);font-weight:700}
+@media (max-width:820px){.vg-sim{grid-template-columns:1fr}.vg-out{order:-1;position:sticky;top:68px;z-index:5;box-shadow:0 6px 18px rgba(20,24,40,.08)}.vg-pics svg{max-height:34vh}}
+@media (max-width:520px){.vg-in{padding:14px;gap:10px}.vg-row{flex-direction:column;gap:6px;padding:12px 14px}.vg-act .btn{flex:1 1 100%;text-align:center}.vg-legend{font-size:11.5px}}
+@media print{
+  header,footer,.home-btn,.steps,.pager,.vg-types,.vg-reg,.vg-pre,.vg-step,.vg-help,.vg-in,.vg-act,.vg-search,#vgHits,.vg-hist,.biz,.skip,.h3 small{display:none!important}
+  body{background:#fff}.panel{border:0;box-shadow:none;padding:0}.vg-sim{display:block}.vg-out{position:static;box-shadow:none}
+  .vg-pics svg{max-height:70mm}.vg-row{break-inside:avoid}
+  .vg-sum::after{content:"출력물은 안내 참고용이며 허가증·적합 확인서가 아닙니다. 남양주시 진건·퇴계원행정복지센터 도시건축과 건축팀";display:block;margin-top:10px;font-size:11px;color:#555}
+}
 </style>
 </head>
 <body>
@@ -332,6 +389,7 @@ p,li,.a,summary{text-wrap:pretty}
   </div>
 </footer>
 
+<script src="js/visual.js"></script>
 <script>
 /* =========================================================
    [수정 안내] 아래 '설정값'만 고치면 화면 내용이 바뀝니다.
@@ -433,6 +491,17 @@ const SIGN_ART = {
     <rect x="30" y="30" width="36" height="48" rx="7" fill="url(#${u}g)"/>
     <rect x="33.5" y="33.5" width="29" height="41" rx="4.5" fill="none" stroke="#fff" stroke-opacity=".45"/>
     <text x="48" y="64" text-anchor="middle" font-size="27" font-weight="900" fill="#fff" font-family="Noto Sans KR,sans-serif">?</text>`,
+  // 그림으로 보는 설치기준 — 건물과 치수선
+  visual: u => `
+    <ellipse cx="48" cy="89" rx="36" ry="3.5" fill="#1e2a5a" opacity=".08"/>
+    <rect x="20" y="14" width="50" height="74" rx="2" fill="#eef2fa" stroke="#c9d6f2" stroke-width="1.5"/>
+    <rect x="27" y="21" width="14" height="11" rx="1.5" fill="#c9d6f2"/><rect x="49" y="21" width="14" height="11" rx="1.5" fill="#c9d6f2"/>
+    <rect x="25" y="38" width="40" height="13" rx="2" fill="#e3f6ee" stroke="#14a36b" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <rect x="29" y="41" width="32" height="8" rx="2" fill="url(#${u}g)"/>
+    <rect x="27" y="57" width="14" height="11" rx="1.5" fill="#c9d6f2"/><rect x="49" y="57" width="14" height="11" rx="1.5" fill="#c9d6f2"/>
+    <rect x="38" y="72" width="14" height="16" rx="1.5" fill="#b4c3e6"/>
+    <path d="M78 38v13M75 38h6M75 51h6" stroke="#7b5cf0" stroke-width="2" stroke-linecap="round"/>
+    <path d="M25 8h40M25 5v6M65 5v6" stroke="#7b5cf0" stroke-width="2" stroke-linecap="round"/>`,
   // 나. 표시 기준 — 가로형 간판 + 치수선
   ruler: u => `
     <ellipse cx="48" cy="89" rx="36" ry="3.5" fill="#1e2a5a" opacity=".08"/>
@@ -518,13 +587,14 @@ function sign(n){
 /* ---------- 메뉴(첫 화면 카드 = 영역별 단계) ---------- */
 const MENUS = [
   { id:"diagnose",  no:"가", ico:"compass", title:"허가·신고 대상 자가진단", desc:"질문에 답하면 내 간판이 허가인지 신고인지 알려드립니다.", kw:"자가진단 판별 허가 신고 대상 내 간판" },
-  { id:"standards", no:"나", ico:"ruler", title:"광고물 종류별 표시 기준", desc:"가로형·돌출·옥상·지주 간판 등 종류별 기준", kw:"가로형 세로형 돌출 옥상 지주 입간판 현수막 기준 크기 높이 면적" },
-  { id:"documents", no:"다", ico:"clipboard-list", title:"구비서류 체크리스트", desc:"신청 전에 준비할 서류를 하나씩 확인하세요.", kw:"서류 구비서류 신청서 사진 도안 승낙서 설계도서" },
-  { id:"process",   no:"라", ico:"route", title:"처리 절차 및 처리 기간", desc:"접수부터 허가증 교부까지 흐름", kw:"절차 처리기간 기간 연장 변경 교부" },
-  { id:"fees",      no:"마", ico:"calculator", title:"수수료 안내", desc:"조례 기준 수수료표와 자동 계산기", kw:"수수료 비용 금액 납부 계산기 계산 안전점검" },
-  { id:"biz",       no:"바", ico:"building-2", title:"등록 광고업체 찾기", desc:"남양주시에 등록된 옥외광고사업자 검색", kw:"광고업체 간판업체 옥외광고사업자 등록업체 업체 찾기 검색 현수막 제작 설치" },
-  { id:"faq",       no:"사", ico:"message-circle-question", title:"자주 묻는 질문", desc:"민원인이 자주 묻는 내용을 모았습니다.", kw:"질문 faq 과태료 사유지 수량 현수막 이행강제금 책임보험 정부24 온라인 반환 네온" },
-  { id:"contact",   no:"아", ico:"phone", title:"문의처", desc:"담당 부서와 전화번호", kw:"문의 전화 담당 부서 연락처 위치 광고업체 간판업체 옥외광고사업자 등록업체" }
+  { id:"visual",    no:"나", ico:"visual", title:"그림으로 보는 설치기준", desc:"건물 그림 위에서 내 간판 크기와 기준을 비교합니다.", kw:"그림 시뮬레이터 설치기준 크기 위치 가로형 돌출 벽면 층 특정구역 입체형 판류형 비교" },
+  { id:"standards", no:"다", ico:"ruler", title:"광고물 종류별 표시 기준", desc:"가로형·돌출·옥상·지주 간판 등 종류별 기준", kw:"가로형 세로형 돌출 옥상 지주 입간판 현수막 기준 크기 높이 면적" },
+  { id:"documents", no:"라", ico:"clipboard-list", title:"구비서류 체크리스트", desc:"신청 전에 준비할 서류를 하나씩 확인하세요.", kw:"서류 구비서류 신청서 사진 도안 승낙서 설계도서" },
+  { id:"process",   no:"마", ico:"route", title:"처리 절차 및 처리 기간", desc:"접수부터 허가증 교부까지 흐름", kw:"절차 처리기간 기간 연장 변경 교부" },
+  { id:"fees",      no:"바", ico:"calculator", title:"수수료 안내", desc:"조례 기준 수수료표와 자동 계산기", kw:"수수료 비용 금액 납부 계산기 계산 안전점검" },
+  { id:"biz",       no:"사", ico:"building-2", title:"등록 광고업체 찾기", desc:"남양주시에 등록된 옥외광고사업자 검색", kw:"광고업체 간판업체 옥외광고사업자 등록업체 업체 찾기 검색 현수막 제작 설치" },
+  { id:"faq",       no:"아", ico:"message-circle-question", title:"자주 묻는 질문", desc:"민원인이 자주 묻는 내용을 모았습니다.", kw:"질문 faq 과태료 사유지 수량 현수막 이행강제금 책임보험 정부24 온라인 반환 네온" },
+  { id:"contact",   no:"자", ico:"phone", title:"문의처", desc:"담당 부서와 전화번호", kw:"문의 전화 담당 부서 연락처 위치 광고업체 간판업체 옥외광고사업자 등록업체" }
 ];
 
 const app = document.getElementById("app");
@@ -561,6 +631,7 @@ function renderAI(){
             <li>안내 문구 초안 작성과 화면 디자인</li>
             <li>자가진단·수수료 계산기 프로그램 제작</li>
             <li>등록 광고업체 현황 자료 변환·자동 갱신 프로그램 제작</li>
+            <li>옛 안내 사진의 표시 방식을 분석해 「그림으로 보는 설치기준」의 건물 그림과 비교 프로그램 제작</li>
           </ul>
           <small>사용 도구: Anthropic Claude</small>
         </div>
@@ -568,7 +639,8 @@ function renderAI(){
           <div class="ai-h">${ic("ban")}AI가 하지 않는 일</div>
           <ul>
             <li>AI가 실시간으로 답변을 만들어 내지 않습니다.</li>
-            <li>자가진단·수수료는 법령·조례에 정한 기준대로 계산합니다.</li>
+            <li>자가진단·수수료·설치기준 비교는 미리 확인해 둔 법령·조례·고시 기준대로 계산합니다.</li>
+            <li>기준을 확인하지 못한 경우에는 판정하지 않습니다.</li>
             <li>허가·신고 여부를 최종 결정하지 않습니다.</li>
           </ul>
         </div>
@@ -610,9 +682,15 @@ function renderHome(){
         <button type="submit">찾기</button>
       </form>
     </section>
-    <div class="cta glass">
-      <div><h2>${sign("compass")}내 간판, 허가일까요 신고일까요?</h2><p>광고물 종류와 크기만 고르면<br class="br-m"> 1분 안에 확인할 수 있습니다.</p></div>
-      <button class="btn primary" onclick="go('diagnose')">자가진단 시작</button>
+    <div class="cta2">
+      <div class="cta glass">
+        <div><h2>${sign("visual")}간판 설치기준, 그림으로 확인하세요</h2><p>건물 그림 위에서 내 간판 크기와<br class="br-m"> 기준 범위를 비교해 봅니다.</p></div>
+        <button class="btn primary" onclick="go('visual')">내 간판 설치기준 알아보기</button>
+      </div>
+      <div class="cta glass">
+        <div><h2>${sign("compass")}내 간판, 허가일까요 신고일까요?</h2><p>광고물 종류와 크기만 고르면<br class="br-m"> 1분 안에 확인할 수 있습니다.</p></div>
+        <button class="btn primary" onclick="go('diagnose')">자가진단 시작</button>
+      </div>
     </div>
     <div class="cards" id="cards"></div>
     <div id="faqHits"></div>
@@ -646,7 +724,7 @@ function renderSection(idx){
     <button class="home-btn" onclick="go('home')">← 처음 화면</button>
     <nav class="steps glass">${MENUS.map((x,i)=>`
       <button class="${i===idx?'on':(i<idx?'done':'')}" onclick="go('${x.id}')">
-        <span class="dot">${x.no}</span>${x.title.replace(/ 및 .*| 안내|·신고 대상/g,"")}
+        <span class="dot">${x.no}</span>${x.title.replace(/ 및 .*| 안내|·신고 대상|으로 보는/g,"")}
       </button>`).join("")}</nav>
     <section class="panel glass" id="panel"></section>
     <div class="pager">
@@ -1125,7 +1203,7 @@ function drawContact(el){
 
 const SECTIONS = {
   diagnose:drawDiagnose, standards:drawStandards, documents:drawDocuments,
-  process:drawProcess, fees:drawFees, biz:drawBiz, faq:drawFaq, contact:drawContact
+  visual:(el)=>drawVisual(el), process:drawProcess, fees:drawFees, biz:drawBiz, faq:drawFaq, contact:drawContact
 };
 route();
 </script>

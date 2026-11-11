@@ -44,3 +44,22 @@ GitHub에서 `index.html`을 수정해 저장(Commit)하면 1~2분 뒤 페이지
 
 - 아이콘: [Lucide](https://lucide.dev) (ISC 라이선스)
 - 남양주시 CI: 남양주시 누리집 「상징물(C.I)」 게시 이미지
+
+## 그림으로 보는 설치기준 (#visual)
+
+- 화면 코드: `js/visual.js`
+- 현행 기준 데이터: `data/regulations.json` — 수치·조문·출처·확인일·검증 상태. **기준이 바뀌면 이 파일만 고칩니다.**
+- 과거 참고자료: `data/historical-visual-examples.json` — 표현 방식 참고용. 판정에 쓰지 않습니다.
+- 검증 상태가 `unverified`인 규칙은 판정하지 않고 "근거 미확인으로 판정 불가"로 표시합니다.
+
+## 자동 점검
+
+```
+python3 -m http.server 8765 &
+node tests/site.test.js
+```
+
+## 문서
+
+- `docs/01~03`: 기존 사이트 진단, PDF 그림 분석, 기준 검증 기록
+- `docs/challenge/`: AI 챌린지 제출자료 초안
