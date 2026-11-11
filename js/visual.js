@@ -303,13 +303,13 @@ function render(el){
     <div class="vg-search"><input id="vgQ" value="${esc(V.q)}" placeholder="예) 돌출, 창문, 글자 크기, 입체형" aria-label="기준 검색어"></div>
     <div id="vgHits">${q ? (hits.length ? `<ul class="vg-rows">${hits.map(r=>rowHtml({r,src:D.sources[r.source],s:r.status==="unverified"?"none":"info",d:"적용: "+D.regions[r.region]})).join("")}</ul>` : `<p class="vg-help">확인된 기준 자료에서 찾지 못했습니다. 근거 없이 답하지 않으니 담당 부서(${CONTACT.tel})에 문의해 주십시오.</p>`) : `<p class="vg-help">확인해 둔 기준 ${D.rules.length}건 안에서만 찾아 보여 드립니다.</p>`}</div>
     ${H && M.compare ? `<details class="vg-hist"><summary>이 그림 안내는 어떻게 만들었나요?</summary><div class="a">
-      <p>옛 안내 자료(${esc(H.source_title)})가 건물 사진 위에 <b>빨간색으로 한도</b>, <b>초록색으로 기준 치수</b>를 그려 설명한 방식을 참고해 그림 안내를 만들었습니다. 그 자료의 사진과 수치는 쓰지 않았습니다.</p>
-      <table class="vg-tbl"><thead><tr><th>항목</th><th>옛 자료(2005년, 참고만)</th><th>지금 확인한 기준</th></tr></thead><tbody>
+      <p>과거 실무 도해 자료(${esc(H.source_title)})가 건물 사진 위에 <b>빨간색으로 한도</b>, <b>초록색으로 기준 치수</b>를 그려 설명한 방식을 참고해 그림 안내를 만들었습니다. 그 자료의 사진과 수치는 쓰지 않았습니다.</p>
+      <table class="vg-tbl"><thead><tr><th>항목</th><th>과거 자료(2005년, 참고만)</th><th>지금 확인한 기준</th></tr></thead><tbody>
         <tr><td>가로</td><td>${esc((H.items.find(i=>i.id==="H-05")||{}).extracted_rule||"")}</td><td>${esc((D.rules.find(r=>r.id===M.compare.width)||{}).rule||"")}</td></tr>
         <tr><td>세로</td><td>${esc((H.items.find(i=>i.id==="H-02")||{}).extracted_rule||"")}</td><td>${esc((D.rules.find(r=>r.id===M.compare.height)||{}).rule||"")}</td></tr>
         <tr><td>돌출</td><td>${esc((H.items.find(i=>i.id==="H-04")||{}).extracted_rule||"")}</td><td>${esc((D.rules.find(r=>r.id===M.compare.proj)||{}).rule||"")}</td></tr>
       </tbody></table>
-      <p>옛 자료와 지금 기준은 이렇게 다를 수 있어, 판정에는 출처와 확인일이 있는 현행 기준 자료만 씁니다. 기준 자료 갱신일: ${esc(D.updated)}</p></div></details>` : ""}
+      <p>과거 자료와 지금 기준은 이렇게 다를 수 있어, 판정에는 출처와 확인일이 있는 현행 기준 자료만 씁니다. 기준 자료 갱신일: ${esc(D.updated)}</p></div></details>` : ""}
     ${typeof bizBox==="function" ? bizBox("기준에 맞는 간판 제작과 신청 서류 준비는 등록된 옥외광고사업자와 상의하십시오.") : ""}`;
 
   const redraw = keep => { const id = keep && document.activeElement && document.activeElement.dataset ? document.activeElement.dataset.k : null; const sy = window.scrollY;

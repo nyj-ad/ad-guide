@@ -21,7 +21,7 @@ const t = (name, ok, note="") => { out.push(`${ok?"PASS":"FAIL"} | ${name}${note
   t("visual.js: 과거 자료를 판정에 쓰지 않음", !/hist[^;\n]*\.check|H\.items[^;\n]*check/.test(vjs));
   const imgs = []; (function walk(d){ for(const f of fs.readdirSync(d)){ if(f===".git"||f==="node_modules") continue; const p=path.join(d,f); fs.statSync(p).isDirectory()?walk(p):/\.(jpe?g|png|gif|webp|pdf)$/i.test(f)&&imgs.push(path.relative(root,p)); } })(root);
   const allowed = new Set(["assets/nyj-ci-symbol.png","qrcode.png","qr-poster.png","qr-poster.pdf"]);
-  t("저장소에 카페 사진·PDF 원본 없음", imgs.every(f=>allowed.has(f.replace(/\\/g,"/")) || f.startsWith("docs/challenge/img/")), imgs.join(", "));
+  t("저장소에 과거 자료 사진·PDF 원본 없음", imgs.every(f=>allowed.has(f.replace(/\\/g,"/")) || f.startsWith("docs/challenge/img/")), imgs.join(", "));
 
   /* --- 브라우저 점검 --- */
   const b = await chromium.launch();
