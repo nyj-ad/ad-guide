@@ -20,6 +20,7 @@ const V = {            // 사용자 입력값(기본값은 설명용 예시)
   pFloor:2, bottom:3.5, sidewalk:"yes", out:100, len:3, thick:30, zone:"other",
   q:""
 };
+const FLOOR_H = 3.3;   // 그림에서 한 층 높이로 가정한 값(m)
 const PRESETS = {
   wall:[
     {n:"기준 범위 안에 든 예", d:"간판이 창문 사이 벽면 안에 들어갑니다.", v:{floors:3,floor:1,bldgW:8,bandH:100,noWindow:false,signW:6,signH:80,signD:20,form:"panel"}},
@@ -28,7 +29,7 @@ const PRESETS = {
   ],
   proj:[
     {n:"기준 범위 안에 든 예", d:"아랫부분이 충분히 높고 돌출이 짧습니다.", v:{floors:4,pFloor:2,bottom:3.5,sidewalk:"yes",out:100,len:3,thick:30,zone:"other"}},
-    {n:"범위를 벗어난 예", d:"간판이 낮게 달려 지나가는 사람과 가깝습니다.", v:{floors:4,pFloor:2,bottom:2.4,sidewalk:"yes",out:150,len:3,thick:30,zone:"other"}},
+    {n:"범위를 벗어난 예", d:"간판이 낮게 달려 지나가는 사람과 가깝습니다.", v:{floors:4,pFloor:1,bottom:2.4,sidewalk:"yes",out:150,len:3,thick:30,zone:"other"}},
     {n:"더 확인해야 하는 예", d:"구역을 모르면 적용 기준이 달라질 수 있습니다.", v:{floors:4,pFloor:2,bottom:3.5,sidewalk:"yes",out:100,len:3,thick:30,zone:"other",region:"unknown"}}
   ]
 };
@@ -174,10 +175,11 @@ function drawProj(limits){
   const bwm=6, totalH=n*FH, sc=Math.min((H-padT-padB)/totalH, 34);
   const gy=H-padB, bx=padL, bw=bwm*sc*0.9, bh=totalH*sc, by=gy-bh, wallX=bx+bw;
   let s=`<rect x="${bx}" y="${by}" width="${bw}" height="${bh}" fill="${C.wall}" stroke="${C.line}" stroke-width="1.5"/>`;
-  for(let f=1;f<=n;f++){ const top=gy-f*FH*sc, base=gy-(f-1)*FH*sc;
+  for(let f=1;f<=n;f++){ const top=gy-f*FH*sc, base=gy-(f-1)*FH*sc, me=f===V.pFloor;
+    if(me) s+=`<rect x="${bx}" y="${top}" width="${bw}" height="${base-top}" fill="#dfe8ff"/>`;
     s+=`<line x1="${bx}" x2="${wallX}" y1="${top}" y2="${top}" stroke="${C.line}"/>`;
     for(let i=0;i<2;i++) s+=`<rect x="${bx+bw*(0.12+i*0.46)}" y="${top+0.8*sc}" width="${bw*0.3}" height="${Math.max(4,(base-top)-1.2*sc)}" rx="2" fill="${C.win}" stroke="#a9c1f5"/>`;
-    s+=`<text x="${bx-6}" y="${(top+base)/2+4}" font-size="10.5" fill="#8a90a3" text-anchor="end">${f}층</text>`; }
+    s+=`<text x="${bx-6}" y="${(top+base)/2+4}" font-size="10.5" font-weight="${me?700:400}" fill="${me?C.sign:"#8a90a3"}" text-anchor="end">${f}층</text>`; }
   const minB=limits.bottom, maxOut=limits.out/100;
   // 기준 범위: 지면에서 minB 이상 ~ 건물 벽면 높이, 벽에서 maxOut 이내
   const zy=by, zh=Math.max(0,bh-minB*sc);
@@ -193,7 +195,7 @@ function drawProj(limits){
   s+=dim(px+24,gy-minB*sc,px+24,gy,`지면에서 ${fmt(minB)}m`,C.ok,"right");
   s+=dim(wallX,by-6,wallX+maxOut*sc,by-6,"",C.ok);
   s+=`<text x="${wallX+maxOut*sc+6}" y="${by+4}" font-size="11" font-weight="700" fill="${C.ok}">벽에서 ${fmt(limits.out)}cm</text>`;
-  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="건물 앞모습 그림. 벽에서 ${fmt(V.out)}센티미터 튀어나온 돌출간판이 지면에서 ${fmt(V.bottom)}미터 높이에 달린 모습">${defs("vp")}${s}</svg>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="건물 앞모습 그림. 벽에서 ${fmt(V.out)}센티미터 튀어나온 돌출간판이 지면에서 ${fmt(V.bottom)}미터 높이에 달린 모습. 간판을 다는 층은 ${V.pFloor}층">${defs("vp")}${s}</svg>`;
 }
 
 /* ---------- 화면 ---------- */
@@ -238,7 +240,8 @@ function render(el){
       ${sel("floors","건물 전체 층수",floorsOpt)}${sel("pFloor","간판을 다는 층",floorsOpt)}
       ${fld("bottom","간판 아랫부분 높이(지면에서)","m",0.1,0.1,40)}${sel("sidewalk","간판 아래 도로",[["yes","인도가 있음"],["no","인도가 없음"]])}
       ${fld("out","벽에서 바깥쪽 끝까지","cm",5,5,400)}${fld("len","간판 세로 길이","m",0.1,0.1,40)}
-      ${fld("thick","간판 두께","cm",1,1,200)}${sel("zone","용도지역",[["other","상업지역이 아님 / 모름"],["commercial","상업지역"]])}`;
+      ${fld("thick","간판 두께","cm",1,1,200)}${sel("zone","용도지역",[["other","상업지역이 아님 / 모름"],["commercial","상업지역"]])}
+      <p class="vg-help" style="grid-column:1/-1">층을 바꾸면 아랫부분 높이를 그 층에 맞춰 넣어 드립니다(한 층을 약 ${FLOOR_H}m로 가정). 실제 높이를 알면 고쳐 넣어 주십시오.</p>`;
   const q = V.q.trim();
   const hits = q ? D.rules.filter(r=>(r.condition+r.rule+r.exceptions+D.regions[r.region]).includes(q)) : [];
   const H = VG.hist;
@@ -321,7 +324,11 @@ function render(el){
   el.querySelectorAll("[data-pre]").forEach(b=>b.onclick=()=>{ const p=PRESETS[V.type][+b.dataset.pre]; const pv=Object.assign({},p.v); if(pv.region && !VG.data.regions[pv.region]) delete pv.region; Object.assign(V,pv); redraw(); });
   el.querySelectorAll("[data-k]").forEach(n=>{
     const k=n.dataset.k;
-    const set=()=>{ V[k] = n.type==="checkbox" ? n.checked : (n.tagName==="SELECT" && !["floors","floor","pFloor"].includes(k)) ? n.value : num(n.value); };
+    const set=()=>{ V[k] = n.type==="checkbox" ? n.checked : (n.tagName==="SELECT" && !["floors","floor","pFloor"].includes(k)) ? n.value : num(n.value);
+      /* 돌출간판: 층과 아랫부분 높이를 서로 맞춘다(층당 FLOOR_H m로 가정) */
+      if (k==="pFloor" && V.pFloor>0) V.bottom = Math.round(Math.max(3, (V.pFloor-1)*FLOOR_H + 0.2)*10)/10;
+      if (k==="bottom" && V.bottom>0) V.pFloor = Math.max(1, Math.min(V.floors||10, Math.floor(V.bottom/FLOOR_H)+1));
+    };
     if (n.tagName==="SELECT" || n.type==="checkbox") n.onchange=()=>{ set(); redraw(true); };
     else { n.onchange=()=>{ set(); redraw(true); }; n.oninput=()=>{ set(); }; }
   });

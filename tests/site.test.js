@@ -65,6 +65,11 @@ const t = (name, ok, note="") => { out.push(`${ok?"PASS":"FAIL"} | ${name}${note
   await set({sidewalk:"no"}); t("돌출: 인도 없음 3.5m → 제한(4m 이상)", /제한 또는 위반/.test(await verdict()));
   await set({sidewalk:"yes",out:130}); t("돌출 130cm → 제한(1.2m)", /제한 또는 위반/.test(await verdict()));
   await set({out:100});
+  await p.locator('[data-k="floors"]').selectOption("8"); await p.locator('[data-k="pFloor"]').selectOption("8"); await p.waitForTimeout(150);
+  t("돌출: 층을 8층으로 바꾸면 아랫부분 높이와 그림이 8층으로 이동", await p.evaluate(()=>{ const V=window.__VG.V; return V.pFloor===8 && V.bottom>=23.1 && V.bottom<26.4 && /간판을 다는 층은 8층/.test(document.querySelector(".vg-pics svg").getAttribute("aria-label")); }));
+  await p.locator('[data-k="bottom"]').fill("7"); await p.locator('[data-k="bottom"]').dispatchEvent("change"); await p.waitForTimeout(150);
+  t("돌출: 아랫부분 높이를 7m로 바꾸면 층이 3층으로 맞춰짐", await p.evaluate(()=>window.__VG.V.pFloor===3));
+  await set({floors:4,pFloor:2,bottom:3.5});
   t("모든 판정 줄에 근거 링크·확인일", await p.evaluate(()=>[...document.querySelectorAll("#vgSummary .vg-row")].every(li=>li.querySelector(".vg-src a[href^='http']") && /확인일 \d{4}-\d\d-\d\d/.test(li.textContent))));
   t("허가증이 아니라는 문구", /허가증이나 적합 확인서가 아닙니다/.test(await p.locator("#vgSummary").innerText()));
   await p.locator("#vgQ").fill("입체형"); await p.waitForTimeout(600);
